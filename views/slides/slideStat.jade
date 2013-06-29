@@ -1,0 +1,76 @@
+.row
+	.tabbable
+		ul.nav.nav-tabs
+			li.active
+				a(href="#tab1", data-toggle="tab") Verkäufe
+			li
+				a(href="#tab2", data-toggle="tab") Konto
+		.tab-content
+			.tab-pane.active(id="tab1")
+				.well.d
+					legend Verkäufe						
+					table.table
+						tr.w
+							th
+								| Album
+							th
+								| Verkäufe
+							th
+								| Umsatz
+						tr
+							
+							td
+								a
+									.media
+										a.pull-left(href="#")
+											img.media-object(src="http://placehold.it/100x100", width="80", height="80")
+										.media-body
+											h4.media-heading 
+												| Album Name
+							td
+								| 0
+							td
+								| 0.00 EUR
+							tr
+								td
+									.media
+										a.pull-left(href="#")
+											img.media-object(src="http://placehold.it/100x100", width="80", height="80")
+										.media-body
+											h4.media-heading 
+												| Album Name
+								td
+									| 0
+								td
+									| 0.00 EUR
+					| * kann aus technischen gründen nur vierteljährlich aktualisiert werden
+			
+			.tab-pane(id="tab2")
+				.well.d
+					legend Deine Kontoübersicht
+					table.table
+						tr.w
+							th
+								| Posten
+							th
+								| Betrag
+						tr
+							td
+								| Verkäufe
+							td
+								| 0.00 EUR
+						tr
+							td
+								| Kommissionen?
+							td
+								| 0.00 EUR
+						tr
+							td
+								| Abzüge
+							td
+								| 0.00 EUR
+						tr.w
+							th
+								| Aktueller Kontostand
+							th
+								| 0.00 EUR

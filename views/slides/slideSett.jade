@@ -1,0 +1,192 @@
+div.row
+	div.tabbable
+		ul.nav.nav-tabs
+			li.dropdown.active
+				a.dropdown-toggle(href="#", data-toggle="dropdown") 
+					| Payment Options 
+					b.caret
+				ul.dropdown-menu(role="menu", aria-labledby="dropdownMenu")
+					li.active
+						a(href="#tab5", data-toggle="tab") Contact Info
+					li
+						a(href="#tab6", data-toggle="tab") Bank Info
+			li
+				a(href="#tab4", data-toggle="tab") Preferences 
+				
+				
+		div.tab-content
+			div.tab-pane(id="tab1")
+				.well.d
+					legend Options
+					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
+						.control-group
+							label.control-label(for="inpBandName") Bandname 
+							.controls
+								input(id="inpBandName", type="text", placeholder="Bandname")
+						.control-group
+							label.control-label(for="inpBandYear") founded in..
+							.controls
+								input(id="inpBandYear", type="text", placeholder="When was your Band found")
+						.controls
+							button.btn(type="submit") Save
+			div.tab-pane(id="tab2")
+				.well.d
+			div.tab-pane(id="tab3")
+				.well.d
+					legend Add Album
+					form(method="post", enctype="multipart/form-data", action="newAlbum")
+						div.row
+							div.span3
+								img.img-rounded(src="http://placehold.it/220x220", height="220", width="220")
+								div.place.s
+								input(id="logPass", type="text", name="R_email", placeholder="Album Title")
+								input(id="logPass", type="text", name="R_email", placeholder="Release Date")
+								input(id="logPass", type="text", name="R_email", placeholder="Region")
+								input(id="logPass", type="text", name="R_email", placeholder="Format")
+							div.span4
+								.input-prepend.input-append
+									span.add-on #1
+									input.span3(id="logPass", type="text", name="R_email", placeholder="Track Title")
+									input.span1(id="logPass", type="text", name="R_email", placeholder="00.00")
+									button.btn.btn-success(type="button") +
+								.input-prepend.input-append
+									span.add-on #2
+									input.span3(id="logPass", type="text", name="R_email", placeholder="Track Title")
+									input.span1(id="logPass", type="text", name="R_email", placeholder="00.00")
+									button.btn.btn-danger(type="button") -
+								.btn-group
+									button.span4.btn.btn-danger(type="submit")
+										b Save
+			div.tab-pane(id="tab4")
+				.span5
+					.well.d
+						legend Changes
+						form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
+							.control-group
+								label.control-label(for="inpBandName") Change Bandname 
+								.controls
+									input(id="inpBandName", type="text", placeholder="Bandname")
+							.control-group
+								label.control-label(for="inpBandName") Change Email 
+								.controls
+									input(id="inpBandName", type="text", placeholder="Email")
+							.control-group
+								label.control-label(for="inpBandName") Change Password 
+								.controls
+									input(id="inpBandName", type="text", placeholder="Old Password")
+									input(id="inpBandName", type="text", placeholder="New Password")
+									input(id="inpBandName", type="text", placeholder="Repeat New Password")
+							.controls
+								button.btn(type="submit") Save
+				.span4
+					.well.d
+						legend Preferences
+						form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
+							input(id="notPublic", type="checkbox")
+							|  Bundles nicht öffentlich zeigen
+							br
+							.control-group
+								input(id="notBundle", type="checkbox")
+								|  Bundle nicht meine Songs ?
+							.controls
+								button.btn(type="submit") Save
+			div.tab-pane.active(id="tab5")
+				.well.d
+					legend Contact Info
+					br
+					.tabbable
+						.btn-group(data-toggle="buttons-radio")
+							button.btn.active(href="#ttab1", data-toggle="tab", tabindex="-1") Privatperson 
+							button.btn(href="#ttab2", data-toggle="tab", tabindex="-1") Firma
+					.place.s
+					
+					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
+						.control-group
+							label.control-label(for="inpBandName") Email 
+							.controls
+								input(id="inpBandName", type="text", placeholder="Email")
+						.control-group
+							label.control-label(for="inpBandYear") Prename
+							.controls
+								input(id="inpBandYear", type="text", placeholder="Prename")
+						.control-group
+							label.control-label(for="inpBandYear") Lastname
+							.controls
+								input(id="inpBandYear", type="text", placeholder="Lastname")
+						.control-group
+							label.control-label(for="inpBandYear") Street
+							.controls
+								.input-append
+									input(id="inpBandYear", type="text", placeholder="Streetname")
+								.input-prepend
+									input.span1(id="inpBandYear", type="text", placeholder="Nr")
+						.control-group
+							label.control-label(for="inpBandYear") City
+							.controls
+								.input-append
+									input.span1(id="inpBandYear", type="text", placeholder="PLZ")
+								.input-prepend
+									input(id="inpBandYear", type="text", placeholder="City Name")
+						.control-group
+							label.control-label(for="inpBandYear") Country
+							.controls
+								input(id="inpBandYear", type="text", placeholder="Country")
+						.control-group
+							label.control-label(for="inpBandYear") Phone
+							.controls
+								.input-append
+									input.span1(id="inpBandYear", type="text", placeholder="Prefix")
+								.input-prepend
+									input(id="inpBandYear", type="text", placeholder="Phone Nr")
+						.tab-content
+							.tab-pane(id="ttab1")
+							.tab-pane(id="ttab2")
+								.control-group
+									label.control-label(for="inpBandYear") Firmenname
+									.controls
+										input(id="inpBandYear", type="text", placeholder="Firmenname")
+								.control-group
+									label.control-label(for="inpBandYear") Identifikationsnr
+									.controls
+										input(id="inpBandYear", type="text", placeholder="USt.-Id/UID/Steuernummer")
+								.control-group
+									.controls
+										input(id="bla", type="checkbox")
+										|  Ich bin Kleinunternehmer gemäß dem deutschen UStG (§ 19) 
+								
+						.controls
+							button.btn(type="submit") Save
+						
+			.tab-pane(id="tab6")
+				.well.d
+					legend Bank Info
+					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
+						.tabbable
+							.btn-group(data-toggle="buttons-radio")
+								a.btn.btn-danger.active(href="#btab1", data-toggle="tab", tabindex="-1") Paypal
+								a.btn.btn-danger(href="#btab2", data-toggle="tab", tabindex="-1") Bank Transfer
+							.place.s
+							.tab-content
+								.tab-pane.active(id="btab1")
+									.control-group
+										label.control-label(for="inpBandName") PayPal Email 
+										.controls
+											input(id="inpBandName", type="text", placeholder="PayPal Email")
+									.controls
+										button.btn(type="submit") Save
+								.tab-pane(id="btab2")
+									.control-group
+										label.control-label(for="inpBandName") Bankname 
+										.controls
+											input(id="inpBandName", type="text", placeholder="Bankname")
+									.control-group
+										label.control-label(for="inpBandName") Bankleitzahl 
+										.controls
+											input(id="inpBandName", type="text", placeholder="Bankleitzahl")
+									.control-group
+										label.control-label(for="inpBandName") KontoNr 
+										.controls
+											input(id="inpBandName", type="text", placeholder="KontoNr")
+									.controls
+										button.btn(type="submit") Save
+							

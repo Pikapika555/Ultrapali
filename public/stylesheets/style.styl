@@ -1,0 +1,261 @@
+menu-height = 78px;
+
+header
+	//box-shadow: 0px 8px 10px #000
+
+body
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+	background-color: #272727
+	padding-top: menu-height
+a
+	color: #00B7FF
+
+	
+.wh
+	color:white
+//// Index ////
+// Divs //
+
+.brand-fix
+	padding-top: 5px !important
+
+.container-navigation
+	padding-top: 18px
+
+#TopNav
+	height: menu-height
+
+
+.indexField
+	padding-top: 10%
+	
+	padding-bottom: 10%
+.navBar
+	min-height: menu-height
+.indexDivider
+	position: absolute
+	height: auto
+	width: 100%
+	left: 0px
+	background-color: #f9f9f9
+	padding-top: 50px
+	padding-bottom: 50px
+	
+///////////
+// UNITS //
+///////////
+
+// VARIABLES //
+
+// PLEASE NOTE: The Genre-<span> isn't shown if a value below 140px is chosen (for overflow reasons)
+unit-height = 180px
+
+
+// WORKAROUND: Limits the maximum/minimum size of the unit-height, for best displaying reasons
+if unit-height >= 201px
+	unit-height = 200px
+
+if unit-height <= 99px
+	unit-height = 100px
+// END WORKAROUND
+
+unit-width = unit-height
+mask-height = unit-height / 2
+
+
+#cWrap
+	position: relative
+
+	#subHeadNav
+		position: relative
+		height: 25px
+		width: 100%
+		background-color: #272727
+		left: 0px
+		box-shadow: 0px -8px 8px #111
+
+.unit-list-wrap
+	height: unit-height
+	overflow: hidden
+	z-index: 10
+	
+	ul
+		height: unit-height
+		list-style-type: none
+		margin: 0
+		//overflow: hidden
+		padding: 0
+	
+		.unit-item
+			float: left
+			z-index: 1
+				
+			a
+				display: block
+				text-decoration: none
+				max-height: unit-height;
+		
+			.unit-image
+				height: unit-height
+				width: unit-width
+				padding: 0
+
+			.mask 
+				background: linear-gradient(to bottom, rgba(66, 66, 66, 0) 0%, #222222 100%) repeat scroll 0 0 rgba(44, 44, 44, 0.95)
+				border-top: 1px solid #ccc
+				bottom: mask-height
+				display: block
+				height: mask-height
+				//left: 0
+				position: relative
+				width: unit-width
+
+				.wrap
+					display: block
+					padding: 15px 0 0 0
+					position: relative
+					height: calc(mask-height - 15px)
+
+					.unit-button
+						background-clip: padding-box
+						//border-radius: 50% 50% 50% 50%
+						display: block
+						//height: 70px
+						//left: calc((180px - 70px) / 2)
+						position: absolute
+						text-align: center
+						top: -11px
+						width: unit-width
+						
+						.action
+							padding: 0 0 0 5px
+
+					.unit-information
+						color: #F5F5F5
+						font-size: 11px
+						max-height: mask-height
+						overflow: hidden
+						text-overflow: ellipsis
+						text-shadow: 0 -1px 1px rgba(0, 1, 0, 0.5)
+						top: 40px
+						transition: all 200ms ease 0s
+						white-space: nowrap
+						width: unit-width
+
+						.unit-album
+							color: #F5F5F5
+							display: block						
+							font-weight: bold
+							overflow: hidden	
+							text-overflow: ellipsis
+							text-shadow: 0 -1px 1px rgba(0, 1, 0, 0.5)
+							transition: all 200ms ease 0s
+							white-space: nowrap
+							
+							if unit-height >= 180
+								font-size: 14px
+								line-height: 20px
+								padding: 0 15px
+							else
+								font-size: 12px
+								line-height: 15px
+								
+								if unit-height <= 140
+									padding: calc(unit-height/10 - 10) 15px 0
+								else
+									padding: 0 15px
+								
+								if unit-height <= 100
+									line-height: 12px
+									
+
+						.unit-artist
+							display: block
+							overflow: hidden
+							padding: 0 15px
+							text-overflow: ellipsis
+							
+							if unit-height >= 180
+								font-size: 12px
+							else
+								font-size: 11px
+								
+								if unit-height <= 100
+									line-height: 15px
+
+						.unit-genre
+							color: #aaaaaa
+							display: block
+							overflow: hidden
+							text-overflow: ellipsis
+							
+							if unit-height >= 180
+								line-height: 20px
+								padding: 6px 15px 0
+							else
+								line-height: 12px
+								padding: 0 15px
+								
+								if unit-height <= 140
+									display: none
+									
+		.unit-big		
+			.unit-image
+				width: calc(unit-width * 2)
+			.mask 
+				width: calc(unit-width * 2)
+				.wrap
+					.unit-button
+						width: calc(unit-width * 2)
+					.unit-information
+						width: calc(unit-width * 2)
+					
+		.unit-bigger	
+			.unit-image
+				width: calc(unit-width * 3)
+			.mask 
+				width: calc(unit-width * 3)
+				.wrap
+					.unit-button
+						width: calc(unit-width * 3)
+					.unit-information
+						width: calc(unit-width * 3)
+					
+		.unit-huge	
+			.unit-image
+				width: calc(unit-width * 4)
+			.mask 
+				width: calc(unit-width * 4)
+				.wrap
+					.unit-button
+						width: calc(unit-width * 4)
+					.unit-information
+						width: calc(unit-width * 4)
+.navbar
+	box-shadow: 0px 8px 10px #000
+	
+.unit-control
+	position: absolute
+	top: 50%
+	margin-top: -40px
+	height: 60px
+	width: 60px
+	background-color: grey
+	opacity: 0.9
+	border-top-right-radius: 20px
+	border-bottom-right-radius: 20px
+	
+.unit-control.rasd
+	right: 0px
+	background-color: green
+	border-top-right-radius: 0px
+	border-bottom-right-radius: 0px
+	border-top-left-radius: 20px
+	border-bottom-left-radius: 20px
+
+	
+.mid
+	display: block
+	margin-left: auto
+	margin-right: auto
+	text-align: center

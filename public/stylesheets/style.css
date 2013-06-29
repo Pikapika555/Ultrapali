@@ -1,0 +1,202 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #272727;
+  padding-top: 78px;
+}
+a {
+  color: #00b7ff;
+}
+.wh {
+  color: #fff;
+}
+.brand-fix {
+  padding-top: 5px !important;
+}
+.container-navigation {
+  padding-top: 18px;
+}
+#TopNav {
+  height: 78px;
+}
+.indexField {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+.navBar {
+  min-height: 78px;
+}
+.indexDivider {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  left: 0px;
+  background-color: #f9f9f9;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+#cWrap {
+  position: relative;
+}
+#cWrap #subHeadNav {
+  position: relative;
+  height: 25px;
+  width: 100%;
+  background-color: #272727;
+  left: 0px;
+  box-shadow: 0px -8px 8px #111;
+}
+.unit-list-wrap {
+  height: 180px;
+  overflow: hidden;
+  z-index: 10;
+}
+.unit-list-wrap ul {
+  height: 180px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.unit-list-wrap ul .unit-item {
+  float: left;
+  z-index: 1;
+}
+.unit-list-wrap ul .unit-item a {
+  display: block;
+  text-decoration: none;
+  max-height: 180px;
+}
+.unit-list-wrap ul .unit-item .unit-image {
+  height: 180px;
+  width: 180px;
+  padding: 0;
+}
+.unit-list-wrap ul .unit-item .mask {
+  background: linear-gradient(to bottom, rgba(66,66,66,0) 0%, #222 100%) repeat scroll 0 0 rgba(44,44,44,0.95);
+  border-top: 1px solid #ccc;
+  bottom: 90px;
+  display: block;
+  height: 90px;
+  position: relative;
+  width: 180px;
+}
+.unit-list-wrap ul .unit-item .mask .wrap {
+  display: block;
+  padding: 15px 0 0 0;
+  position: relative;
+  height: calc(75px);
+}
+.unit-list-wrap ul .unit-item .mask .wrap .unit-button {
+  background-clip: padding-box;
+  display: block;
+  position: absolute;
+  text-align: center;
+  top: -11px;
+  width: 180px;
+}
+.unit-list-wrap ul .unit-item .mask .wrap .unit-button .action {
+  padding: 0 0 0 5px;
+}
+.unit-list-wrap ul .unit-item .mask .wrap .unit-information {
+  color: #f5f5f5;
+  font-size: 11px;
+  max-height: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 -1px 1px rgba(0,1,0,0.5);
+  top: 40px;
+  transition: all 200ms ease 0s;
+  white-space: nowrap;
+  width: 180px;
+}
+.unit-list-wrap ul .unit-item .mask .wrap .unit-information .unit-album {
+  color: #f5f5f5;
+  display: block;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 -1px 1px rgba(0,1,0,0.5);
+  transition: all 200ms ease 0s;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0 15px;
+}
+.unit-list-wrap ul .unit-item .mask .wrap .unit-information .unit-artist {
+  display: block;
+  overflow: hidden;
+  padding: 0 15px;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+.unit-list-wrap ul .unit-item .mask .wrap .unit-information .unit-genre {
+  color: #aaa;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  padding: 6px 15px 0;
+}
+.unit-list-wrap ul .unit-big .unit-image {
+  width: calc(360px);
+}
+.unit-list-wrap ul .unit-big .mask {
+  width: calc(360px);
+}
+.unit-list-wrap ul .unit-big .mask .wrap .unit-button {
+  width: calc(360px);
+}
+.unit-list-wrap ul .unit-big .mask .wrap .unit-information {
+  width: calc(360px);
+}
+.unit-list-wrap ul .unit-bigger .unit-image {
+  width: calc(540px);
+}
+.unit-list-wrap ul .unit-bigger .mask {
+  width: calc(540px);
+}
+.unit-list-wrap ul .unit-bigger .mask .wrap .unit-button {
+  width: calc(540px);
+}
+.unit-list-wrap ul .unit-bigger .mask .wrap .unit-information {
+  width: calc(540px);
+}
+.unit-list-wrap ul .unit-huge .unit-image {
+  width: calc(720px);
+}
+.unit-list-wrap ul .unit-huge .mask {
+  width: calc(720px);
+}
+.unit-list-wrap ul .unit-huge .mask .wrap .unit-button {
+  width: calc(720px);
+}
+.unit-list-wrap ul .unit-huge .mask .wrap .unit-information {
+  width: calc(720px);
+}
+.navbar {
+  box-shadow: 0px 8px 10px #000;
+}
+.unit-control {
+  position: absolute;
+  top: 50%;
+  margin-top: -40px;
+  height: 60px;
+  width: 60px;
+  background-color: #808080;
+  opacity: 0.9;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.unit-control.rasd {
+  right: 0px;
+  background-color: #008000;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.mid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

@@ -1,0 +1,77 @@
+#Content {
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+span.foldIt {
+  position: absolute;
+  left: 50%;
+  width: 66px;
+  height: 20px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  background-color: #272727;
+  top: -20px;
+  box-shadow: 0px -8px 8px #111;
+  text-align: center;
+  padding-top: 2px;
+}
+.midContent {
+  background-color: #008000;
+}
+.place {
+  position: relativ;
+  height: 70px;
+  width: auto;
+}
+.place.s {
+  height: 20px;
+}
+.place.m {
+  height: 50px;
+}
+.place.l {
+  height: 100px;
+}
+tr.w {
+  background-color: #333;
+}
+.well.d {
+  background-color: #222;
+  color: #ddd;
+  border: 1px solid #333;
+}
+.hero-unit.d {
+  background-color: #222;
+  color: #ddd;
+  border: 1px solid #333;
+}
+.priceTable {
+  text-align: center;
+  box-shadow: 6px 6px 6px 2px #111;
+}
+.priceTable:hover {
+  background-color: #333;
+  border: 1px solid #bbb;
+}
+li.feature {
+  padding: 15px 10px;
+  border-top: 1px solid #c5c8c0;
+  list-style: none;
+}
+.colorfield {
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  padding: 20px;
+  color: #fff;
+  margin-bottom: -1px;
+}
+.colorfield.bronze {
+  background-color: #665d1e;
+}
+.colorfield.silver {
+  background-color: #c0c0c0;
+}
+.colorfield.gold {
+  background-color: #ffd700;
+}

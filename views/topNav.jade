@@ -1,0 +1,119 @@
+doctype 5
+html
+	head
+		title= title
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Titillium+Web&subset=latin,latin-ext', type='text/css')
+		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css', media="screen")
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/cCenter.css')
+
+		script(src='/javascripts/jq.js')
+		script(src='/javascripts/jq-rot-scal.js')
+		script(src='/javascripts/jq-addr.js')
+		script(src='/bootstrap/js/bootstrap.min.js')
+		script(src='/javascripts/core.js')
+		script(src='/javascripts/ajax.js')
+	body
+		header
+			nav.navbar.navbar-inverse.navbar-fixed-top
+				.navbar-inner.navBar
+					.container.container-navigation
+						a.brand.brand-fix(href="/") Logo
+						.nav-collapse.collapse
+							ul.nav
+								li
+									a(href="#")
+										| Home
+								li
+									a(href="#")
+										| Get started
+								li
+									a(href="#")
+										| Bands
+							ul.nav.pull-right
+								- if(!navi.email)
+									li.divider-vertical
+									li
+										a.brand(href="#regMod", data-toggle="modal")
+											b Registrate
+									li.divider-vertical
+									li.dropdown
+										a.brand.dropdown-toggle(href="#", data-toggle="dropdown")
+											b  Login 
+											b.caret
+										.dropdown-menu
+											.well
+												legend Please Sign In
+												.alert.alert-error
+													a.close(href="#", data-dismiss="alert") &times;
+													| Incorrect Username or Password!
+												form(method="POST", action="login", accept-charset="UTF-8")
+													input.span3(type="text", id="email", name="email", placeholder="Email")
+													input.span3(type="text", id="password", name="password", placeholder="Password")
+													label.checkbox
+														input(type="checkbox", name="remember", value="1") 
+														p Remember Me
+													button.btn.btn-info.btn-block(type="submit", name="submit")
+														b Sign in
+													a.btn.btn-info.btn-block(href="/logout")
+														b Login Hack
+								- else
+									li.divider-vertical
+									li
+										a.dropdown-toggle(href="#", data-toggle="dropdown")
+											| Welcome #{navi.email} 
+											b.caret
+										ul.dropdown-menu(role="menu", aria-labledby="dropdownMenu")
+											li
+												a(tabindex="-1", href="#") Blabla
+											li
+												a(tabindex="-1", href="/logout") Logout
+									
+			
+			#cWrap
+				include includes/unit-slider
+					
+				#subHeadNav
+					span.foldIt(id="foldit", onclick="CloseAlbumCaroussel()")
+						i.icon-chevron-up.icon-white
+		block content
+		
+		#regMod.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+
+					.modal-body
+						ul.nav.nav-tabs
+							li
+								a(href="#tLog", data-toggle="tab") Login
+							li.active
+								a(href="#tReg", data-toggle="tab") Create Account
+						
+						.tab-content
+							#tLog.tab-pane.fade
+								.well
+									legend Please Sign In
+									.alert.alert-error
+										a.close(href="#", data-dismiss="alert") &times;
+										| Incorrect Username or Password!
+									form(method="POST", action="", accept-charset="UTF-8")
+										input.span3(type="text", id="email", name="email", placeholder="Email")
+										input.span3(type="text", id="password", name="password", placeholder="Password")
+										label.checkbox
+											input(type="checkbox", name="remember", value="1") 
+											p Remember Me
+										button.btn.btn-info.btn-block(type="submit", name="submit")
+											b Sign in
+							#tReg.tab-pane.active
+								.well
+									legend Create your Account
+									.alert.alert-error
+										a.close(href="#", data-dismiss="alert") &times;
+										| Email in use
+									form(method="post", enctype="multipart/form-data", action="registrate")
+											input.span3(id="logPass", type="text", name="R_email", placeholder="Email")
+											input.span3(id="logPass", type="password", name="R_password", placeholder="Password")
+											input.span3(id="logPass", type="password", name="R_password2", placeholder="Retype Password")
+											button.btn.btn-info.btn-block(type="submit")
+												b Registrate

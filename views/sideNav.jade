@@ -1,0 +1,56 @@
+extends topNav
+block content
+		#Content
+			.midContent
+			.container
+				div.row
+					#AjaxContent.span9
+						include slides/slideDash
+					div.span3
+						div.sidebar-nav
+							div.well.d
+								ul.nav.nav-list(id="ulSideNav")
+									//li.divider
+									li
+										blockquote
+											- if(!navi.user)
+												h4 BandName Eintragen
+											- else
+												h4 #{navi.user}
+											small #{navi.email}
+									li.divider
+									li.nav-header Band Menu
+									li.active(id="liSiDash")
+										a(href="/dashboard") 
+											i.icon-home
+											|   Dashboard
+									li(id="liSiUpl")
+										a(href="/upload")
+											i.icon-share
+											|	Upload Songs
+									li(id="liSiSett")
+										a(href="/settings")
+											i.icon-cog
+											|	Settings
+									li(id="liSiStat")
+										a(href="/statistic")
+											i.icon-indent-left
+											|	Statistic
+									li.divider
+									li.nav-header Admin Menu
+									li
+										a(href="/adminUser")
+											i.icon-star
+											|	Manage Users
+									li
+										a(href="/adminRequests")
+											i.icon-headphones
+											|	Manage Requests
+									li
+										a(href="/adminSett")
+											i.icon-headphones
+											|	Settings
+									li
+										a(href="/adminLang")
+											i.icon-headphones
+											|	Edit Languages
