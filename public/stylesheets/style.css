@@ -48,17 +48,19 @@ a {
 .unit-list-wrap {
   height: 180px;
   overflow: hidden;
-  z-index: 10;
 }
 .unit-list-wrap ul {
+  position: relative;
   height: 180px;
+  left: 0px;
   list-style-type: none;
   margin: 0;
+  overflow: hidden;
   padding: 0;
+  z-index: 1;
 }
 .unit-list-wrap ul .unit-item {
   float: left;
-  z-index: 1;
 }
 .unit-list-wrap ul .unit-item a {
   display: block;
@@ -183,16 +185,13 @@ a {
   width: 60px;
   background-color: #808080;
   opacity: 0.9;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 0 20px 20px 0;
+  z-index: 2;
 }
 .unit-control.rasd {
   right: 0px;
   background-color: #008000;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-radius: 20px 0 0 20px;
 }
 .mid {
   display: block;

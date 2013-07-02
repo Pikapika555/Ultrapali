@@ -1,8 +1,72 @@
-
-/*
- * GET home page.
- */
-
+var funct = require('../routes/functions')
+	, mongoF = require('../routes/mongoF');
+// GET
+//// Views
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
+	funct.genVars(req, res, function(req, res, nav){
+		if(!req.session.email){
+			res.render('index', { title: 'Express', navi: nav });
+		}
+		else if(req.session.email){
+			/////////////////////generateData(){req, res, function(data){ res.render(bla, {data})}}
+			res.render('sideNav', { title: 'Express', navi: nav });
+		}
+	});
+}
+
+exports.dashboard = function(req, res){
+	res.render('slides/slideDash', {layout: false, title: 'Express', username: req.session.username });
+}
+
+exports.message = function(req, res){
+	res.render('slides/slideMess', {layout: false, title: 'Express', username: req.session.username });
+}
+
+exports.upload = function(req, res){
+	res.render('slides/slideUpl', { title: 'Express', username: req.session.username });
+}
+
+exports.settings = function(req, res){
+	res.render('slides/slideSett', { title: 'Express', username: req.session.username });
+}
+
+exports.statistic = function(req, res){
+	res.render('slides/slideStat', { title: 'Express', username: req.session.username });
+}
+
+exports.profil = function(req, res){
+	res.render('slides/slideProf', { title: 'Express', username: req.session.username });
+}
+
+exports.premium = function(req, res){
+	res.render('slides/slidePrem', { title: 'Express', username: req.session.username });
+}
+
+exports.adminUser = function(req, res){
+	mongoF.findAll(req, res, function(req, res, items){
+		res.render('slides/slideAUser', { title: 'Express', users: items });
+	});
+}
+
+exports.adminRequests = function(req, res){
+	res.render('slides/slideProf', { title: 'Express', username: req.session.username });
+}
+
+
+
+//// Extra
+exports.logout = function(req, res){
+	 req.session.destroy(function() {
+		res.redirect('/');
+	 });
+}
+
+
+
+// POST ///// Later on sepperate in different docs
+
+exports.logHack = function(req,res){
+	req.session.username = "Pika"
+	res.redirect('/');
+}
+

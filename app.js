@@ -5,7 +5,6 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , mongoF = require('./routes/mongoF')
   , funct = require('./routes/functions')
   , http = require('http')
@@ -42,7 +41,7 @@ app.get('/dashboard', routes.dashboard);
 //app.get('/messages', routes.message);
 app.get('/upload', routes.upload);
 app.get('/settings', routes.settings);
-app.get('/statistic', routes.statistic);
+//app.get('/statistic', routes.statistic);
 //app.get('/profil', routes.profil);
 //app.get('/premium', routes.premium);
 //app.get('/mastering', routes.dashboard);

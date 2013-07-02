@@ -77,18 +77,19 @@ mask-height = unit-height / 2
 .unit-list-wrap
 	height: unit-height
 	overflow: hidden
-	z-index: 10
 	
 	ul
+		position: relative
 		height: unit-height
+		left: 0px
 		list-style-type: none
 		margin: 0
-		//overflow: hidden
+		overflow: hidden
 		padding: 0
+		z-index: 1
 	
 		.unit-item
 			float: left
-			z-index: 1
 				
 			a
 				display: block
@@ -242,16 +243,13 @@ mask-height = unit-height / 2
 	width: 60px
 	background-color: grey
 	opacity: 0.9
-	border-top-right-radius: 20px
-	border-bottom-right-radius: 20px
+	border-radius: 0 20px 20px 0
+	z-index: 2
 	
-.unit-control.rasd
-	right: 0px
-	background-color: green
-	border-top-right-radius: 0px
-	border-bottom-right-radius: 0px
-	border-top-left-radius: 20px
-	border-bottom-left-radius: 20px
+	&.rasd
+		right: 0px
+		background-color: green
+		border-radius: 20px 0 0 20px
 
 	
 .mid
