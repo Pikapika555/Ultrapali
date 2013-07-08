@@ -24,10 +24,25 @@ Legend:first-letter {
 #NavIcoLeft {
   font-family: Origin;
 }
+hr.s {
+  color: #008000;
+  height: 1px;
+  border: 0;
+  background-image: -webkit-linear-gradient(left, rgba(221,221,221,0), rgba(221,221,221,0.75), rgba(221,221,221,0));
+  background-image: -moz-linear-gradient(left, rgba(221,221,221,0), rgba(221,221,221,0.75), rgba(221,221,221,0));
+  background-image: -ms-linear-gradient(left, rgba(221,221,221,0), rgba(221,221,221,0.75), rgba(221,221,221,0));
+  background-image: -o-linear-gradient(left, rgba(221,221,221,0), rgba(221,221,221,0.75), rgba(221,221,221,0));
+}
+.hidesrc {
+  position: absolute;
+  opacity: 0;
+  margin: 0;
+}
 input.hidescr {
   position: absolute;
   opacity: 0;
   z-index: 2;
+  width: 80px;
 }
 body {
   font-size: 14px;

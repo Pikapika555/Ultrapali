@@ -37,8 +37,8 @@ div.row
 										.media-object
 											Legend Upload Album Cover
 											.media
-												form(id="uploadForm", enctype="multipart/form-data", method="post", action="imageUpload")
-													input(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
+												form.hidesrc(id="uploadForm", enctype="multipart/form-data", method="post", action="imageUpload")
+													input.hidescr(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
 												.input-prepend
 													button.btn(type="button") Upload
 													span.add-on   No File Uploaded  
@@ -63,6 +63,19 @@ div.row
 														span.add-on
 															i.icon-ok
 											.control-group
+												label.control-label(for="") Künstler
+												.controls
+													select(id="Künstler")
+														option Künstler A
+														option Künstler B
+													a(href="#editModal", data-toggle="modal")
+														i.icon-pencil.icon-white
+											.control-group
+												label.control-label(for="") Künstlername auf Cover
+												.controls
+													input(id="logPass", type="text", name="R_email", placeholder="Künstlername")
+											hr.s
+											.control-group
 												label.control-label(for="") Cd Release Date
 												.controls
 													.input-append
@@ -82,6 +95,7 @@ div.row
 														option(value="album") Album
 														option EP
 														option Audiobook
+											hr.s
 											.control-group
 												label.control-label(for="") Genre
 												.controls
@@ -101,6 +115,21 @@ div.row
 												.controls
 													select(id="selGenre2")
 														option Choose above
+											hr.s
+											.control-group
+												label.control-label(for="") Copyright Recording
+												.controls
+													.input-append
+														input(id="logPass", type="text", name="R_email", placeholder="Year/Holder")
+														span.add-on
+															i.icon-ok
+											.control-group
+												label.control-label(for="") Copyright Packaging
+												.controls
+													.input-append
+														input(id="logPass", type="text", name="R_email", placeholder="Year/Holder")
+														span.add-on
+															i.icon-ok
 											
 											.control-group
 												button.btn.span6(data-toggle="collapse", data-target="#addOpt") Extra Options 
@@ -117,6 +146,19 @@ div.row
 															input(id="logPass", type="text", name="R_email", placeholder="Own Barcode")
 													.control-group
 														label.control-label(for="") Digital Release date
+														.controls
+															.input-append
+																input(id="logPass", type="text", name="R_email", placeholder="Release Date")
+																span.add-on
+																	i.icon-remove
+													.control-group
+														label.control-label(for="") Featured by
+														.controls
+															select(id="Künstler")
+																option Künstler A
+																option Künstler B
+															a(href="#editModal", data-toggle="modal")
+																i.icon-pencil.icon-white
 							.accordion-heading
 									a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseThree")
 										| Upload Songs
@@ -135,8 +177,94 @@ div.row
 										span.fff(data-toggle="collapse", data-target="#songOpt")
 											i.icon-chevron-down.icon-white
 										#songOpt.collapse
-											p HALLOR
-
+											form.form-horizontal
+												.control-group
+													label.control-label(for="") Volume/Track Nr.
+													.controls
+														.input-append
+															input.span1(id="logPass", type="text", name="R_email", placeholder="Vol")
+															input.span1(id="logPass", type="text", name="R_email", placeholder="Track")
+															span.add-on
+																i.icon-remove
+												.control-group
+													label.control-label(for="") Track Title
+													.controls
+														.input-append
+															input.span1(id="logPass", type="text", name="R_email", placeholder="Track Title")
+															span.add-on
+																i.icon-remove
+												hr.s
+												.control-group
+													label.control-label(for="") Künstler
+													.controls
+														select(id="Künstler")
+															option Künstler A
+															option Künstler B
+														a(href="#editModal", data-toggle="modal")
+															i.icon-pencil.icon-white
+												.control-group
+													label.control-label(for="") Komponist
+													.controls
+															input.span2(id="logPass", type="text", name="R_email", placeholder="Vorname")
+															input.span2(id="logPass", type="text", name="R_email", placeholder="Nachname")
+												.control-group
+													label.control-label(for="") Textautor
+													.controls
+															input.span2(id="logPass", type="text", name="R_email", placeholder="Vorname")
+															input.span2(id="logPass", type="text", name="R_email", placeholder="Nachname")
+												.control-group
+													label.control-label(for="") Preview Clip Start
+													.controls
+														.input-append
+															input.span1(id="logPass", type="text", name="R_email", placeholder="00")
+															span.add-on
+																| Seconds
+																
+																
+												.control-group
+													button.btn.span6(data-toggle="collapse", data-target="#addOpt2") Extra Options 
+														b.caret
+												.control-group
+													#addOpt2.collapse
+														.control-group
+															label.control-label(for="") ISRC-Number
+															.controls
+																input(id="logPass", type="text", name="R_email", placeholder="ISRC-Number")
+														.control-group
+															label.control-label(for="") Track Title Version
+															.controls
+																input(id="logPass", type="text", name="R_email", placeholder="Track Title Version")
+														.control-group
+															label.control-label(for="") Remixer
+															.controls
+																input.span2(id="logPass", type="text", name="R_email", placeholder="Vorname")
+																input.span2(id="logPass", type="text", name="R_email", placeholder="Nachname")
+														.control-group
+															label.control-label(for="") Featured
+															.controls
+																select(id="Künstler")
+																	option Künstler A
+																	option Künstler B
+																a(href="#editModal", data-toggle="modal")
+																	i.icon-pencil.icon-white
+														hr.s
+														.control-group
+															label.control-label(for="") Cover-Version
+														.control-group
+															label.control-label(for="") Explicit Content
+														.control-group
+															label.control-label(for="") Instrumental
+														.control-group
+															label.control-label(for="") Verlag
+														.control-group
+															label.control-label(for="") Uhrheberrechts-Gesellschaft
+							
+							.accordion-heading
+								a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseFour")
+									| Payment
+							#collapseFour.accordion-body.collapse
+								.accordion-inner
+									
 				.span2
 					.well.d
 						| Im an info box

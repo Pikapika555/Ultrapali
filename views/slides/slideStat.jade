@@ -5,6 +5,8 @@
 				a(href="#tab1", data-toggle="tab") Verkäufe
 			li
 				a(href="#tab2", data-toggle="tab") Konto
+			li
+				a(href="#tab3", data-toggle="tab") Transaktionen
 		.tab-content
 			.tab-pane.active(id="tab1")
 				.well.d
@@ -74,3 +76,34 @@
 								| Aktueller Kontostand
 							th
 								| 0.00 EUR
+			#tab3.tab-pane
+				.well.d
+					legend Transaktionen
+					table.table
+						tr.w
+							th
+								| Datum
+							th
+								| Von/An
+							th
+								| Verwendung
+							th
+								| Betrag
+						tr
+							td
+								| 19.1.1987
+							td
+								| Kontor
+							td
+								| Albumabrechnung
+							td
+								| 60.00 €
+						tr
+							td
+								| 19.2.1987
+							td
+								| Darktunes
+							td
+								| Premiumaccount
+							td
+								| -15.00 €

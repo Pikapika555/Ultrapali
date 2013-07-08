@@ -48,10 +48,17 @@ exports.adminUser = function(req, res){
 	});
 }
 
-exports.adminRequests = function(req, res){
-	res.render('slides/slideProf', { title: 'Express', username: req.session.username });
+exports.adminReq = function(req, res){
+	res.render('slides/slideAReq', { title: 'Express' });
 }
 
+exports.adminSett = function(req, res){
+	res.render('slides/slideASett', { title: 'Express' });
+}
+
+exports.adminLang = function(req, res){
+	res.render('slides/slideALang', { title: 'Express' });
+}
 
 
 //// Extra
