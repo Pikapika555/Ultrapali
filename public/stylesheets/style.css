@@ -1,5 +1,37 @@
+@font-face {
+  font-family: "Ruri";
+  font-style: normal;
+  src: url("../fonts/Ruritania.ttf");
+}
+@font-face {
+  font-family: "Augu";
+  font-style: normal;
+  src: url("../fonts/Augusta.ttf");
+}
+@font-face {
+  font-family: "Origin";
+  font-style: normal;
+  src: url("../fonts/Origin.ttf");
+}
+Legend {
+  color: #ddd;
+  font-family: Augu;
+}
+Legend:first-letter {
+  font-family: Ruri;
+  font-size: larger;
+}
+#NavIcoLeft {
+  font-family: Origin;
+}
+input.hidescr {
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+}
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-family: Titillium Web;
   background-color: #272727;
   padding-top: 78px;
 }

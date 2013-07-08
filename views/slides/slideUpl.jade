@@ -2,11 +2,11 @@ div.row
 	.tabbable
 		ul.nav.nav-tabs
 			li.active
-				a(href="#tab1", data-toggle="tab") Uploaded
-			li
 				a(href="#tab2", data-toggle="tab") Upload
+			li
+				a(href="#tab1", data-toggle="tab") Uploaded
 		.tab-content
-			.tab-pane.active(id="tab1")
+			.tab-pane(id="tab1")
 				.well.d
 					ul.thumbnails
 						li.span2
@@ -22,54 +22,122 @@ div.row
 								h4 AlbumTitle
 								img(src="http://placehold.it/200x200")
 				
-			.tab-pane(id="tab2")
-				.span3
-					a(href="#")
-						img.img-rounded(src="http://placehold.it/220x220", height="220", width="220")
-					div.place.s
-					.input-append
-						input(id="logPass", type="text", name="R_email", placeholder="Album Title")
-						span.add-on
-							i.icon-ok
-					.input-append
-						input(id="logPass", type="text", name="R_email", placeholder="Release Date")
-						span.add-on
-							i.icon-remove
-					select
-						option German
-						option English
-					select
-						option(value="album") Album
-						option EP
-						option Audiobook
-					select(id="selGenre")
-						option Genre
-						option Rock
-						option Pop
-						option Country/Folk
-						option Jazz
-						option HipHop
-						option Soul/Funk
-						option Dance/Electronic
-						option Classical
-						option Raggae
-					select(id="selGenre2")
-						option Choose above
-						
-					.row
-						button.btn.span3 Extra Options 
-							b.caret
-					input(id="logPass", type="text", name="R_email", placeholder="Catalog Number")
-					input(id="logPass", type="text", name="R_email", placeholder="Own Barcode")
-				.span6
+			.tab-pane.active(id="tab2")
+				.span7
+					#accordion1.accordion
+						.accordion-group
+							.accordion-heading
+								a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseOne")
+									| Album Cover
+							#collapseOne.accordion-body.collapse.in
+								.accordion-inner
+									.media
+										a.pull-left(href="#")
+											img.img-rounded(id="previewPic",src="http://placehold.it/220x220", height="220", width="220")
+										.media-object
+											Legend Upload Album Cover
+											.media
+												form(id="uploadForm", enctype="multipart/form-data", method="post", action="imageUpload")
+													input(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
+												.input-prepend
+													button.btn(type="button") Upload
+													span.add-on   No File Uploaded  
+												.well.d
+													p *darf nur Künstlername und Albumtitel enthalten
+													p ** bitte beachte die Agb's im bezug auf AlbumCover
+													
+									
+							.accordion-heading
+								a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseTwo")
+									| Album Info
+							#collapseTwo.accordion-body.collapse
+								.accordion-inner
+									legend Album Info
+									.well.d
+										form.form-horizontal
+											.control-group
+												label.control-label(for="") Album Title
+												.controls
+													.input-append
+														input(id="logPass", type="text", name="R_email", placeholder="Album Title")
+														span.add-on
+															i.icon-ok
+											.control-group
+												label.control-label(for="") Cd Release Date
+												.controls
+													.input-append
+														input(id="logPass", type="text", name="R_email", placeholder="Release Date")
+														span.add-on
+															i.icon-remove
+											.control-group
+												label.control-label(for="") Language
+												.controls
+													select
+														option German
+														option English
+											.control-group
+												label.control-label(for="") Media Type
+												.controls
+													select
+														option(value="album") Album
+														option EP
+														option Audiobook
+											.control-group
+												label.control-label(for="") Genre
+												.controls
+													select(id="selGenre")
+														option Genre
+														option Rock
+														option Pop
+														option Country/Folk
+														option Jazz
+														option HipHop
+														option Soul/Funk
+														option Dance/Electronic
+														option Classical
+														option Raggae
+											.control-group
+												label.control-label(for="") Sub Genre
+												.controls
+													select(id="selGenre2")
+														option Choose above
+											
+											.control-group
+												button.btn.span6(data-toggle="collapse", data-target="#addOpt") Extra Options 
+													b.caret
+											.control-group
+												#addOpt.collapse
+													.control-group
+														label.control-label(for="") Catalog Number
+														.controls
+															input(id="logPass", type="text", name="R_email", placeholder="Catalog Number")
+													.control-group
+														label.control-label(for="") Barcode
+														.controls
+															input(id="logPass", type="text", name="R_email", placeholder="Own Barcode")
+													.control-group
+														label.control-label(for="") Digital Release date
+							.accordion-heading
+									a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseThree")
+										| Upload Songs
+							#collapseThree.accordion-body.collapse
+								.accordion-inner
+									legend Upload Songs
+									.well.d
+										.input-prepend.input-append
+													span.add-on #1
+													input.span3(id="logPass", type="text", name="R_email", placeholder="Track Title")
+													input.span1(id="logPass", type="text", name="R_email", placeholder="00.00")
+													button.btn.btn-success(type="button") +
+										input(name="Datei", type="file")
+										.progress.progress-striped.active
+											.bar(style="width:40%;")
+										span.fff(data-toggle="collapse", data-target="#songOpt")
+											i.icon-chevron-down.icon-white
+										#songOpt.collapse
+											p HALLOR
+
+				.span2
 					.well.d
-						.input-prepend.input-append
-									span.add-on #1
-									input.span3(id="logPass", type="text", name="R_email", placeholder="Track Title")
-									input.span1(id="logPass", type="text", name="R_email", placeholder="00.00")
-									button.btn.btn-success(type="button") +
-						input(name="Datei", type="file")
-						.progress.progress-striped.active
-							.bar(style="width:40%;")
-			
+						| Im an info box
 				

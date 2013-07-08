@@ -1,5 +1,6 @@
 var mongoF = require('../routes/mongoF')
 	, routes = require('../routes');
+var fs = require('fs');
 
 // Exports
 //// Registration
@@ -11,10 +12,12 @@ exports.registrate = function(req, res) {
 		exports.checkmail(req, res, profil.email, function(req, res, checker){
 		console.log("HIER: "+checker);
 			if(checker == 0){
+				
 				console.log("regComplete: "+req.body.R_email);
 				mongoF.addProfil(req, res, profil, function(req, res){
 					req.session.email = profil.email;
 					req.session.pass = profil.password;
+					exports.createFolders(req,res);
 					res.redirect("/");
 				});
 			}
@@ -77,6 +80,33 @@ exports.login = function(req, res){
 	});
 }
 
+exports.imageUpload = function(req, res){
+
+	var tmp_path = req.files.Datei.path;
+	var tempAlbName = 0;
+	var albPath = './public/pictures/'+req.session.email + '/alben/'
+	
+	if(!req.session.tempAlb){
+		tempAlbName = "tem_" + Math.floor((Math.random()*1000)+1);
+		fs.mkdir(albPath + tempAlbName, 0777, function (err) {
+			//trage tempalbname in db ein
+			req.session.tempAlb = tempAlbName;
+		});
+	}
+	else{
+		tempAlbName = req.session.tempAlb;
+	}
+	
+	var target_path = albPath + tempAlbName + '/cover.jpg';
+	fs.rename(tmp_path, target_path, function(err) {
+		if (err) throw err;
+		fs.unlink(tmp_path, function() {
+			if (err) throw err;
+			res.send('pictures/'+req.session.email + '/alben/' + tempAlbName + '/cover.jpg');
+		});
+	});
+	
+}
 
 //// Render Stuff
 
@@ -87,12 +117,25 @@ exports.genVars = function(req, res, callback){
 	return callback(req, res, nav);
 }
 
-exports.genUserList = function(req, res, callback){
+
+exports.createFolders = function(req, res){
+	var dir_path = './public/pictures/'+req.session.email;
+	var path2 = dir_path + "/alben";
+	var path3 = dir_path + "/profil";
+	var path4 = dir_path + "/statistic";
+	
+	fs.mkdir(dir_path, 0777, function (err) {
+		if (err) {
+			console.log(err);
+		} else {
+			fs.mkdir(path2, 0777, function (err) {});
+			fs.mkdir(path3, 0777, function (err) {});
+			fs.mkdir(path4, 0777, function (err) {});
+		}
+	});
+	
 	
 }
-
-
-
 
 
 

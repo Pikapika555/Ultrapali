@@ -38,16 +38,14 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 
 app.get('/dashboard', routes.dashboard);
-//app.get('/messages', routes.message);
 app.get('/upload', routes.upload);
 app.get('/settings', routes.settings);
-//app.get('/statistic', routes.statistic);
-//app.get('/profil', routes.profil);
-//app.get('/premium', routes.premium);
-//app.get('/mastering', routes.dashboard);
-//app.get('/promo', routes.dashboard);
+app.get('/statistic', routes.statistic);
+app.get('/profil', routes.profil);
 app.get('/adminUser', routes.adminUser);
-app.get('/adminRequests', routes.adminRequests);
+app.get('/adminReq', routes.adminReq);
+app.get('/adminSett', routes.adminSett);
+app.get('/adminLang', routes.adminLang);
 
 app.get('*/logout', routes.logout);
 
@@ -55,7 +53,7 @@ app.get('*/logout', routes.logout);
 app.post('*/logHack', routes.logHack);
 app.post('*/registrate', funct.registrate);
 app.post('*/login', funct.login);
-
+app.post('*/imageUpload', funct.imageUpload);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

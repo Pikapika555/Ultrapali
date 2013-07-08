@@ -41,34 +41,88 @@ function ajaxRequest(url){
 
 function bla(){
 
-$("#ulSideNav a").address(function(){
-	return $(this).attr('href').replace("#/", '')
-});
+	$("#ulSideNav a").address(function(){
+		return $(this).attr('href').replace("#/", '')
+	});
 
-$.address.change(function(event){
-	var uri = event.value;
-	if(uri.length > 1){
-		ajaxRequest(uri);
-	}
-});
+	$.address.change(function(event){
+		var uri = event.value;
+		if(uri.length > 1){
+			ajaxRequest(uri);
+		}
+	});
 
 
-$('#ulSideNav a').click(function(e) {
-		
+	$('#ulSideNav a').click(function(e) {
+			
 		$("#ulSideNav").children().removeClass("active");
 		$(this).parent().addClass('active selected');
-});
-/*
-	  //hashs (dann umwandeln in  /bla)
-	$.address.change(function(event){
-		event.preventDefault();
-		//$.address.value(event);
-		console.log(event);
 	});
-	$('a').click(function(e) {
-		e.preventDefault();
-		$.address.value($(this).attr('href'));
-		var url = $(this).attr('href');
-		ajaxRequest(url);
-	}); */
 }
+
+function imgUpload(){
+	
+	var thumb = $("#previewPic");
+	
+	$('#uploadForm').ajaxSubmit({
+		
+		error: function(xhr) {
+			//status('Error: ' + xhr.status);
+		},
+
+		success: function(response) {
+			console.log(response);
+			thumb.attr("src", response);
+		}
+	});
+	
+/*
+	var thumb = $("#previewPic");
+	//var img = $("#invisImgUpl").val();
+	var img = document.getElementById("invisImgUpl").value
+	console.log(img);
+	
+	$.ajax({
+        type: "POST",
+        url: "imageUpload",
+        data: img,
+		onSubmit: function(file, extension) {
+			thumb.addClass("penis");
+		},
+		success: function(data){
+			thumb.attr("src", data);
+		}
+    });
+*/
+}
+
+ 
+	
+
+
+
+
+/*
+function wavUpload(){
+	$.ajax({
+        xhr: function() {
+            var req = $.ajaxSettings.xhr();
+            if (req) {
+                req.upload.addEventListener('progress', function(event) {
+                    if (event.lengthComputable) {
+                        $('#ajaxFeedbackDiv').html(event.loaded); // = 'test'; //event.loaded + ' / ' + event.total;
+                    }
+                }, false);
+            }
+            return req;
+        },
+        type: "POST",
+        url: "index.php?action=saveNewPost",
+        data: img,
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8"
+		success: function(data){
+			//$('#AjaxContent').html(data);
+		}
+    });
+}
+*/

@@ -9,6 +9,7 @@ $(document).ready(function() {
 	locateSite();
 	unitSlide();
 	unitItemMask();
+	//uploadAlbumImg();
 	bla();
 });
 
@@ -202,6 +203,14 @@ function unitItemMask(){
 		$(this).find("a").find("span").removeClass("hidden");
 	}).mouseleave(function() {
 		$(this).find("a").find("span").addClass("hidden");
+	});
+}
+
+function uploadAlbumImg(){
+	$(".fileUpload").click(function(e){
+		e.preventDefault();
+		console.log("JUFASDFJSF");
+		//var reader = new FileReader();
 	});
 }
 
