@@ -7,6 +7,7 @@ html
 		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Titillium+Web&subset=latin,latin-ext', type='text/css')
 		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
 		link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css', media="screen")
+		//link(rel='stylesheet', href='/stylesheets/font-awesome.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='/stylesheets/cCenter.css')
 
@@ -14,7 +15,9 @@ html
 		script(src='/javascripts/jq-rot-scal.js')
 		script(src='/javascripts/jq-addr.js')
 		script(src='/javascripts/jq-form.js')
+		script(src='/javascripts/ang.js')
 		script(src='/bootstrap/js/bootstrap.min.js')
+		script(src='/javascripts/ang-ui-boot.js')
 		script(src='/javascripts/core.js')
 		script(src='/javascripts/ajax.js')
 	body
@@ -81,6 +84,8 @@ html
 					span.foldIt(id="foldit", onclick="CloseAlbumCaroussel()")
 						i.icon-chevron-up.icon-white
 		block content
+		
+		include footer
 		
 		#regMod.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 

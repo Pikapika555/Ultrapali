@@ -28,7 +28,8 @@ div.row
 						.accordion-group
 							.accordion-heading
 								a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseOne")
-									| Album Cover
+									.badge 1 
+									|  Album Cover
 							#collapseOne.accordion-body.collapse.in
 								.accordion-inner
 									.media
@@ -39,7 +40,7 @@ div.row
 											.media
 												form.hidesrc(id="uploadForm", enctype="multipart/form-data", method="post", action="imageUpload")
 													input.hidescr(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
-												.input-prepend
+												.input-prepend.input-append
 													button.btn(type="button") Upload
 													span.add-on   No File Uploaded  
 												.well.d
@@ -49,7 +50,7 @@ div.row
 									
 							.accordion-heading
 								a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseTwo")
-									| Album Info
+									| 2. Album Info
 							#collapseTwo.accordion-body.collapse
 								.accordion-inner
 									legend Album Info
@@ -76,12 +77,12 @@ div.row
 													input(id="logPass", type="text", name="R_email", placeholder="Künstlername")
 											hr.s
 											.control-group
-												label.control-label(for="") Cd Release Date
-												.controls
-													.input-append
-														input(id="logPass", type="text", name="R_email", placeholder="Release Date")
-														span.add-on
-															i.icon-remove
+														label.control-label(for="") Digital Release date
+														.controls
+															.input-append
+																input(id="logPass", type="text", name="R_email", placeholder="Release Date")
+																span.add-on
+																	i.icon-remove
 											.control-group
 												label.control-label(for="") Language
 												.controls
@@ -116,20 +117,7 @@ div.row
 													select(id="selGenre2")
 														option Choose above
 											hr.s
-											.control-group
-												label.control-label(for="") Copyright Recording
-												.controls
-													.input-append
-														input(id="logPass", type="text", name="R_email", placeholder="Year/Holder")
-														span.add-on
-															i.icon-ok
-											.control-group
-												label.control-label(for="") Copyright Packaging
-												.controls
-													.input-append
-														input(id="logPass", type="text", name="R_email", placeholder="Year/Holder")
-														span.add-on
-															i.icon-ok
+											
 											
 											.control-group
 												button.btn.span6(data-toggle="collapse", data-target="#addOpt") Extra Options 
@@ -145,7 +133,7 @@ div.row
 														.controls
 															input(id="logPass", type="text", name="R_email", placeholder="Own Barcode")
 													.control-group
-														label.control-label(for="") Digital Release date
+														label.control-label(for="") Cd Release Date
 														.controls
 															.input-append
 																input(id="logPass", type="text", name="R_email", placeholder="Release Date")
@@ -159,9 +147,24 @@ div.row
 																option Künstler B
 															a(href="#editModal", data-toggle="modal")
 																i.icon-pencil.icon-white
+													hr.s
+													.control-group
+														label.control-label(for="") Copyright Recording
+														.controls
+															.input-append
+																input(id="logPass", type="text", name="R_email", placeholder="Year/Holder")
+																span.add-on
+																	i.icon-ok
+													.control-group
+														label.control-label(for="") Copyright Packaging
+														.controls
+															.input-append
+																input(id="logPass", type="text", name="R_email", placeholder="Year/Holder")
+																span.add-on
+																	i.icon-ok
 							.accordion-heading
 									a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseThree")
-										| Upload Songs
+										| 3. Upload Songs
 							#collapseThree.accordion-body.collapse
 								.accordion-inner
 									legend Upload Songs
@@ -212,13 +215,6 @@ div.row
 													.controls
 															input.span2(id="logPass", type="text", name="R_email", placeholder="Vorname")
 															input.span2(id="logPass", type="text", name="R_email", placeholder="Nachname")
-												.control-group
-													label.control-label(for="") Preview Clip Start
-													.controls
-														.input-append
-															input.span1(id="logPass", type="text", name="R_email", placeholder="00")
-															span.add-on
-																| Seconds
 																
 																
 												.control-group
@@ -261,7 +257,7 @@ div.row
 							
 							.accordion-heading
 								a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseFour")
-									| Payment
+									| 4. Payment
 							#collapseFour.accordion-body.collapse
 								.accordion-inner
 									
