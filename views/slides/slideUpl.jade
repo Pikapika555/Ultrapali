@@ -28,8 +28,7 @@ div.row
 						.accordion-group
 							.accordion-heading
 								a.accordion-toggle(data-toggle="collapse", data-parent="#accordion1", href="#collapseOne")
-									.badge 1 
-									|  Album Cover
+									| 1. Album Cover
 							#collapseOne.accordion-body.collapse.in
 								.accordion-inner
 									.media
@@ -42,7 +41,7 @@ div.row
 													input.hidescr(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
 												.input-prepend.input-append
 													button.btn(type="button") Upload
-													span.add-on   No File Uploaded  
+													span.add-on(id="spanFileName")   No File Uploaded  
 												.well.d
 													p *darf nur Künstlername und Albumtitel enthalten
 													p ** bitte beachte die Agb's im bezug auf AlbumCover

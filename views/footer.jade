@@ -6,9 +6,11 @@ footer
 					h3.headl Über uns
 					p lorem ipsum
 					
-					h1 
-						i.icon-envelope-alt.icon-2x
-						|  Mail
+					h3.headl Admin
+					a(href="#NotiModal", data-toggle="modal")
+						h2
+							i.icon-envelope-alt.icon-2x
+							|  Report
 				.span4
 				.span4
 					h3.headl Contact Us
@@ -25,11 +27,33 @@ footer
 		.container
 			.row
 				.span8
-					p Copyright © 2013 Dev DIfdZ. Alle Rechte vorbehalten.
+					| Copyright © 2013 Dev DIfdZ. Alle Rechte vorbehalten.
 				.span4
-					a(href="#")
-						| Agb 
-					a(href="#")
-						| Impressum 
-					a(href="#")
-						| FAQ 
+					.pull-right
+						a(href="#")
+							| Agb 
+						a(href="#")
+							| Impressum 
+						a(href="#")
+							| FAQ 
+						
+						
+#NotiModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+	.modal-header
+		button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+		h3 Request Admin
+	.modal-body
+		form.form-horizontal
+			.control-group
+				label.control-label(for="") Anliegen: 
+				.controls
+					select
+						option Bug
+						option Upload Problem
+						option Payment Problem
+						option Other Problem
+			.control-group
+				textarea.full(rows="6")
+		
+	.modal-footer
+		button.btn.btn-primary	Submit

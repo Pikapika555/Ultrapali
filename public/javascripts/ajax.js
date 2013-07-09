@@ -73,6 +73,7 @@ function imgUpload(){
 		success: function(response) {
 			console.log(response);
 			thumb.attr("src", response);
+			$("#spanFileName").html("File Uploaded")
 		}
 	});
 	

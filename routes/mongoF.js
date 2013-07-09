@@ -16,6 +16,8 @@ var Server = mongo.Server,
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('dT_Netlabel', server);
 
+var grid = require('mongodb').GridStore;
+
 //TODO: PW EINGABE SUCHEN
 
 db.open(function(err,db){
@@ -68,9 +70,60 @@ exports.addProfil = function(req, res, profil, callback) {
 
 
 
+exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, callback){
+	console.log('Adding data to Profile ' + JSON.stringify(profile));
+	
+	
+	var GridWriter = new GridStore(db, filename, "w",
+		{"chunkSize":1024, "metadata":{
+								"Profile":profile,
+								"filename":filename,
+								"TAG":tag
+								}
+		});
+	
+	GridWriter.open(function(err, gridStore) {
+	
+		GridWriter.writeFile(dataURL, function(err, GridWirter){
+			if(err)
+			{
+				res.send({'error' : 'Error can`t save data in DB'});
+			}
+			else
+			{
+				console.log('Data is added');
+				callback(req, res);
+			}
+			
+			GridWriter.close(function(err, result) {
+			});
+		});
+	});
+}
 
-
-
+exports.readFileFromDB = function(req, res, profile, filename, tag, outdir, seek, callback){
+	console.log('Find data from Profile ' + JSON.stringify(profile));
+	
+	//Öffnet das file
+	var GridReader = new GridStore(db, filename,"r");
+	
+	GridReader.open(function(err, gs) {
+	
+		//ermöglicht das spulen in den soundfiles
+		GridReader.seek(seek, function() {
+		
+			GridReader.read(function(err, data) {
+			
+				//data enthält den stream 
+				
+				
+				GridReader.close(function(err, result) {
+				});
+			});
+		});
+	});
+	
+}
 
 
 
@@ -86,3 +139,6 @@ var populateDB = function() {
 		collection.insert(profil, {safe:true}, function(err, result) {});
 	});
 };
+
+
+

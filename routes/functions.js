@@ -102,8 +102,12 @@ exports.imageUpload = function(req, res){
 		if (err) throw err;
 		fs.unlink(tmp_path, function() {
 			if (err) throw err;
-			res.send('pictures/'+req.session.email + '/alben/' + tempAlbName + '/cover.jpg');
+			mongoF.saveFileInDB(req, res, req.session.email, req.session.tempAlb, "img",  target_path, function(){
+				res.send('pictures/'+req.session.email + '/alben/' + tempAlbName + '/cover.jpg');
+			});
+			//res.send('pictures/'+req.session.email + '/alben/' + tempAlbName + '/cover.jpg');
 		});
+		
 	});
 	
 }
