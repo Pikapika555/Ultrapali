@@ -68,6 +68,24 @@ exports.addProfil = function(req, res, profil, callback) {
 	});
 }
 
+exports.updateProfil = function(req, res, item, callback) {
+	var id = req.session.id;
+	console.log('Updating profil: ' + id);
+	console.log(JSON.stringify(item));
+	db.collection('profiles', function(err, collection) {
+		collection.update({'_id':new BSON.ObjectID(id)}, item, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error updating profil: ' + err);
+				res.send({'error':'An error has occurred'});
+			} 
+			else {
+				console.log('' + result + ' document(s) updated');
+				callback(req,res);
+			}
+		});
+	});
+}
+
 
 
 exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, callback){

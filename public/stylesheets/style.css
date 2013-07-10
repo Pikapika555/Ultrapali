@@ -288,11 +288,29 @@ textarea.full {
 }
 #ulSideNav li.active a {
   border-radius: 3px;
+  background-color: transparent;
 }
 #ulSideNav li a {
   padding-top: 20px;
   padding-bottom: 15px;
 }
+#ulSideNav li a:hover {
+  background-color: transparent;
+  color: #999;
+}
 span.add-on {
+  color: #333;
+}
+.icon-ok {
+  color: #008000;
+}
+.icon-remove {
+  color: #f00;
+}
+i.norm {
+  color: #ddd;
+  font-size: 3em;
+}
+i.inv {
   color: #333;
 }

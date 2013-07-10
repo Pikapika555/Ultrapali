@@ -15,10 +15,13 @@ exports.registrate = function(req, res) {
 				
 				console.log("regComplete: "+req.body.R_email);
 				mongoF.addProfil(req, res, profil, function(req, res){
-					req.session.email = profil.email;
-					req.session.pass = profil.password;
-					exports.createFolders(req,res);
-					res.redirect("/");
+					mongoF.findByEmail(req, res, profil.email, function(req, res, item){
+						req.session.email = profil.email;
+						req.session.pass = profil.password;
+						req.session.id = item._id;
+						exports.createFolders(req,res);
+						res.redirect("/");
+					});
 				});
 			}
 			else if(checker == 1){
@@ -68,6 +71,7 @@ exports.login = function(req, res){
 			if(log.password == item.password){
 				req.session.email = log.email;
 				req.session.pass = log.password;
+				req.session.id = item._id;
 				res.redirect("/");
 			}
 			else{
@@ -115,7 +119,19 @@ exports.imageUpload = function(req, res){
 
 //// Settings
 exports.submitSett = function(req, res, callback){
-	info = req.body 
+	info = req.body;
+	console.log(info);
+	if(info.oldPass == req.session.pass){
+		if(info.Pass == info.Pass2){
+			mongoF.updateProfil(req, res, info.Pass, function(req, res){
+				res.send();
+			});
+		}
+		else{
+		}
+	}
+	else{
+	}
 }
 
 

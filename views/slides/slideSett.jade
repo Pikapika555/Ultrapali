@@ -7,75 +7,35 @@ div.row
 					b.caret
 				ul.dropdown-menu(role="menu", aria-labledby="dropdownMenu")
 					li.active
-						a(href="#tab5", data-toggle="tab") Contact Info
+						a(href="#tab1", data-toggle="tab") Contact Info
 					li
-						a(href="#tab6", data-toggle="tab") Bank Info
+						a(href="#tab2", data-toggle="tab") Bank Info
 			li
-				a(href="#tab4", data-toggle="tab") Preferences 
+				a(href="#tab3", data-toggle="tab") Preferences 
+			li.pull-right
+				i.icon-cog.icon-2x.norm
 				
 				
 		div.tab-content
-			div.tab-pane(id="tab1")
-				.well.d
-					legend Options
-					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
-						.control-group
-							label.control-label(for="inpBandName") Bandname 
-							.controls
-								input(id="inpBandName", type="text", placeholder="Bandname")
-						.control-group
-							label.control-label(for="inpBandYear") founded in..
-							.controls
-								input(id="inpBandYear", type="text", placeholder="When was your Band found")
-						.controls
-							button.btn(type="submit") Save
-			div.tab-pane(id="tab2")
-				.well.d
 			div.tab-pane(id="tab3")
-				.well.d
-					legend Add Album
-					form(method="post", enctype="multipart/form-data", action="newAlbum")
-						div.row
-							div.span3
-								img.img-rounded(src="http://placehold.it/220x220", height="220", width="220")
-								div.place.s
-								input(id="logPass", type="text", name="R_email", placeholder="Album Title")
-								input(id="logPass", type="text", name="R_email", placeholder="Release Date")
-								input(id="logPass", type="text", name="R_email", placeholder="Region")
-								input(id="logPass", type="text", name="R_email", placeholder="Format")
-							div.span4
-								.input-prepend.input-append
-									span.add-on #1
-									input.span3(id="logPass", type="text", name="R_email", placeholder="Track Title")
-									input.span1(id="logPass", type="text", name="R_email", placeholder="00.00")
-									button.btn.btn-success(type="button") +
-								.input-prepend.input-append
-									span.add-on #2
-									input.span3(id="logPass", type="text", name="R_email", placeholder="Track Title")
-									input.span1(id="logPass", type="text", name="R_email", placeholder="00.00")
-									button.btn.btn-danger(type="button") -
-								.btn-group
-									button.span4.btn.btn-danger(type="submit")
-										b Save
-			div.tab-pane(id="tab4")
 				.span5
 					.well.d
 						legend Changes
-						form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
+						form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeSett")
 							.control-group
 								label.control-label(for="inpBandName") Change Bandname 
 								.controls
-									input(id="inpBandName", type="text", placeholder="Bandname")
+									input(id="inpBandName", name="Bandname", type="text", placeholder="Bandname")
 							.control-group
 								label.control-label(for="inpBandName") Change Email 
 								.controls
-									input(id="inpBandName", type="text", placeholder="Email")
+									input(id="inpBandName", name="Email", type="text", placeholder="Email")
 							.control-group
 								label.control-label(for="inpBandName") Change Password 
 								.controls
-									input(id="inpBandName", type="text", placeholder="Old Password")
-									input(id="inpBandName", type="text", placeholder="New Password")
-									input(id="inpBandName", type="text", placeholder="Repeat New Password")
+									input(id="inpBandName", name="oldPass", type="text", placeholder="Old Password")
+									input(id="inpBandName", name="Pass", type="text", placeholder="New Password")
+									input(id="inpBandName", name="Pass2", type="text", placeholder="Repeat New Password")
 							.controls
 								button.btn(type="submit") Save
 				.span4
@@ -90,7 +50,7 @@ div.row
 								|  Bundle nicht meine Songs ?
 							.controls
 								button.btn(type="submit") Save
-			div.tab-pane.active(id="tab5")
+			div.tab-pane.active(id="tab1")
 				.well.d
 					legend Contact Info
 					br
@@ -157,7 +117,7 @@ div.row
 						.controls
 							button.btn(type="submit") Save
 						
-			.tab-pane(id="tab6")
+			.tab-pane(id="tab2")
 				.well.d
 					legend Bank Info
 					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
