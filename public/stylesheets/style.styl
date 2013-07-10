@@ -34,7 +34,6 @@ Legend:first-letter
 	
 	
 hr.s
-	color: green;
 	height: 1px
 	border: 0
 	background-image: -webkit-linear-gradient(left, rgba(221,221,221,0), rgba(221,221,221,0.75), rgba(221,221,221,0)) 
@@ -295,16 +294,24 @@ mask-height = unit-height / 2
 	position: absolute
 	top: 50%
 	margin-top: -40px
-	height: 60px
-	width: 60px
-	background-color: grey
+	height: 80px
+	width: 50px
+	background-color: #111
+	color: #999
 	opacity: 0.9
 	border-radius: 0 20px 20px 0
 	z-index: 2
+	text-align: right
+	font-size: 20px
+	
+	i
+		vertical-align: -35px
+		
+		
 	
 	&.rasd
+		text-align: left
 		right: 0px
-		background-color: green
 		border-radius: 20px 0 0 20px
 
 	
@@ -336,3 +343,25 @@ mask-height = unit-height / 2
 textarea.full
 	width: 95%
 	margin-right: 10px
+	
+#ulSideNav
+	li
+		font-size 1.5em
+		
+		&.divider
+			height: 1px
+			border: 0
+		&.nav-header
+			margin-top: 10px
+			margin-bottom: 10px
+			font-size: 1.3em
+		&.active
+			a
+				border-radius: 3px
+		a
+			padding-top: 20px
+			padding-bottom: 15px
+			
+span.add-on
+	color: #333
+				

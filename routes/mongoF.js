@@ -122,7 +122,6 @@ exports.readFileFromDB = function(req, res, profile, filename, tag, outdir, seek
 			});
 		});
 	});
-	
 }
 
 

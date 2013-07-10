@@ -32,7 +32,7 @@ div.row
 							#collapseOne.accordion-body.collapse.in
 								.accordion-inner
 									.media
-										a.pull-left(href="#")
+										.pull-left
 											img.img-rounded(id="previewPic",src="http://placehold.it/220x220", height="220", width="220")
 										.media-object
 											Legend Upload Album Cover
@@ -59,7 +59,8 @@ div.row
 												label.control-label(for="") Album Title
 												.controls
 													.input-append
-														input(id="logPass", type="text", name="R_email", placeholder="Album Title")
+														input(id="logPass", type="text", name="R_email", placeholder="Album Title", popover="I appeared on", popover-placement="right")
+															
 														span.add-on
 															i.icon-ok
 											.control-group

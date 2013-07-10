@@ -80,6 +80,7 @@ exports.login = function(req, res){
 	});
 }
 
+//// Upload
 exports.imageUpload = function(req, res){
 
 	var tmp_path = req.files.Datei.path;
@@ -112,6 +113,13 @@ exports.imageUpload = function(req, res){
 	
 }
 
+//// Settings
+exports.submitSett = function(req, res, callback){
+	info = req.body 
+}
+
+
+
 //// Render Stuff
 
 exports.genVars = function(req, res, callback){
@@ -137,8 +145,6 @@ exports.createFolders = function(req, res){
 			fs.mkdir(path4, 0777, function (err) {});
 		}
 	});
-	
-	
 }
 
 
