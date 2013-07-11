@@ -54,7 +54,7 @@ app.post('*/logHack', routes.logHack);
 app.post('*/registrate', funct.registrate);
 app.post('*/login', funct.login);
 app.post('*/imageUpload', funct.imageUpload);
-app.post('*/ChangeSett', funct.submitSett);
+app.post('*/changeSett', funct.submitSett);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

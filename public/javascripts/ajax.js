@@ -66,6 +66,10 @@ function imgUpload(){
 	
 	$('#uploadForm').ajaxSubmit({
 		
+		beforeSend:function(){
+			//launchpreloader();
+		},
+		
 		error: function(xhr) {
 			//status('Error: ' + xhr.status);
 		},
@@ -76,29 +80,51 @@ function imgUpload(){
 			$("#spanFileName").html("File Uploaded")
 		}
 	});
-	
-/*
-	var thumb = $("#previewPic");
-	//var img = $("#invisImgUpl").val();
-	var img = document.getElementById("invisImgUpl").value
-	console.log(img);
-	
-	$.ajax({
-        type: "POST",
-        url: "imageUpload",
-        data: img,
-		onSubmit: function(file, extension) {
-			thumb.addClass("penis");
-		},
-		success: function(data){
-			thumb.attr("src", data);
-		}
-    });
-*/
 }
 
- 
+
+function submitRouter(){
 	
+	$(".one").submit(function(e){ 
+		e.preventDefault();
+		console.log("ASD");
+		var form = $(this).attr("id");
+		updateSett(form); 
+	});
+}
+
+
+function updateSett(formName){
+
+$("#"+formName).ajaxSubmit({
+	
+	error: function(xhr) {
+		//status('Error: ' + xhr.status);
+	},
+
+	success: function(response) {
+		console.log(response);
+		alerta(formName.replace('form', ''), response.nr, response.msg);
+	}
+});
+
+}
+
+function alerta(id, state, msg){
+	id = "#alert"+id;
+	var title;
+	
+	if(state == 0){ state = "alert-success"; title = "Nice - "}
+	else{ state = "alert-error"; title = "Error - "}
+
+	$(id).addClass(state);
+	
+	var htmlString = '<button class="close" type="button" data-dismiss="alert">&times;</button><strong>'+title+'</strong>'+msg;
+	
+	$(id).html(htmlString);
+	
+	$(id).removeClass("hide");
+}
 
 
 

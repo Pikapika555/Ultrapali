@@ -118,19 +118,23 @@ exports.imageUpload = function(req, res){
 }
 
 //// Settings
-exports.submitSett = function(req, res, callback){
+exports.submitSett = function(req, res){
 	info = req.body;
 	console.log(info);
 	if(info.oldPass == req.session.pass){
 		if(info.Pass == info.Pass2){
-			mongoF.updateProfil(req, res, info.Pass, function(req, res){
-				res.send();
+			mongoF.updateProfil(req, res, {"password":  info.Pass}, function(req, res){
+				console.log("penis");
+				req.session.pass = info.Pass;
+				res.send({nr: "0", msg: "pass changed!"});
 			});
 		}
 		else{
+			res.send({nr: "1", msg: "passwords not equal!"});
 		}
 	}
 	else{
+		res.send({nr: "1", msg: "password wrong!"});
 	}
 }
 

@@ -21,15 +21,9 @@ div.row
 				.span5
 					.well.d
 						legend Changes
-						form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeSett")
-							.control-group
-								label.control-label(for="inpBandName") Change Bandname 
-								.controls
-									input(id="inpBandName", name="Bandname", type="text", placeholder="Bandname")
-							.control-group
-								label.control-label(for="inpBandName") Change Email 
-								.controls
-									input(id="inpBandName", name="Email", type="text", placeholder="Email")
+						.alert.hide(id="alertPassChange")
+							
+						form.form-horizontal.one(id="formPassChange", method="POST", accept-charset="UTF-8", action="changeSett")
 							.control-group
 								label.control-label(for="inpBandName") Change Password 
 								.controls
@@ -37,7 +31,7 @@ div.row
 									input(id="inpBandName", name="Pass", type="text", placeholder="New Password")
 									input(id="inpBandName", name="Pass2", type="text", placeholder="Repeat New Password")
 							.controls
-								button.btn(type="submit") Save
+								button.btn(type="submit", name="submit") Save
 				.span4
 					.well.d
 						legend Preferences

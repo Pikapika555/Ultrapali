@@ -69,11 +69,10 @@ exports.addProfil = function(req, res, profil, callback) {
 }
 
 exports.updateProfil = function(req, res, item, callback) {
-	var id = req.session.id;
-	console.log('Updating profil: ' + id);
-	console.log(JSON.stringify(item));
+	var email = req.session.email;
+	console.log('Updating profil: ' + email);
 	db.collection('profiles', function(err, collection) {
-		collection.update({'_id':new BSON.ObjectID(id)}, item, {safe:true}, function(err, result) {
+		collection.update({"email": email},{$set: item}, function(err, result) {
 			if (err) {
 				console.log('Error updating profil: ' + err);
 				res.send({'error':'An error has occurred'});

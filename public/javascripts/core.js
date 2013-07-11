@@ -11,6 +11,7 @@ $(document).ready(function() {
 	unitItemMask();
 	//uploadAlbumImg();
 	bla();
+	submitRouter();
 });
 
 function detectBrowser(){
