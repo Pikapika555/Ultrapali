@@ -34,6 +34,7 @@ function ajaxRequest(url){
 		type: "GET",
 		success: function(data){
 			$('#AjaxContent').html(data);
+			submitRouter();
 		}
 	});
 }
@@ -85,7 +86,7 @@ function imgUpload(){
 
 function submitRouter(){
 	
-	$(".one").submit(function(e){ 
+	$("#wform").submit(function(e){ 
 		e.preventDefault();
 		console.log("ASD");
 		var form = $(this).attr("id");

@@ -1,5 +1,5 @@
 doctype 5
-html
+html id
 	head
 		title= title
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,8 +55,8 @@ html
 													a.close(href="#", data-dismiss="alert") &times;
 													| Incorrect Username or Password!
 												form(method="POST", action="login", accept-charset="UTF-8")
-													input.span3(type="text", id="email", name="email", placeholder="Email")
-													input.span3(type="password", id="password", name="password", placeholder="Password")
+													input.span3(type="text", name="email", placeholder="Email")
+													input.span3(type="password", name="password", placeholder="Password")
 													label.checkbox
 														input(type="checkbox", name="remember", value="1") 
 														p Remember Me
@@ -104,8 +104,8 @@ html
 										a.close(href="#", data-dismiss="alert") &times;
 										| Incorrect Username or Password!
 									form(method="POST", action="", accept-charset="UTF-8")
-										input.span3(type="text", id="email", name="email", placeholder="Email")
-										input.span3(type="text", id="password", name="password", placeholder="Password")
+										input.span3(type="text", name="email", placeholder="Email")
+										input.span3(type="text", name="password", placeholder="Password")
 										label.checkbox
 											input(type="checkbox", name="remember", value="1") 
 											p Remember Me
@@ -118,8 +118,8 @@ html
 										a.close(href="#", data-dismiss="alert") &times;
 										| Email in use
 									form(method="post", enctype="multipart/form-data", action="registrate")
-											input.span3(id="logPass", type="text", name="R_email", placeholder="Email")
-											input.span3(id="logPass", type="password", name="R_password", placeholder="Password")
-											input.span3(id="logPass", type="password", name="R_password2", placeholder="Retype Password")
+											input.span3(type="text", name="R_email", placeholder="Email")
+											input.span3(type="password", name="R_password", placeholder="Password")
+											input.span3(type="password", name="R_password2", placeholder="Retype Password")
 											button.btn.btn-info.btn-block(type="submit")
 												b Registrate

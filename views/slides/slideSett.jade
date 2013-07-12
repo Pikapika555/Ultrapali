@@ -23,15 +23,16 @@ div.row
 						legend Changes
 						.alert.hide(id="alertPassChange")
 							
-						form.form-horizontal.one(id="formPassChange", method="POST", accept-charset="UTF-8", action="changeSett")
+						form.form-horizontal(method="POST", accept-charset="UTF-8", action="changeSett", id="wform")
 							.control-group
-								label.control-label(for="inpBandName") Change Password 
+								label.control-label Change Password
 								.controls
-									input(id="inpBandName", name="oldPass", type="text", placeholder="Old Password")
-									input(id="inpBandName", name="Pass", type="text", placeholder="New Password")
-									input(id="inpBandName", name="Pass2", type="text", placeholder="Repeat New Password")
+									input(name="oldPass", type="text", placeholder="Old Password")
+									input(name="Pass", type="text", placeholder="New Password")
+									input(name="Pass2", type="text", placeholder="Repeat New Password")
 							.controls
-								button.btn(type="submit", name="submit") Save
+								button.btn(type="submit", name="submit") 
+									| Save
 				.span4
 					.well.d
 						legend Preferences
@@ -56,53 +57,53 @@ div.row
 					
 					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
 						.control-group
-							label.control-label(for="inpBandName") Email 
+							label.control-label Email 
 							.controls
-								input(id="inpBandName", type="text", placeholder="Email")
+								input(type="text", placeholder="Email")
 						.control-group
-							label.control-label(for="inpBandYear") Prename
+							label.control-label Prename
 							.controls
-								input(id="inpBandYear", type="text", placeholder="Prename")
+								input(type="text", placeholder="Prename")
 						.control-group
-							label.control-label(for="inpBandYear") Lastname
+							label.control-label Lastname
 							.controls
-								input(id="inpBandYear", type="text", placeholder="Lastname")
+								input(type="text", placeholder="Lastname")
 						.control-group
-							label.control-label(for="inpBandYear") Street
+							label.control-label Street
 							.controls
 								.input-append
-									input(id="inpBandYear", type="text", placeholder="Streetname")
+									input(type="text", placeholder="Streetname")
 								.input-prepend
-									input.span1(id="inpBandYear", type="text", placeholder="Nr")
+									input.span1(type="text", placeholder="Nr")
 						.control-group
-							label.control-label(for="inpBandYear") City
+							label.control-label City
 							.controls
 								.input-append
-									input.span1(id="inpBandYear", type="text", placeholder="PLZ")
+									input.span1(type="text", placeholder="PLZ")
 								.input-prepend
-									input(id="inpBandYear", type="text", placeholder="City Name")
+									input(type="text", placeholder="City Name")
 						.control-group
-							label.control-label(for="inpBandYear") Country
+							label.control-label Country
 							.controls
-								input(id="inpBandYear", type="text", placeholder="Country")
+								input(type="text", placeholder="Country")
 						.control-group
-							label.control-label(for="inpBandYear") Phone
+							label.control-label Phone
 							.controls
 								.input-append
-									input.span1(id="inpBandYear", type="text", placeholder="Prefix")
+									input.span1(type="text", placeholder="Prefix")
 								.input-prepend
-									input(id="inpBandYear", type="text", placeholder="Phone Nr")
+									input(type="text", placeholder="Phone Nr")
 						.tab-content
 							.tab-pane(id="ttab1")
 							.tab-pane(id="ttab2")
 								.control-group
-									label.control-label(for="inpBandYear") Firmenname
+									label.control-label Firmenname
 									.controls
-										input(id="inpBandYear", type="text", placeholder="Firmenname")
+										input(type="text", placeholder="Firmenname")
 								.control-group
-									label.control-label(for="inpBandYear") Identifikationsnr
+									label.control-label Identifikationsnr
 									.controls
-										input(id="inpBandYear", type="text", placeholder="USt.-Id/UID/Steuernummer")
+										input(type="text", placeholder="USt.-Id/UID/Steuernummer")
 								.control-group
 									.controls
 										input(id="bla", type="checkbox")
@@ -123,24 +124,23 @@ div.row
 							.tab-content
 								.tab-pane.active(id="btab1")
 									.control-group
-										label.control-label(for="inpBandName") PayPal Email 
+										label.control-label PayPal Email 
 										.controls
-											input(id="inpBandName", type="text", placeholder="PayPal Email")
+											input(type="text", placeholder="PayPal Email")
 									.controls
 										button.btn(type="submit") Save
 								.tab-pane(id="btab2")
 									.control-group
-										label.control-label(for="inpBandName") Bankname 
+										label.control-label Bankname 
 										.controls
-											input(id="inpBandName", type="text", placeholder="Bankname")
+											input(type="text", placeholder="Bankname")
 									.control-group
-										label.control-label(for="inpBandName") Bankleitzahl 
+										label.control-label Bankleitzahl 
 										.controls
-											input(id="inpBandName", type="text", placeholder="Bankleitzahl")
+											input(type="text", placeholder="Bankleitzahl")
 									.control-group
-										label.control-label(for="inpBandName") KontoNr 
+										label.control-label KontoNr 
 										.controls
-											input(id="inpBandName", type="text", placeholder="KontoNr")
+											input(type="text", placeholder="KontoNr")
 									.controls
 										button.btn(type="submit") Save
-							
