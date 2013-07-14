@@ -34,7 +34,7 @@ function ajaxRequest(url){
 		type: "GET",
 		success: function(data){
 			$('#AjaxContent').html(data);
-			submitRouter();
+			startup();
 		}
 	});
 }
@@ -86,45 +86,39 @@ function imgUpload(){
 
 function submitRouter(){
 	
-	$("#wform").submit(function(e){ 
+	$(".ajaxForm").submit(function(e){ 
 		e.preventDefault();
-		console.log("ASD");
-		var form = $(this).attr("id");
+		var form = $(this);
 		updateSett(form); 
 	});
 }
 
 
-function updateSett(formName){
+function updateSett(form){
 
-$("#"+formName).ajaxSubmit({
+form.ajaxSubmit({
 	
 	error: function(xhr) {
-		//status('Error: ' + xhr.status);
+		alerta(form, 1, "DB connection");
+		console.log(xhr);
 	},
 
 	success: function(response) {
-		console.log(response);
-		alerta(formName.replace('form', ''), response.nr, response.msg);
+		alerta(form, response.nr, response.msg);
 	}
 });
 
 }
 
 function alerta(id, state, msg){
-	id = "#alert"+id;
 	var title;
 	
-	if(state == 0){ state = "alert-success"; title = "Nice - "}
+	if(state == 0){ state = "alert-success"; title = "Success - "}
 	else{ state = "alert-error"; title = "Error - "}
 
-	$(id).addClass(state);
-	
-	var htmlString = '<button class="close" type="button" data-dismiss="alert">&times;</button><strong>'+title+'</strong>'+msg;
-	
-	$(id).html(htmlString);
-	
-	$(id).removeClass("hide");
+	var htmlString = '<div class="alert '+state+'"> <button class="close" type="button" data-dismiss="alert">&times;</button><strong>'+title+'</strong>'+msg+'</div>';
+	$(".alert").remove();
+	id.closest(".formbox").prepend(htmlString);
 }
 
 

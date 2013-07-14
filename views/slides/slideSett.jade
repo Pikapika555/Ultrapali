@@ -1,15 +1,10 @@
 div.row
 	div.tabbable
 		ul.nav.nav-tabs
-			li.dropdown.active
-				a.dropdown-toggle(href="#", data-toggle="dropdown") 
-					| Payment Options 
-					b.caret
-				ul.dropdown-menu(role="menu", aria-labledby="dropdownMenu")
-					li.active
-						a(href="#tab1", data-toggle="tab") Contact Info
-					li
-						a(href="#tab2", data-toggle="tab") Bank Info
+			li.active
+				a(href="#tab1", data-toggle="tab") Contact Info
+			li
+				a(href="#tab2", data-toggle="tab") Bank Info
 			li
 				a(href="#tab3", data-toggle="tab") Preferences 
 			li.pull-right
@@ -21,126 +16,127 @@ div.row
 				.span5
 					.well.d
 						legend Changes
-						.alert.hide(id="alertPassChange")
-							
-						form.form-horizontal(method="POST", accept-charset="UTF-8", action="changeSett", id="wform")
-							.control-group
-								label.control-label Change Password
+						.formbox
+							form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitPass")
+								.control-group
+									label.control-label Change Password
+									.controls
+										input(name="oldPass", type="text", placeholder="Old Password")
+										input(name="Pass", type="text", placeholder="New Password")
+										input(name="Pass2", type="text", placeholder="Repeat New Password")
 								.controls
-									input(name="oldPass", type="text", placeholder="Old Password")
-									input(name="Pass", type="text", placeholder="New Password")
-									input(name="Pass2", type="text", placeholder="Repeat New Password")
-							.controls
-								button.btn(type="submit", name="submit") 
-									| Save
+									button.btn(type="submit", name="submit") 
+										| Save
 				.span4
 					.well.d
 						legend Preferences
-						form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
-							input(id="notPublic", type="checkbox")
-							|  Bundles nicht öffentlich zeigen
-							br
-							.control-group
-								input(id="notBundle", type="checkbox")
-								|  Bundle nicht meine Songs ?
-							.controls
-								button.btn(type="submit") Save
+						.formbox
+							form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitPref")
+								input(id="notPublic", type="checkbox")
+								|  Bundles nicht öffentlich zeigen
+								br
+								.control-group
+									input(id="notBundle", type="checkbox")
+									|  Bundle nicht meine Songs ?
+								.controls
+									button.btn(type="submit") Save
 			div.tab-pane.active(id="tab1")
 				.well.d
 					legend Contact Info
-					br
-					.tabbable
-						.btn-group(data-toggle="buttons-radio")
-							button.btn.active(href="#ttab1", data-toggle="tab", tabindex="-1") Privatperson 
-							button.btn(href="#ttab2", data-toggle="tab", tabindex="-1") Firma
-					.place.s
-					
-					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
-						.control-group
-							label.control-label Email 
-							.controls
-								input(type="text", placeholder="Email")
-						.control-group
-							label.control-label Prename
-							.controls
-								input(type="text", placeholder="Prename")
-						.control-group
-							label.control-label Lastname
-							.controls
-								input(type="text", placeholder="Lastname")
-						.control-group
-							label.control-label Street
-							.controls
-								.input-append
-									input(type="text", placeholder="Streetname")
-								.input-prepend
-									input.span1(type="text", placeholder="Nr")
-						.control-group
-							label.control-label City
-							.controls
-								.input-append
-									input.span1(type="text", placeholder="PLZ")
-								.input-prepend
-									input(type="text", placeholder="City Name")
-						.control-group
-							label.control-label Country
-							.controls
-								input(type="text", placeholder="Country")
-						.control-group
-							label.control-label Phone
-							.controls
-								.input-append
-									input.span1(type="text", placeholder="Prefix")
-								.input-prepend
-									input(type="text", placeholder="Phone Nr")
-						.tab-content
-							.tab-pane(id="ttab1")
-							.tab-pane(id="ttab2")
+					.formbox
+						form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitContact")
+							.tabbable
 								.control-group
-									label.control-label Firmenname
-									.controls
-										input(type="text", placeholder="Firmenname")
-								.control-group
-									label.control-label Identifikationsnr
-									.controls
-										input(type="text", placeholder="USt.-Id/UID/Steuernummer")
-								.control-group
-									.controls
-										input(id="bla", type="checkbox")
-										|  Ich bin Kleinunternehmer gemäß dem deutschen UStG (§ 19) 
+									.btn-group.ajaxGrp(data-toggle="buttons-radio", data-toggle-name="is_company")
+										button.btn.active(href="#ttab1",value="0", data-toggle="tab", tabindex="-1") Privatperson 
+										button.btn(href="#ttab2",value="1", data-toggle="tab", tabindex="-1") Firma
+									input(type="hidden", name="is_company", value="0")
+							.control-group
+								label.control-label Email 
+								.controls
+									input(type="text",name="email", placeholder="Email", value="#{sett.contact.email}")
+							.control-group
+								label.control-label Prename
+								.controls
+									input(type="text",name="prename", placeholder="Prename", value="#{sett.contact.prename}")
+							.control-group
+								label.control-label Lastname
+								.controls
+									input(type="text",name="lastname", placeholder="Lastname", value="#{sett.contact.lastname}")
+							.control-group
+								label.control-label Street
+								.controls
+									.input-append
+										input(type="text",name="streetname", placeholder="Streetname", value="#{sett.contact.streetname}")
+									.input-prepend
+										input.span1(type="text",name="streetNr", placeholder="Nr", value="#{sett.contact.streetNr}")
+							.control-group
+								label.control-label City
+								.controls
+									.input-append
+										input.span1(type="text",name="plz", placeholder="PLZ", value="#{sett.contact.plz}")
+									.input-prepend
+										input(type="text",name="cityname", placeholder="City Name", value="#{sett.contact.cityname}")
+							.control-group
+								label.control-label Country
+								.controls
+									input(type="text",name="country", placeholder="Country", value="#{sett.contact.country}")
+							.control-group
+								label.control-label Phone
+								.controls
+									.input-append
+										input.span1(type="text",name="phonePre", placeholder="Prefix", value="#{sett.contact.phonePre}")
+									.input-prepend
+										input(type="text",name="phoneNr", placeholder="Phone Nr", value="#{sett.contact.phoneNr}")
+							.tab-content
+								.tab-pane(id="ttab1")
+								.tab-pane(id="ttab2")
+									.control-group
+										label.control-label Firmenname
+										.controls
+											input.toggleInput(type="text",name="firmenname", placeholder="Firmenname", disabled, value="#{sett.contact.firmenname}")
+									.control-group
+										label.control-label Identifikationsnr
+										.controls
+											input.toggleInput(type="text",name="ust_id", placeholder="USt.-Id/UID/Steuernummer", disabled, value="#{sett.contact.ust_id}")
+									.control-group
+										.controls
+											input.toggleInput(name="kleinunternehmer", type="checkbox", disabled, value="#{sett.contact.email}")
+											|  Ich bin Kleinunternehmer gemäß dem deutschen UStG (§ 19) 
 								
-						.controls
-							button.btn(type="submit") Save
+							.controls
+								button.btn(type="submit") Save
 						
 			.tab-pane(id="tab2")
 				.well.d
 					legend Bank Info
-					form.form-horizontal(method="post", enctype="multipart/form-data", action="ChangeProfil")
-						.tabbable
-							.btn-group(data-toggle="buttons-radio")
-								a.btn.btn-danger.active(href="#btab1", data-toggle="tab", tabindex="-1") Paypal
-								a.btn.btn-danger(href="#btab2", data-toggle="tab", tabindex="-1") Bank Transfer
-							.place.s
-							.tab-content
-								.tab-pane.active(id="btab1")
-									.control-group
-										label.control-label PayPal Email 
+					.formbox
+						form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitBank")
+							.tabbable
+								.btn-group(data-toggle="buttons-radio")
+									a.btn.btn-danger.active(href="#btab1", data-toggle="tab", tabindex="-1") Paypal
+									a.btn.btn-danger(href="#btab2", data-toggle="tab", tabindex="-1") Bank Transfer
+								.place.s
+								.tab-content
+									.tab-pane.active(id="btab1")
+										.control-group
+											label.control-label PayPal Email 
+											.controls
+												input(type="text", placeholder="PayPal Email")
 										.controls
-											input(type="text", placeholder="PayPal Email")
-									.controls
-										button.btn(type="submit") Save
-								.tab-pane(id="btab2")
-									.control-group
-										label.control-label Bankname 
+											button.btn(type="submit") Save
+									.tab-pane(id="btab2")
+										.control-group
+											label.control-label Bankname 
+											.controls
+												input(type="text", placeholder="Bankname")
+										.control-group
+											label.control-label Bankleitzahl 
+											.controls
+												input(type="text", placeholder="Bankleitzahl")
+										.control-group
+											label.control-label KontoNr 
+											.controls
+												input(type="text", placeholder="KontoNr")
 										.controls
-											input(type="text", placeholder="Bankname")
-									.control-group
-										label.control-label Bankleitzahl 
-										.controls
-											input(type="text", placeholder="Bankleitzahl")
-									.control-group
-										label.control-label KontoNr 
-										.controls
-											input(type="text", placeholder="KontoNr")
-									.controls
-										button.btn(type="submit") Save
+											button.btn(type="submit") Save

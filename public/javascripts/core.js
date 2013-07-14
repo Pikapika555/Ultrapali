@@ -3,16 +3,17 @@ var BROWSER = detectBrowser();
 
 
 $(document).ready(function() {
-	BgScroll();
-	smoothScroll();
-	//selChange();
+	startup();
+});
+
+function startup(){
 	locateSite();
 	unitSlide();
 	unitItemMask();
-	//uploadAlbumImg();
 	bla();
 	submitRouter();
-});
+	radioButtons();
+}
 
 function detectBrowser(){
 	var isOpera = !!window.opera || navigator.userAgent.indexOf('Opera') >= 0;
@@ -213,5 +214,27 @@ function uploadAlbumImg(){
 		console.log("JUFASDFJSF");
 		//var reader = new FileReader();
 	});
+}
+
+function radioButtons(){
+  $('.ajaxGrp').each(function(){
+    var group   = $(this);
+    var form    = group.parents('form').eq(0);
+    var name    = group.attr('data-toggle-name');
+    var hidden  = $('input[name="' + name + '"]', form);
+	var bool = true;
+	
+    $('button', group).each(function(){
+      var button = $(this);
+      button.on('click', function(){
+		  bool ^= true;
+          hidden.val($(this).val());
+		  $('.toggleInput').prop('disabled', bool);
+      });
+      if(button.val() == hidden.val()) {
+        button.addClass('active');
+      }
+    });
+  });
 }
 

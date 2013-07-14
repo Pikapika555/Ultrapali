@@ -23,23 +23,25 @@ exports.message = function(req, res){
 }
 
 exports.upload = function(req, res){
-	res.render('slides/slideUpl', { title: 'Express', username: req.session.username });
+	res.render('slides/slideUpl', { layout: false, title: 'Express', username: req.session.username });
 }
 
 exports.settings = function(req, res){
-	res.render('slides/slideSett', { title: 'Express', username: req.session.username });
+	funct.genSett(req,res, function(req, res, sett){
+		res.render('slides/slideSett', { layout: false, title: 'Express', sett: sett });
+	});
 }
 
 exports.statistic = function(req, res){
-	res.render('slides/slideStat', { title: 'Express', username: req.session.username });
+	res.render('slides/slideStat', { layout: false, title: 'Express', username: req.session.username });
 }
 
 exports.profil = function(req, res){
-	res.render('slides/slideProf', { title: 'Express', username: req.session.username });
+	res.render('slides/slideProf', { layout: false, title: 'Express', username: req.session.username });
 }
 
 exports.premium = function(req, res){
-	res.render('slides/slidePrem', { title: 'Express', username: req.session.username });
+	res.render('slides/slidePrem', { layout: false, title: 'Express', username: req.session.username });
 }
 
 exports.adminUser = function(req, res){

@@ -46,6 +46,23 @@ exports.findByEmail = function(req, res, mail, callback) {
 	});
 };
 
+
+exports.findSpecific = function(req, res, elem, callback) {
+	if(!req.session.email){
+		var mail = req.body.email;
+	}
+	else{
+		var mail = req.session.email;
+	}
+	var search = {};
+	search[elem] = 1;
+	db.collection('profiles', function(err, collection) {
+		collection.findOne({'email': mail}, search, function(err, item) {
+			callback(req, res, item[elem]);
+		});
+	});
+};
+
 exports.findAll = function(req, res, callback) {
 	db.collection('profiles', function(err, collection) {
 		collection.find().toArray(function(err, items) {
