@@ -163,17 +163,29 @@ exports.checkEmpty = function(req, res, obj, callback){
 //// Render Stuff
 
 
-exports.genVars = function(req, res, callback){
-	var nav = { email: req.session.email
-			, name: req.session.name
-			, error : req.session.error};
-	return callback(req, res, nav);
+exports.genVars = function(req, res, callback){	
+	var nav = { email: req.session.email };
+	
+	if(!req.session.email){
+		return callback(req, res, nav);
+	}
+	else{
+		exports.genDash(req, res, function(req, res, dash){
+			return callback(req, res, nav, dash);
+		});
+	}
 }
 
 exports.genSett = function(req, res, callback){
 	mongoF.findSpecific(req, res, "settings", function(req, res, sett){
 		console.log(sett);
-		callback(req, res, sett);
+		return callback(req, res, sett);
+	});
+}
+
+exports.genDash = function(req, res, callback){
+	mongoF.findSpecific(req, res, "main", function(req, res, dash){
+		return callback(req, res, dash);
 	});
 }
 
@@ -209,7 +221,8 @@ exports.regDB = function(req, res, callback){
 					, main: {
 						password: encPass
 						, admin: 0
-						, account_state: 0
+						, balance: "0,00"
+						, account_state: "0,00"
 						, language: 0
 					}
 					, settings: {

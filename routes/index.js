@@ -3,63 +3,65 @@ var funct = require('../routes/functions')
 // GET
 //// Views
 exports.index = function(req, res){
-	funct.genVars(req, res, function(req, res, nav){
+	funct.genVars(req, res, function(req, res, nav, dash){ //hier keine abfrage
 		if(!req.session.email){
 			res.render('index', { title: 'Express', navi: nav });
 		}
 		else if(req.session.email){
 			/////////////////////generateData(){req, res, function(data){ res.render(bla, {data})}}
-			res.render('sideNav', { title: 'Express', navi: nav });
+			res.render('sideNav', { title: 'Express', navi: nav, dash: dash });
 		}
 	});
 }
 
-exports.dashboard = function(req, res){
-	res.render('slides/slideDash', {layout: false, title: 'Express', username: req.session.username });
+exports.dashboard = function(req, res){ //hier keine abfrage - nur req session
+	funct.genDash(req, res, function(req, res, dash){
+		res.render('slides/slideDash', { dash: dash });
+	});
 }
 
 exports.message = function(req, res){
-	res.render('slides/slideMess', {layout: false, title: 'Express', username: req.session.username });
+	res.render('slides/slideMess', {});
 }
 
 exports.upload = function(req, res){
-	res.render('slides/slideUpl', { layout: false, title: 'Express', username: req.session.username });
+	res.render('slides/slideUpl', {});
 }
 
 exports.settings = function(req, res){
 	funct.genSett(req,res, function(req, res, sett){
-		res.render('slides/slideSett', { layout: false, title: 'Express', sett: sett });
+		res.render('slides/slideSett', { sett: sett });
 	});
 }
 
 exports.statistic = function(req, res){
-	res.render('slides/slideStat', { layout: false, title: 'Express', username: req.session.username });
+	res.render('slides/slideStat', {});
 }
 
 exports.profil = function(req, res){
-	res.render('slides/slideProf', { layout: false, title: 'Express', username: req.session.username });
+	res.render('slides/slideProf', {});
 }
 
 exports.premium = function(req, res){
-	res.render('slides/slidePrem', { layout: false, title: 'Express', username: req.session.username });
+	res.render('slides/slidePrem', {});
 }
 
 exports.adminUser = function(req, res){
 	mongoF.findAll(req, res, function(req, res, items){
-		res.render('slides/slideAUser', { title: 'Express', users: items });
+		res.render('slides/slideAUser', { users: items });
 	});
 }
 
 exports.adminReq = function(req, res){
-	res.render('slides/slideAReq', { title: 'Express' });
+	res.render('slides/slideAReq', {});
 }
 
 exports.adminSett = function(req, res){
-	res.render('slides/slideASett', { title: 'Express' });
+	res.render('slides/slideASett', {});
 }
 
 exports.adminLang = function(req, res){
-	res.render('slides/slideALang', { title: 'Express' });
+	res.render('slides/slideALang', {});
 }
 
 

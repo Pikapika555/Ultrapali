@@ -4,13 +4,12 @@ var BROWSER = detectBrowser();
 
 $(document).ready(function() {
 	startup();
+	bla();
+	unitSlide();
+	unitItemMask();
 });
 
 function startup(){
-	locateSite();
-	unitSlide();
-	unitItemMask();
-	bla();
 	submitRouter();
 	radioButtons();
 }
