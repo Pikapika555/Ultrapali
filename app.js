@@ -42,7 +42,7 @@ app.get('/upload', routes.upload);
 app.get('/settings', routes.settings);
 app.get('/statistic', routes.statistic);
 app.get('/profil', routes.profil);
-app.get('/adminUser', routes.adminUser);
+app.get('/adminUser', routes.adminUser);  //  /adminUser/1 => 1-10
 app.get('/adminReq', routes.adminReq);
 app.get('/adminSett', routes.adminSett);
 app.get('/adminLang', routes.adminLang);

@@ -87,7 +87,7 @@ exports.addProfil = function(req, res, profil, callback) {
 
 exports.updateProfil = function(req, res, item, callback) {
 	var email = req.session.email;
-	console.log('Updating profil: ' + email);
+	console.log(item);
 	db.collection('profiles', function(err, collection) {
 		collection.update({"email": email},{$set: item}, function(err, result) {
 			if (err) {
@@ -118,6 +118,7 @@ exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, call
 	
 	GridWriter.open(function(err, gridStore) {
 	
+	
 		GridWriter.writeFile(dataURL, function(err, GridWirter){
 			if(err)
 			{
@@ -126,7 +127,10 @@ exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, call
 			else
 			{
 				console.log('Data is added');
+				
 				callback(req, res);
+			
+				
 			}
 			
 			GridWriter.close(function(err, result) {
@@ -135,27 +139,53 @@ exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, call
 	});
 }
 
-exports.readFileFromDB = function(req, res, profile, filename, tag, outdir, seek, callback){
+exports.readFileFromDB_IMG = function(req, res, profile, filename, dataURL, callback){
+	fs.unlink(dataURL, function(){
+	});
 	console.log('Find data from Profile ' + JSON.stringify(profile));
-	
+	var back = "";
 	//Öffnet das file
-	var GridReader = new GridStore(db, filename,"r");
+	/*var GridReader = new GridStore(db, filename,"r");
 	
 	GridReader.open(function(err, gs) {
-	
-		//ermöglicht das spulen in den soundfiles
-		GridReader.seek(seek, function() {
 		
-			GridReader.read(function(err, data) {
+		var streamFile = gs.stream(true);
+		var string = "";
+		streamFile.on("data", function(chunk){
+			
+		});
+		
+		streamFile.on("end", function(){
+			
+		});
+		
+        // Pipe out the data
+		
+        streamFile.pipe(res);
+	GridReader.close(function(err, result) {
+		
+	});	*/	
+		
+		
+		var GridReader = new GridStore(db, filename,"r");
+		
+		GridReader.open(function(err, gs) {
+		
+			//ermöglicht das spulen in den soundfiles
+			GridReader.seek(0, function() {
+		
+				GridReader.read(function(err, data) {
 			
 				//data enthält den stream 
+					back = data.toString('base64');
 				
-				
-				GridReader.close(function(err, result) {
+					GridReader.close(function(err, result) {
+						res.send(back);
+					});
 				});
 			});
 		});
-	});
+	
 }
 
 

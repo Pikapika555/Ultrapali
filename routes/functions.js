@@ -91,12 +91,16 @@ exports.imageUpload = function(req, res){
 		fs.unlink(tmp_path, function() {
 			if (err) throw err;
 			mongoF.saveFileInDB(req, res, req.session.email, req.session.tempAlb, "img",  target_path, function(){
-				res.send('pictures/'+req.session.email + '/alben/' + tempAlbName + '/cover.jpg');
+				mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, target_path, function(){
+				});
 			});
+			/*res.send(mongoF.readFileFromDB(req, res, req.session.email, req.session.tempAlb, "img", "", 0, function(){
+			 });*/
 			//res.send('pictures/'+req.session.email + '/alben/' + tempAlbName + '/cover.jpg');
 		});
 		
 	});
+	
 	
 }
 
@@ -105,7 +109,7 @@ exports.submitPass = function(req, res){
 	var info = req.body;
 	if(info.oldPass == req.session.pass){
 		if(info.Pass == info.Pass2){
-			mongoF.updateProfil(req, res, {"password":  info.Pass}, function(req, res){
+			mongoF.updateProfil(req, res, {"main.password":  info.Pass}, function(req, res){
 				req.session.pass = info.Pass;
 				res.send({nr: "0", msg: "password changed!"});
 			});
@@ -117,7 +121,7 @@ exports.submitPass = function(req, res){
 
 exports.submitContact = function(req, res){
 	var info = req.body;
-	var insert = {"settings": { "contact": info }};
+	var insert = {"settings.contact": info };
 	exports.checkmail(req, res, info.email, function(req, res, check){
 		exports.checkEmpty(req, res, info, function(req, res){
 			mongoF.updateProfil(req, res, insert, function(req, res){
@@ -222,8 +226,10 @@ exports.regDB = function(req, res, callback){
 						password: encPass
 						, admin: 0
 						, balance: "0,00"
-						, account_state: "0,00"
+						, account_state: "normal user"
 						, language: 0
+						// freischaltlink: "" // "oihaiu"   // kann einloggen aber nichts machen
+						// 
 					}
 					, settings: {
 						contact: {
