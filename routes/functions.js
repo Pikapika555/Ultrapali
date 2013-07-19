@@ -1,6 +1,8 @@
 var mongoF = require('../routes/mongoF')
-	, routes = require('../routes');
-var fs = require('fs');
+	, routes = require('../routes')
+	, fs = require('fs')
+	, crypto = require('crypto');
+
 
 // Exports
 //// Registration
@@ -211,6 +213,53 @@ exports.createFolders = function(req, res){
 	});
 }
 
+exports.createAlbum = function(req, res){
+	//check albums //return var length = album.length / var tempAlb = is there state unfinished
+	var tempAlb = 0;
+	var albLength = 0;
+	
+	if(tempAlb == 0){
+		var album = {
+			 imageLink : ""
+			, state : "unfinished" //checking, denied, checked, Available
+			, albumInfo : {
+				Title : ""
+				, Interpret : ""
+				, ExactInterpret : ""
+				, DigitalReleaseDate : ""
+				, Language : ""
+				, MediaType : ""
+				, Genre : ""
+				, IndividualGenre : ""
+				, CatalogNumber : ""
+				, Barcode : ""
+				, CdReleaseDate : ""
+				, FeaturedBy : ""
+				, CopyrightRecording : ""
+				, CopyrightPackaging : ""
+			}
+			, songs : {
+				songOne : {
+					songLink : ""
+					, TrackTitle : ""
+					, Volume : ""
+					, Track : ""
+					, Interpret : ""
+					, Komponist : ""
+					, Textauthor : ""
+					, ISRC : ""
+					, etc: ""
+				}
+			
+			}
+			, payment : {
+			
+			}
+		};
+		//safeAlbum(album, albumLength(//name of album//));
+	}
+}
+
 
 
 
@@ -220,51 +269,55 @@ exports.createFolders = function(req, res){
 
 exports.regDB = function(req, res, callback){
 	encPass = req.body.R_password;
-	var profil = {
-					email: req.body.R_email.toLowerCase()
-					, main: {
-						password: encPass
-						, admin: 0
-						, balance: "0,00"
-						, account_state: "normal user"
-						, language: 0
-						// freischaltlink: "" // "oihaiu"   // kann einloggen aber nichts machen
-						// 
-					}
-					, settings: {
-						contact: {
-							is_company: 0
-							, email: ""
-							, prename: ""
-							, lastname: ""
-							, streetname: ""
-							, streetNr: ""
-							, plz: ""
-							, cityname: ""
-							, country: ""
-							, phonePre: ""
-							, phoneNr: ""
-							, firmenname: ""
-							, ust_id: ""
-							, kleinunternehmer: 0
+	crypto.randomBytes(64, function(ex, buf){
+		var profil = {
+						email: req.body.R_email.toLowerCase()
+						, main: {
+							password: encPass
+							, admin: 0
+							, balance: "0,00"
+							, account_state: "normal user"
+							, language: 0
+							, email_freischaltung: buf
+							// freischaltlink: "" // "oihaiu"   // kann einloggen aber nichts machen
+							// 
 						}
-						, bank:{
+						, settings: {
+							contact: {
+								is_company: 0
+								, email: ""
+								, prename: ""
+								, lastname: ""
+								, streetname: ""
+								, streetNr: ""
+								, plz: ""
+								, cityname: ""
+								, country: ""
+								, phonePre: ""
+								, phoneNr: ""
+								, firmenname: ""
+								, ust_id: ""
+								, kleinunternehmer: 0
+							}
+							, bank:{
+							
+							}
+							, pref:{
+							
+							}
+						}
+						, artists: {
 						
 						}
-						, pref:{
-						
+						, albums: {
+							
 						}
-					}
-					, artists: {
-					
-					}
-					, albums: {
-						
-					}
-					, bank: {
-						balance: 0
-						, currency: 0
-					}
-				};
-	callback(req, res, profil);
+						, bank: {
+							balance: 0
+							, currency: 0
+						}
+					};
+					callback(req, res, profil);
+				});
+	
 }

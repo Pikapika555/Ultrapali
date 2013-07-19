@@ -2,6 +2,26 @@ var funct = require('../routes/functions')
 	, mongoF = require('../routes/mongoF');
 // GET
 //// Views
+
+exports.state = function(req, res, adminPage, callback){ //Write in every get szenario // move to functions
+	var state = req.session.userState;
+	if(!state){
+		res.redirect("/");
+	}
+	else{
+		if(!adminPage){
+			callback();
+		}
+		else if(adminPage && req.session.userstate == "admin"){
+			callback();
+		}
+		else{
+			//write db hacktrys +1 //+timestamp?
+			res.send("you're not authorized to view this page, your ip got recorded");
+		}
+	}
+}
+
 exports.index = function(req, res){
 	funct.genVars(req, res, function(req, res, nav, dash){ //hier keine abfrage
 		if(!req.session.email){

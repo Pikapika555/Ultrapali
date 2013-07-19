@@ -103,6 +103,38 @@ exports.updateProfil = function(req, res, item, callback) {
 }
 
 
+//////////////
+// REQUESTS //
+//////////////
+exports.writeRequest = function(req, res) {
+	var item = req.body;
+	//req.session.RequestSpam = timecode // muss eine minute dazwischen vergangen sein
+	var insert = {
+		from: req.session.email
+		, request: item.type
+		, message: item.msg
+		, time: "" //timecode
+	}
+	if(item.bla.length >= 20){
+		db.collection('requests', function(err, collection) {
+			collection.insert(insert, {safe:true}, function(err, result) {
+				res.send({nr: "0", msg: "Your Request has been sent !"});
+			});
+		});
+	}
+	else{
+		res.send({nr: "1", msg: "Please enter larger description"});
+	}
+}
+
+exports.readRequest = function(req, res, pageNr, callback) {
+	db.collection('requests', function(err, collection){
+		collection.find().skip((pageNr-1)*10).limit(10).toArray(function(err, items) {
+			callback(items);
+		});
+	});
+}
+
 
 exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, callback){
 	console.log('Adding data to Profile ' + JSON.stringify(profile));
