@@ -108,7 +108,7 @@ function imgUpload(){
 
 function submitRouter(){
 	
-	$(".ajaxForm").submit(function(e){ 
+	$(".ajaxForm").submit(function(e){
 		e.preventDefault();
 		var form = $(this);
 		updateSett(form); 
@@ -126,7 +126,12 @@ form.ajaxSubmit({
 	},
 
 	success: function(response) {
-		alerta(form, response.nr, response.msg);
+		if(!response.nr){
+			$("body").html(response);
+		}
+		else{
+			alerta(form, response.nr, response.msg)
+		}
 	}
 });
 
@@ -140,7 +145,7 @@ function alerta(id, state, msg){
 
 	var htmlString = '<div class="alert '+state+'"> <button class="close" type="button" data-dismiss="alert">&times;</button><strong>'+title+'</strong>'+msg+'</div>';
 	$(".alert").remove();
-	id.closest(".formbox").prepend(htmlString);
+	id.prepend(htmlString);
 }
 
 

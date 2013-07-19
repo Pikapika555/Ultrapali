@@ -4,9 +4,9 @@ var funct = require('../routes/functions')
 //// Views
 
 exports.state = function(req, res, adminPage, callback){ //Write in every get szenario // move to functions
-	var state = req.session.userState;
+	var state = req.session.account_state;
 	if(!state){
-		res.redirect("/");
+		res.send("you're logged out - please login to continue");
 	}
 	else{
 		if(!adminPage){
@@ -35,53 +35,71 @@ exports.index = function(req, res){
 }
 
 exports.dashboard = function(req, res){ //hier keine abfrage - nur req session
-	funct.genDash(req, res, function(req, res, dash){
-		res.render('slides/slideDash', { dash: dash });
+	exports.state(req, res, false, function(){
+		funct.genDash(req, res, function(req, res, dash){
+			res.render('slides/slideDash', { dash: dash });
+		});
 	});
 }
-
+/*
 exports.message = function(req, res){
 	res.render('slides/slideMess', {});
 }
-
+*/
 exports.upload = function(req, res){
-	res.render('slides/slideUpl', {});
+	exports.state(req, res, false, function(){
+		res.render('slides/slideUpl', {});
+	});
 }
 
 exports.settings = function(req, res){
-	funct.genSett(req,res, function(req, res, sett){
-		res.render('slides/slideSett', { sett: sett });
+	exports.state(req, res, false, function(){
+		funct.genSett(req,res, function(req, res, sett){
+			res.render('slides/slideSett', { sett: sett });
+		});
 	});
 }
 
 exports.statistic = function(req, res){
-	res.render('slides/slideStat', {});
+	exports.state(req, res, false, function(){
+		res.render('slides/slideStat', {});
+	});
 }
 
 exports.profil = function(req, res){
-	res.render('slides/slideProf', {});
+	exports.state(req, res, false, function(){
+		res.render('slides/slideProf', {});
+	});
 }
-
+/*
 exports.premium = function(req, res){
 	res.render('slides/slidePrem', {});
 }
-
+*/
 exports.adminUser = function(req, res){
-	mongoF.findAll(req, res, function(req, res, items){
-		res.render('slides/slideAUser', { users: items });
+	exports.state(req, res, true, function(){
+		mongoF.findAll(req, res, function(req, res, items){
+			res.render('slides/slideAUser', { users: items });
+		});
 	});
 }
 
 exports.adminReq = function(req, res){
-	res.render('slides/slideAReq', {});
+	exports.state(req, res, true, function(){
+		res.render('slides/slideAReq', {});
+	});
 }
 
 exports.adminSett = function(req, res){
-	res.render('slides/slideASett', {});
+	exports.state(req, res, true, function(){
+		res.render('slides/slideASett', {});
+	});
 }
 
 exports.adminLang = function(req, res){
-	res.render('slides/slideALang', {});
+	exports.state(req, res, true, function(){
+		res.render('slides/slideALang', {});
+	});
 }
 
 

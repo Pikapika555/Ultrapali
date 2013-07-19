@@ -58,7 +58,12 @@ exports.findSpecific = function(req, res, elem, callback) {
 	search[elem] = 1;
 	db.collection('profiles', function(err, collection) {
 		collection.findOne({'email': mail}, search, function(err, item) {
-			callback(req, res, item[elem]);
+			if(item){
+				callback(req, res, item[elem]);
+			}
+			else{
+				callback(req, res, false);
+			}
 		});
 	});
 };

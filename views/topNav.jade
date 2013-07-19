@@ -53,10 +53,7 @@ html id
 										.dropdown-menu
 											.well
 												legend Please Sign In
-												.alert.alert-error
-													a.close(href="#", data-dismiss="alert") &times;
-													| Incorrect Username or Password!
-												form(method="POST", action="login", accept-charset="UTF-8")
+												form.ajaxForm(method="POST", action="login", accept-charset="UTF-8")
 													input.span3(type="text", name="email", placeholder="Email")
 													input.span3(type="password", name="password", placeholder="Password")
 													label.checkbox
@@ -102,10 +99,7 @@ html id
 							#tLog.tab-pane.fade
 								.well
 									legend Please Sign In
-									.alert.alert-error
-										a.close(href="#", data-dismiss="alert") &times;
-										| Incorrect Username or Password!
-									form(method="POST", action="", accept-charset="UTF-8")
+									form.ajaxForm(method="POST", action="", accept-charset="UTF-8")
 										input.span3(type="text", name="email", placeholder="Email")
 										input.span3(type="text", name="password", placeholder="Password")
 										label.checkbox
@@ -116,10 +110,7 @@ html id
 							#tReg.tab-pane.active
 								.well
 									legend Create your Account
-									.alert.alert-error
-										a.close(href="#", data-dismiss="alert") &times;
-										| Email in use
-									form(method="post", enctype="multipart/form-data", action="registrate")
+									form.ajaxForm(method="post", enctype="multipart/form-data", action="registrate")
 											input.span3(type="text", name="R_email", placeholder="Email")
 											input.span3(type="password", name="R_password", placeholder="Password")
 											input.span3(type="password", name="R_password2", placeholder="Retype Password")

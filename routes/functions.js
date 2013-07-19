@@ -14,7 +14,6 @@ exports.registrate = function(req, res) {
 					mongoF.findByEmail(req, res, profil.email, function(req, res, item){
 						req.session.email = profil.email;
 						req.session.pass = profil.main.password;
-						req.session.admin = profil.main.admin;
 						req.session.account_state = profil.main.account_state;
 						req.session.language = profil.main.language;
 						exports.createFolders(req,res);
@@ -54,18 +53,19 @@ exports.checkmail = function(req, res, email, callback){
 exports.login = function(req, res){
 	log = req.body;
 	mongoF.findSpecific(req, res, "main", function(req, res, item){
+		console.log("blaaa");
 		if(item){
+			console.log("if");
 			if(log.password == item.password){
 				req.session.email = log.email;
 				req.session.pass = log.password;
-				req.session.admin = item.admin;
 				req.session.account_state = item.account_state;
 				req.session.language = item.language;
 				res.redirect("/");
 			}
-			else{console.log("wrong pw");}
+			else{res.send({nr: "1", msg: "wrong password !"}); console.log("else");}
 		}
-		else{console.log("username not found");}
+		else{console.log("eeelse"); res.send({nr: "1", msg: "username not found !"});}
 	});
 }
 
@@ -274,7 +274,6 @@ exports.regDB = function(req, res, callback){
 						email: req.body.R_email.toLowerCase()
 						, main: {
 							password: encPass
-							, admin: 0
 							, balance: "0,00"
 							, account_state: "normal user"
 							, language: 0
