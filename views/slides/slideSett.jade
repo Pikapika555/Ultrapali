@@ -16,16 +16,16 @@ div.row
 				.span5
 					.well.d
 						legend Changes
-							form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitPass")
-								.control-group
-									label.control-label Change Password
-									.controls
-										input(name="oldPass", type="text", placeholder="Old Password")
-										input(name="Pass", type="text", placeholder="New Password")
-										input(name="Pass2", type="text", placeholder="Repeat New Password")
+						form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitPass")
+							.control-group
+								label.control-label Change Password
 								.controls
-									button.btn(type="submit", name="submit") 
-										| Save
+									input(name="oldPass", type="text", placeholder="Old Password")
+									input(name="Pass", type="text", placeholder="New Password")
+									input(name="Pass2", type="text", placeholder="Repeat New Password")
+							.controls
+								button.btn(type="submit", name="submit") 
+									| Save
 				.span4
 					.well.d
 						legend Preferences
