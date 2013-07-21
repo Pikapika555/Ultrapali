@@ -41,22 +41,22 @@ block content
 										a(href="/settings")
 											i.icon-cog.icon-2x
 											|	Settings
-								if(dash.account_state == "admin")
-									li.divider
-									li.nav-header Admin Menu
-									li
-										a(href="/adminUser")
-											i.icon-star.icon-2x
-											|	 Users
-									li
-										a(href="/adminRequests")
-											i.icon-headphones.icon-2x
-											|	 Requests
-									li
-										a(href="/adminSett")
-											i.icon-headphones.icon-2x
-											|	Settings
-									li
-										a(href="/adminLang")
-											i.icon-headphones.icon-2x
-											|	Edit Languages
+									-if(dash.account_state == "admin")
+										li.divider
+										li.nav-header Admin Menu
+										li
+											a(href="/adminUser")
+												i.icon-star.icon-2x
+												|	 Users
+										li
+											a(href="/adminReq")
+												i.icon-headphones.icon-2x
+												|	 Requests
+										li
+											a(href="/adminSett")
+												i.icon-headphones.icon-2x
+												|	Settings
+										li
+											a(href="/adminLang")
+												i.icon-headphones.icon-2x
+												|	Edit Languages

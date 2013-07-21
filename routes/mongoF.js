@@ -116,7 +116,8 @@ exports.writeRequest = function(req, res) {
 	//req.session.RequestSpam = timecode // muss eine minute dazwischen vergangen sein
 	var insert = {
 		from: req.session.email
-		, request: item.type
+		, type: item.type
+		, headline: item.headline
 		, message: item.msg
 		, time: "" //timecode
 	}
@@ -134,8 +135,14 @@ exports.writeRequest = function(req, res) {
 
 exports.readRequest = function(req, res, pageNr, callback) {
 	db.collection('requests', function(err, collection){
+		if(err) throw err;
 		collection.find().skip((pageNr-1)*10).limit(10).toArray(function(err, items) {
-			callback(items);
+			if(items){
+				callback(items);
+			}
+			else{
+				callback(false);
+			}
 		});
 	});
 }

@@ -12,7 +12,7 @@ exports.state = function(req, res, adminPage, callback){ //Write in every get sz
 		if(!adminPage){
 			callback();
 		}
-		else if(adminPage && req.session.userstate == "admin"){
+		else if(adminPage && req.session.account_state == "admin"){
 			callback();
 		}
 		else{
@@ -86,7 +86,9 @@ exports.adminUser = function(req, res){
 
 exports.adminReq = function(req, res){
 	exports.state(req, res, true, function(){
-		res.render('slides/slideAReq', {});
+		mongoF.readRequest(req, res, true, function(requests){
+			res.render('slides/slideAReq', {req : requests});
+		});
 	});
 }
 

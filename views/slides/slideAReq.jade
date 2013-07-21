@@ -2,31 +2,32 @@ div.row
 	legend Manage Users
 	.btn-toolbar
 		form.form-search.form-horizontal
-			button.btn.btn-primary New User
+			button.btn bla?
 			.input-append.pull-right
 				input.search-query(type="text", placeholder="Search Users")
 				button.btn(type="submit")
 					i.icon-search
 	.well.d
-		table.table
-			thead
-				tr
-					th #
-					th Email
-					th Betreff
-					th(style="width: 36px")
-			tbody
-				-for(var i = 0; i < users.length; i++)
-					tr 
-						td #{i} 
-						td #{users[i].email} 
-						td #{users[i].name} 
-						td #{users[i].state}
-						td
-							a(href="#editModal", data-toggle="modal")
-								i.icon-pencil.icon-white
-							a(href="#delModal", data-toggle="modal")
-								i.icon-remove.icon-white
+		-if(!req[0])
+			| No Requests
+		-else
+			table.table
+				thead
+					tr
+						th #
+						th Typ
+						th Betreff
+						th Absender
+						th(style="width: 36px")
+				tbody
+					-for(var i = 0; i < req.length; i++)
+						tr 
+							td #{req[i].time} 
+							td #{req[i].type} 
+							td #{req[i].headline} 
+							td #{req[i].from}
+							td
+								button.btn answere
 	.pagination.pagination-centered
 		ul
 			li
