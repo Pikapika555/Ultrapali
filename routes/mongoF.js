@@ -113,23 +113,35 @@ exports.updateProfil = function(req, res, item, callback) {
 //////////////
 exports.writeRequest = function(req, res) {
 	var item = req.body;
-	//req.session.RequestSpam = timecode // muss eine minute dazwischen vergangen sein
-	var insert = {
-		from: req.session.email
-		, type: item.type
-		, headline: item.headline
-		, message: item.msg
-		, time: "" //timecode
-	}
-	if(item.bla.length >= 20){
-		db.collection('requests', function(err, collection) {
-			collection.insert(insert, {safe:true}, function(err, result) {
-				res.send({nr: "0", msg: "Your Request has been sent !"});
+	var time = process.hrtime();
+	time = time[0];
+	console.log("b4 if");
+	if(!req.session.spamTime || time >= req.session.spamTime + 50){
+		console.log("if");
+		var insert = {
+			from: req.session.email
+			, type: item.type
+			, headline: item.headline
+			, message: item.msg
+			, time: time
+		}
+		if(item.msg.length >= 20){
+			db.collection('requests', function(err, collection) {
+				collection.insert(insert, {safe:true}, function(err, result) {
+					req.session.spamTime = time;
+					res.send({nr: "0", msg: "Your Request has been sent !"});
+				});
 			});
-		});
+		}
+		else{
+			console.log("else");
+			res.send({nr: "1", msg: "Please enter larger description"});
+		}
 	}
 	else{
-		res.send({nr: "1", msg: "Please enter larger description"});
+		console.log("e else");
+		var timeLeft = (req.session.spamTime + 50) - time;
+		res.send({nr: "1", msg: "Please Wait "+timeLeft+" seconds"});
 	}
 }
 

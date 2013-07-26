@@ -10,24 +10,10 @@ block content
 						div.sidebar-nav
 							div.well.d
 								ul.nav.nav-list(id="ulSideNav")
-									//li.divider
-									li
-										blockquote
-											- if(!navi.user)
-												h4 BandName Eintragen
-											- else
-												h4 #{navi.user}
-											small #{navi.email}
-									li.divider
-									li.nav-header Band Menu
 									li.active
 										a(href="/dashboard")
 											i.icon-home.icon-2x
 											|   Dashboard
-									li
-										a(href="/profil")
-											i.icon-user.icon-2x
-											|	Profil
 									li
 										a(href="/upload")
 											i.icon-upload.icon-2x
@@ -36,7 +22,7 @@ block content
 										a(href="/statistic")
 											i.icon-bar-chart.icon-2x
 											|	Statistic
-									li.divider
+									//li.divider
 									li
 										a(href="/settings")
 											i.icon-cog.icon-2x

@@ -1,0 +1,68 @@
+.nav-list li a {
+  color: #aaa;
+  text-shadow: 0 3px 0 #000 !important;
+}
+.nav-list li a:hover {
+  color: #ddd !important;
+}
+.nav-list li.active a {
+  text-shadow: 0 3px 0 #000 !important;
+  border-bottom: 1px solid #8c2324;
+  border-top: 1px solid #8c2324;
+}
+.nav-list li.active i {
+  color: #8c2324;
+}
+.nav-list li.divider {
+  background-color: #571616;
+}
+.nav-tabs {
+  border-color: #8c2324;
+}
+.nav-tabs li.active {
+  background-color: #8c2324 false;
+}
+.nav-tabs li.active a {
+  background-color: #272727;
+  border-color: #8c2324;
+  border-bottom: 1px solid transparent;
+  color: #fff;
+}
+.nav-tabs li.active a:focus,
+.nav-tabs li.active a:hover {
+  background-color: #272727;
+  border-color: #8c2324;
+  border-bottom: 1px solid transparent;
+  color: #fff;
+}
+.nav-tabs li a {
+  color: #ddd;
+}
+.nav-tabs li a:focus,
+.nav-tabs li a:hover {
+  background-color: #571616;
+  border-color: transparent;
+  border-bottom: 1px solid col_dt;
+  color: #fff;
+}
+.btn .btn-primary {
+  background-color: #8c2324;
+  background-image: -moz-linear-gradient(top, #8c2324, #000);
+  background-image: -ms-linear-gradient(top, #8c2324, #000);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8c2324), to(#000));
+  background-image: -webkit-linear-gradient(top, #8c2324, #000);
+  background-image: -o-linear-gradient(top, #8c2324, #000);
+  background-image: linear-gradient(top, #8c2324, #000);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+  color: #fff;
+}
+.well.d {
+  border: 1px solid #571616 !important;
+}
+.well.d.box {
+  box-shadow: 5px 5px 5px #111;
+  margin-right: 10px;
+}
+legend {
+  border-color: #8c2324 !important;
+}

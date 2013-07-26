@@ -8,6 +8,7 @@ html id
 		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
 		link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css', media="screen")
 		link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap_override.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='/stylesheets/cCenter.css')
 
@@ -61,8 +62,8 @@ html id
 														p Remember Me
 													button.btn.btn-info.btn-block(type="submit", name="submit")
 														b Sign in
-													a.btn.btn-info.btn-block(href="/logout")
-														b Login Hack
+													a.btn-block(href="/lostPassword")
+														| Lost your password?
 								- else
 									li.divider-vertical
 									li
@@ -84,7 +85,7 @@ html id
 						i.icon-chevron-up.icon-white
 		block content
 		
-		include footer
+		include includes/footer
 		
 		#regMod.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
 

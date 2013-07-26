@@ -10,7 +10,7 @@ footer
 					a(href="#NotiModal", data-toggle="modal")
 						h2
 							i.icon-envelope-alt.icon-2x
-							|  Report
+							|  Support
 				.span4
 				.span4
 					h3.headl Contact Us
@@ -23,6 +23,7 @@ footer
 						br
 						| Email: support@darktunes.de
 					h3.headl Social Network
+					| fb, twitt, dt, soundcloud
 	#footer_2
 		.container
 			.row
@@ -42,18 +43,22 @@ footer
 	.modal-header
 		button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
 		h3 Request Admin
-	.modal-body
-		form.form-horizontal
+	form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="sendRequest")
+		.modal-body
 			.control-group
 				label.control-label(for="") Anliegen: 
 				.controls
-					select
+					select(name="type")
 						option Bug
 						option Upload Problem
 						option Payment Problem
 						option Other Problem
 			.control-group
-				textarea.full(rows="6")
-		
-	.modal-footer
-		button.btn.btn-primary	Submit
+				label.control-label(for="") Betreff
+				.controls
+					input(type="text", name="headline", placeholder="short description")
+			.control-group
+				textarea.full(name="msg", rows="6")
+			
+		.modal-footer
+			button.btn.btn-primary(type="submit")	Submit

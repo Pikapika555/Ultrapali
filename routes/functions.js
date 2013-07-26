@@ -1,7 +1,8 @@
 var mongoF = require('../routes/mongoF')
 	, routes = require('../routes')
 	, fs = require('fs')
-	, crypto = require('crypto');
+	, crypto = require('crypto')
+	, im = require('imagemagick');
 
 
 // Exports
@@ -74,36 +75,28 @@ exports.imageUpload = function(req, res){
 
 	var tmp_path = req.files.Datei.path;
 	var tempAlbName = 0;
-	var albPath = './public/pictures/'+req.session.email + '/alben/'
+	var albPath = './public/pictures/'+req.session.email;
 	
-	if(!req.session.tempAlb){
-		tempAlbName = "tem_" + Math.floor((Math.random()*1000)+1);
-		fs.mkdir(albPath + tempAlbName, 0777, function (err) {
-			//trage tempalbname in db ein
-			req.session.tempAlb = tempAlbName;
-		});
-	}
-	else{
-		tempAlbName = req.session.tempAlb;
-	}
+	var target_path = albPath + '/cover.jpg';
 	
-	var target_path = albPath + tempAlbName + '/cover.jpg';
-	fs.rename(tmp_path, target_path, function(err) {
-		if (err) throw err;
-		fs.unlink(tmp_path, function() {
-			if (err) throw err;
-			mongoF.saveFileInDB(req, res, req.session.email, req.session.tempAlb, "img",  target_path, function(){
-				mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, target_path, function(){
+	im.readMetadata(tmp_path, function(err, meta){
+		if(err) throw err;
+		if(meta.width == meta.height && meta.witdh >= 600 && meta.format == "JPEG"){
+			fs.rename(tmp_path, target_path, function(err) {
+				if (err) throw err;
+				fs.unlink(tmp_path, function() {
+					if (err) throw err;
+					mongoF.saveFileInDB(req, res, req.session.email, req.session.tempAlb, "img",  target_path, function(){
+						mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, target_path, function(){
+						});
+					});
 				});
 			});
-			/*res.send(mongoF.readFileFromDB(req, res, req.session.email, req.session.tempAlb, "img", "", 0, function(){
-			 });*/
-			//res.send('pictures/'+req.session.email + '/alben/' + tempAlbName + '/cover.jpg');
-		});
-		
+		}
+		else{
+			res.send({nr: "1", msg: "image not fine!"});
+		}
 	});
-	
-	
 }
 
 //// Settings

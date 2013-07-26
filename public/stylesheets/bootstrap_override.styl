@@ -1,0 +1,78 @@
+//// VARIABLES ////
+
+col_body = #272727
+col_dT = #8C2324
+col_dT2 = #571616
+col_dt3 = #571616
+
+///////////////////
+
+
+.nav-list
+	li
+		a
+			color: #aaa
+			text-shadow: 0 3px 0 rgba(0, 0, 0, 1) !important
+			&:hover
+				color: #ddd !important
+		&.active
+			
+			a
+				text-shadow: 0 3px 0 rgba(0, 0, 0, 1) !important
+				border-bottom: 1px solid col_dT
+				border-top: 1px solid col_dT
+				
+				
+					
+			i
+				color: col_dT
+				
+		&.divider
+			background-color: col_dT2
+
+.nav-tabs
+	border-color: col_dT
+	li
+		&.active
+			background-color: col_dT !importiant
+			
+			a
+				background-color: col_body
+				border-color: col_dT
+				border-bottom: 1px solid transparent
+				color: white
+				&:focus, &:hover
+					background-color: col_body
+					border-color: col_dT
+					border-bottom: 1px solid transparent
+					color: white
+		a
+			color: #ddd
+			&:focus, &:hover
+				background-color: col_dt3
+				border-color: transparent
+				//border: 1px solid transparent
+				border-bottom: 1px solid col_dt
+				color: white
+			
+		
+			
+.btn
+	.btn-primary
+		background-color: col_dT
+		background-image: -moz-linear-gradient(top, col_dT, black)
+		background-image: -ms-linear-gradient(top, col_dT, black)
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(col_dT), to(black))
+		background-image: -webkit-linear-gradient(top, col_dT, black)
+		background-image: -o-linear-gradient(top, col_dT, black)
+		background-image: linear-gradient(top, col_dT, black)
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05)
+		color: white
+.well.d
+	border: 1px solid col_dT2 !important
+	&.box
+		box-shadow: 5px 5px 5px #111
+		margin-right: 10px
+	
+legend
+	border-color: col_dT !important

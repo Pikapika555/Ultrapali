@@ -59,6 +59,8 @@ app.post('*/submitContact', funct.submitContact);
 app.post('*/submitBank', funct.submitBank);
 app.post('*/submitPref', funct.submitPref);
 
+app.post('*/sendRequest', mongoF.writeRequest);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
