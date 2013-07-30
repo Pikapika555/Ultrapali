@@ -1,8 +1,9 @@
 var mongoF = require('../routes/mongoF')
+	, ObjectID = require('mongodb').ObjectID
 	, routes = require('../routes')
 	, fs = require('fs')
 	, crypto = require('crypto')
-	, im = require('imagemagick');
+	, imag = require('imagemagick');
 
 
 // Exports
@@ -17,7 +18,6 @@ exports.registrate = function(req, res) {
 						req.session.pass = profil.main.password;
 						req.session.account_state = profil.main.account_state;
 						req.session.language = profil.main.language;
-						exports.createFolders(req,res);
 						res.redirect("/");
 					});
 				});
@@ -53,7 +53,7 @@ exports.checkmail = function(req, res, email, callback){
 
 exports.login = function(req, res){
 	log = req.body;
-	mongoF.findSpecific(req, res, "main", function(req, res, item){
+	mongoF.findSpecific(req, res, "main", 0, function(item){
 		console.log("blaaa");
 		if(item){
 			console.log("if");
@@ -62,7 +62,7 @@ exports.login = function(req, res){
 				req.session.pass = log.password;
 				req.session.account_state = item.account_state;
 				req.session.language = item.language;
-				res.redirect("/");
+				res.send({login: "1", nr: "0", msg: "you got logged in !"})
 			}
 			else{res.send({nr: "1", msg: "wrong password !"}); console.log("else");}
 		}
@@ -78,24 +78,43 @@ exports.imageUpload = function(req, res){
 	var albPath = './public/pictures/'+req.session.email;
 	
 	var target_path = albPath + '/cover.jpg';
-	
-	im.readMetadata(tmp_path, function(err, meta){
-		if(err) throw err;
-		if(meta.width == meta.height && meta.witdh >= 600 && meta.format == "JPEG"){
-			fs.rename(tmp_path, target_path, function(err) {
-				if (err) throw err;
-				fs.unlink(tmp_path, function() {
+	fs.mkdir(albPath, 0777, function (err) {
+		
+		
+		//if(meta.width == meta.height && meta.witdh >= 600 && meta.format == "JPEG"){
+				if(!req.session.tempAlb){
+				//mongoF.findSpecific(req, res, search, where, function(item){ // gehört in load funktion von upload songs
+					var timestamp = Math.floor(new Date().getTime()/1000);
+					var imageName = new ObjectID(timestamp);
+					imageName = imageName.toString();
+					req.session.tempAlb = imageName;
+				}
+				var path = "albums."+req.session.tempAlb;
+				var key = {};
+				var key2 = {};
+				key[(path+".imageName")] = req.session.tempAlb;
+				key2[(path+".state")] = 1;
+				fs.rename(tmp_path, target_path, function(err) {
 					if (err) throw err;
-					mongoF.saveFileInDB(req, res, req.session.email, req.session.tempAlb, "img",  target_path, function(){
-						mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, target_path, function(){
-						});
+					fs.unlink(tmp_path, function() {
+						//imag.readMetadata(target_path, function(err, meta){
+							if (err) throw err;
+							mongoF.saveFileInDB(req, res, req.session.email, req.session.tempAlb, "img",  target_path, function(){
+								mongoF.updateProfil(req, res, key, function(req, res){
+									mongoF.updateProfil(req, res, key2, function(req, res){
+										mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, target_path, function(){
+										});
+									});
+								});
+								
+							});
+						//});
 					});
 				});
-			});
-		}
-		else{
-			res.send({nr: "1", msg: "image not fine!"});
-		}
+		//}
+		//else{
+			//res.send({nr: "1", msg: "image not fine!"});
+		//}
 	});
 }
 
@@ -141,14 +160,21 @@ exports.submitPref = function(req, res){
 	});
 }
 
-exports.checkEmpty = function(req, res, obj, callback){
+exports.checkEmpty = function(req, res, obj, callback, reqFields){
 	var j = 0;
-	for(var i in obj){
-		if(obj[i] == ""){
-			var j = i;
-			break;
+	console.log(obj);
+	
+		console.log("no req field");
+		for(var i in obj){
+			console.log("schleife");
+			if(reqFields && reqFields <= i){console.log("hiii?");break;}
+
+			if(obj[i] == ""){
+				j = i;
+				break;
+			}
+			
 		}
-	}
 	if(j != 0){
 		res.send({nr: "1", msg: "Please enter "+i+" !"});
 	}
@@ -156,6 +182,26 @@ exports.checkEmpty = function(req, res, obj, callback){
 		callback(req, res);
 	}
 }
+
+
+
+exports.uplAlbInfo = function(req, res){
+	var info = req.body;
+	var path = "albums."+req.session.tempAlb+".albumInfo";
+	var key = {};
+	key[path] = info;
+	
+	exports.checkEmpty(req, res, info, function(){
+		mongoF.updateProfil(req, res, key, function(req, res){
+			res.send({nr: "0", msg: "Album info saved"});
+		});
+	}, 2);
+
+
+}
+
+
+
 
 
 
@@ -176,33 +222,15 @@ exports.genVars = function(req, res, callback){
 }
 
 exports.genSett = function(req, res, callback){
-	mongoF.findSpecific(req, res, "settings", function(req, res, sett){
+	mongoF.findSpecific(req, res, "settings", 0,  function(sett){
 		console.log(sett);
 		return callback(req, res, sett);
 	});
 }
 
 exports.genDash = function(req, res, callback){
-	mongoF.findSpecific(req, res, "main", function(req, res, dash){
+	mongoF.findSpecific(req, res, "main", 0, function(dash){
 		return callback(req, res, dash);
-	});
-}
-
-
-exports.createFolders = function(req, res){
-	var dir_path = './public/pictures/'+req.session.email;
-	var path2 = dir_path + "/alben";
-	var path3 = dir_path + "/profil";
-	var path4 = dir_path + "/statistic";
-	
-	fs.mkdir(dir_path, 0777, function (err) {
-		if (err) {
-			console.log(err);
-		} else {
-			fs.mkdir(path2, 0777, function (err) {});
-			fs.mkdir(path3, 0777, function (err) {});
-			fs.mkdir(path4, 0777, function (err) {});
-		}
 	});
 }
 
@@ -214,7 +242,7 @@ exports.createAlbum = function(req, res){
 	if(tempAlb == 0){
 		var album = {
 			 imageLink : ""
-			, state : "unfinished" //checking, denied, checked, Available
+			, state : "1" //1,2,3,4,checking, denied, checked, Available
 			, albumInfo : {
 				Title : ""
 				, Interpret : ""

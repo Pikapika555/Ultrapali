@@ -25,11 +25,11 @@ exports.state = function(req, res, adminPage, callback){ //Write in every get sz
 exports.index = function(req, res){
 	funct.genVars(req, res, function(req, res, nav, dash){ //hier keine abfrage
 		if(!req.session.email){
-			res.render('index', { title: 'Express', navi: nav });
+			res.render('layout', { title: 'Express', navi: nav });
 		}
 		else if(req.session.email){
 			/////////////////////generateData(){req, res, function(data){ res.render(bla, {data})}}
-			res.render('sideNav', { title: 'Express', navi: nav, dash: dash });
+			res.render('layout', { title: 'Express', navi: nav, dash: dash });
 		}
 	});
 }

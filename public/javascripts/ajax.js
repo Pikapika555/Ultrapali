@@ -1,4 +1,3 @@
-var HISTORY_COUNT = 0;
 
 /*
 $.address.bind('change', function(event){
@@ -52,32 +51,36 @@ function bla(){
 			ajaxRequest(uri);
 		}
 	});
+	
+	$.address.externalChange(function(event){
+		var uri = event.value;
+		console.log("bla"+uri);
+		if(uri == "/"){ uri = "/dashboard";} //ajaxRequest(uri);}
+		$("#ulSideNav").children(".active").removeClass("active selected");
+		var actiElem = $("#ulSideNav").find('[href*="'+uri+'"]').parent();
+		actiElem.addClass("active");
+		actiElem.focus();
+	})
 
 
 	$('#ulSideNav a').click(function(e) {
 			
 		$("#ulSideNav").children().removeClass("active");
 		$(this).parent().addClass('active selected');
-	});
+	}); 
 }
 
 function getBase64Image(img) {
-    // Create an empty canvas element
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
     canvas.height = img.height;
 
-    // Copy the image contents to the canvas
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0);
 
-    // Get the data-URL formatted image
-    // Firefox supports PNG and JPEG. You could check img.src to
-    // guess the original format, but be aware the using "image/jpg"
-    // will re-encode the image.
     var dataURL = canvas.toDataURL("image/png");
 
-    return dataURL;//.replace(/^data:image\/(png|jpg);base64,/, "");
+    return dataURL;
 }
 
 
@@ -96,8 +99,7 @@ function imgUpload(){
 		},
 
 		success: function(response) {
-			console.log(response);
-			
+			UPL_SAFETY = 1;
 			thumb.attr("src","data:image/jpg;base64,"+response);
 			
 			$("#spanFileName").html("File Uploaded")
@@ -126,11 +128,15 @@ form.ajaxSubmit({
 	},
 
 	success: function(response) {
-		if(!response.nr){
-			$("body").html(response);
+		if(response.login == 1){
+			alerta(form, response.nr, response.msg);
+			var bla = form.get(0);
+			$(document).attr('location').href='/'
+			console.log(bla);
+			console.log(form);
 		}
 		else{
-			alerta(form, response.nr, response.msg)
+			alerta(form, response.nr, response.msg);
 		}
 	}
 });
@@ -147,6 +153,26 @@ function alerta(id, state, msg){
 	$(".alert").remove();
 	id.prepend(htmlString);
 }
+
+function postSongUpl(form, callback){
+
+	form.ajaxSubmit({
+		
+		beforeSend:function(){
+			//launchpreloader();
+		},
+		
+		error: function(xhr) {
+			//status('Error: ' + xhr.status);
+		},
+
+		success: function(response) {
+			callback(response);
+		}
+	});
+
+}
+
 
 
 

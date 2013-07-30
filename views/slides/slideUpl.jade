@@ -28,15 +28,15 @@ div.row
 				.span7
 				
 					.tabbable.tabs-left
-						ul.nav.nav-tabs
+						ul.nav.nav-tabs(id="uploadNav")
 							li.active
 								a(href="#ttab1", data-toggle="tab") 1. Album Cover
-							li
-								a(href="#ttab2", data-toggle="tab") 2. Album Info
-							li
-								a(href="#ttab3", data-toggle="tab") 3. Upload Songs
-							li
-								a(href="#ttab4", data-toggle="tab") 4. Payment
+							li.disabled
+								a(href="#ttab2", data-toggle="") 2. Album Info
+							li.disabled
+								a(href="#ttab3", data-toggle="") 3. Upload Songs
+							li.disabled
+								a(href="#ttab4", data-toggle="") 4. Payment
 						.tab-content
 							#ttab1.tab-pane.active
 								.media
@@ -64,55 +64,54 @@ div.row
 							#ttab2.tab-pane
 								legend Album Info
 								.well.d
-									form.form-horizontal
+									form.form-horizontal(id="formAlbUpl2", enctype="multipart/form-data", method="post", action="uplAlbInfo")
+					
 										.control-group
 											label.control-label(for="") Album Title
 											.controls
 												.input-append
-													input(id="logPass", type="text", name="R_email", placeholder="Album Title", popover="I appeared on", popover-placement="right")
-														
+													input(type="text", name="title", placeholder="Album Title", popover="I appeared on", popover-placement="right")	
 													span.add-on
 														i.icon-ok
 										.control-group
 											label.control-label(for="") Künstler
 											.controls
-												select(id="Künstler")
-													option Künstler A
-													option Künstler B
+												select(name="Interpret")
+													option(value="0") Künstler A
+													option(value="1") Künstler B
 												a(href="#editModal", data-toggle="modal")
 													i.icon-pencil.icon-white
 										.control-group
 											label.control-label(for="") Künstlername auf Cover
 											.controls
-												input(id="logPass", type="text", name="R_email", placeholder="Künstlername")
+												input(type="text", name="exact_interpret", placeholder="Künstlername")
 										hr.s
 										.control-group
 													label.control-label(for="") Digital Release date
 													.controls
 														.input-append
-															input(id="logPass", type="text", name="R_email", placeholder="Release Date")
+															input(type="text", name="digital_ReleaseDate", placeholder="Release Date")
 															span.add-on
 																i.icon-remove
 										.control-group
 											label.control-label(for="") Language
 											.controls
-												select
-													option German
-													option English
+												select(name="Language")
+													option(value="ger") German
+													option(value="eng") English
 										.control-group
 											label.control-label(for="") Media Type
 											.controls
-												select
+												select(name="media_type")
 													option(value="album") Album
-													option EP
-													option Audiobook
+													option(value="ep") EP
+													option(value="audioBook") Audiobook
 										hr.s
 										.control-group
 											label.control-label(for="") Genre
 											.controls
-												select(id="selGenre")
-													option Genre
-													option Rock
+												select(name="genre")
+													option(value="rock") Rock
 													option Pop
 													option Country/Folk
 													option Jazz
@@ -122,15 +121,14 @@ div.row
 													option Classical
 													option Raggae
 										.control-group
-											label.control-label(for="") Sub Genre
+											label.control-label(for="") Individual Genre
 											.controls
-												select(id="selGenre2")
-													option Choose above
+												input(name="individual_genre", type="text", placeholder="Individual Genre")
 										hr.s
 										
 										
 										.control-group
-											button.btn.btn-block(data-toggle="collapse", data-target="#addOpt") Extra Options 
+											button.btn.btn-block(type="button", data-toggle="collapse", data-target="#addOpt") Extra Options 
 												b.caret
 										.control-group
 											#addOpt.collapse
@@ -273,5 +271,5 @@ div.row
 					label Payment 
 						i.icon-remove.pull-right
 					hr.s
-					button.btn.btn-block.btn-primary Submit
+					button.btn.btn-block.btn-primary(id="btnAlbSub") Continue
 				

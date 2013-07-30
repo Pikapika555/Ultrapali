@@ -47,7 +47,7 @@ exports.findByEmail = function(req, res, mail, callback) {
 };
 
 
-exports.findSpecific = function(req, res, elem, callback) {
+exports.findSpecific = function(req, res, elem, where, callback) {
 	if(!req.session.email){
 		var mail = req.body.email;
 	}
@@ -55,14 +55,19 @@ exports.findSpecific = function(req, res, elem, callback) {
 		var mail = req.session.email;
 	}
 	var search = {};
-	search[elem] = 1;
+	if(where == 0){
+		search[elem] = 1;
+	}
+	else{
+		search[elem] = where;
+	}
 	db.collection('profiles', function(err, collection) {
 		collection.findOne({'email': mail}, search, function(err, item) {
 			if(item){
-				callback(req, res, item[elem]);
+				callback(item[elem]);
 			}
 			else{
-				callback(req, res, false);
+				callback(false);
 			}
 		});
 	});
@@ -196,33 +201,11 @@ exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, call
 }
 
 exports.readFileFromDB_IMG = function(req, res, profile, filename, dataURL, callback){
-	fs.unlink(dataURL, function(){
-	});
+	
+	
 	console.log('Find data from Profile ' + JSON.stringify(profile));
 	var back = "";
-	//Öffnet das file
-	/*var GridReader = new GridStore(db, filename,"r");
-	
-	GridReader.open(function(err, gs) {
-		
-		var streamFile = gs.stream(true);
-		var string = "";
-		streamFile.on("data", function(chunk){
-			
-		});
-		
-		streamFile.on("end", function(){
-			
-		});
-		
-        // Pipe out the data
-		
-        streamFile.pipe(res);
-	GridReader.close(function(err, result) {
-		
-	});	*/	
-		
-		
+	fs.unlink(dataURL, function(){	
 		var GridReader = new GridStore(db, filename,"r");
 		
 		GridReader.open(function(err, gs) {
@@ -241,7 +224,7 @@ exports.readFileFromDB_IMG = function(req, res, profile, filename, dataURL, call
 				});
 			});
 		});
-	
+	});
 }
 
 

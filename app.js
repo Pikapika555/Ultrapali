@@ -59,6 +59,8 @@ app.post('*/submitContact', funct.submitContact);
 app.post('*/submitBank', funct.submitBank);
 app.post('*/submitPref', funct.submitPref);
 
+app.post('*/uplAlbInfo', funct.uplAlbInfo);
+
 app.post('*/sendRequest', mongoF.writeRequest);
 
 

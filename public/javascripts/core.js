@@ -1,17 +1,22 @@
 var SCROLLPOSITION = ($(this).scrollTop());
 var BROWSER = detectBrowser();
-
+var UPL_SAFETY = 0;
 
 $(document).ready(function() {
-	startup();
+	startT();
+	submitRouter();
+});
+
+function startT(){
 	bla();
 	unitSlide();
 	unitItemMask();
-});
+}
 
 function startup(){
 	submitRouter();
 	radioButtons();
+	uploadActivator();
 }
 
 function detectBrowser(){
@@ -237,3 +242,62 @@ function radioButtons(){
   });
 }
 
+
+
+function uploadActivator(){
+	$(".disabled").click(function(e){
+		e.preventDefault();
+	});
+	
+	$('#btnAlbSub').click(function() {
+		var submitState = $('#uploadNav').children(".active").children("a").attr('href').replace("#ttab", "");
+		var form = $("#ttab"+submitState);
+		
+		if(submitState == 1 && UPL_SAFETY == 1){
+			console.log("IF");
+			console.log(submitState);
+			console.log(UPL_SAFETY);
+			
+			submitState++;
+			
+			var aElem = $('#uploadNav').find('[href="#ttab'+submitState+'"]');  //"+submitState+"
+			var liElem = aElem.parent();
+			var tabElem = $('#ttab'+submitState);
+			
+			liElem.removeClass("disabled");
+			aElem.attr("data-toggle", "tab");
+			$(".nav-tabs").children("li.active").removeClass("active");
+			liElem.addClass("active");
+			$(".tab-pane[id*='ttab']").removeClass("active");
+			tabElem.addClass("active");
+		}
+		else if(submitState > 1){
+			console.log("ELSE IF");
+			form = $("#formAlbUpl"+submitState);
+			postSongUpl(form, function(response){
+				if(response.nr == 0){
+					submitState++;
+			
+					var aElem = $('#uploadNav').find('[href="#ttab'+submitState+'"]');  //"+submitState+"
+					var liElem = aElem.parent();
+					var tabElem = $('#ttab'+submitState);
+					
+					liElem.removeClass("disabled");
+					aElem.attr("data-toggle", "tab");
+					$(".nav-tabs").children("li.active").removeClass("active");
+					liElem.addClass("active");
+					$(".tab-pane[id*='ttab']").removeClass("active");
+					tabElem.addClass("active");
+				}
+				else{
+					alerta(form, response.nr, response.msg);
+				}
+			
+			});
+		}
+		else{
+			console.log("ELSE");
+			alerta(form, 1, "Please upload album cover")
+		}
+	});
+}

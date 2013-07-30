@@ -1,48 +1,46 @@
-extends topNav
-block content
-		#Content
-			.midContent
-			.container
-				div.row
-					#AjaxContent.span9
-						include slides/slideDash
-					div.span3
-						div.sidebar-nav
-							div.well.d
-								ul.nav.nav-list(id="ulSideNav")
-									li.active
-										a(href="/dashboard")
-											i.icon-home.icon-2x
-											|   Dashboard
-									li
-										a(href="/upload")
-											i.icon-upload.icon-2x
-											|	Upload Songs
-									li
-										a(href="/statistic")
-											i.icon-bar-chart.icon-2x
-											|	Statistic
-									//li.divider
-									li
-										a(href="/settings")
-											i.icon-cog.icon-2x
-											|	Settings
-									-if(dash.account_state == "admin")
-										li.divider
-										li.nav-header Admin Menu
-										li
-											a(href="/adminUser")
-												i.icon-star.icon-2x
-												|	 Users
-										li
-											a(href="/adminReq")
-												i.icon-headphones.icon-2x
-												|	 Requests
-										li
-											a(href="/adminSett")
-												i.icon-headphones.icon-2x
-												|	Settings
-										li
-											a(href="/adminLang")
-												i.icon-headphones.icon-2x
-												|	Edit Languages
+#Content
+	.midContent
+	.container
+		div.row
+			#AjaxContent.span9
+				include slides/slideDash
+			div.span3
+				div.sidebar-nav
+					div.well.d
+						ul.nav.nav-list(id="ulSideNav")
+							li.active
+								a(href="/dashboard", rel="address:/dashboard")
+									i.icon-home.icon-2x
+									|   Dashboard
+							li
+								a(href="/upload", rel="address:/upload")
+									i.icon-upload.icon-2x
+									|	Upload Songs
+							li
+								a(href="/statistic", rel="address:/statistic")
+									i.icon-bar-chart.icon-2x
+									|	Statistic
+							//li.divider
+							li
+								a(href="/settings", rel="address:/settings")
+									i.icon-cog.icon-2x
+									|	Settings
+							-if(dash.account_state == "admin")
+								li.divider
+								li.nav-header Admin Menu
+								li
+									a(href="/adminUser")
+										i.icon-star.icon-2x
+										|	 Users
+								li
+									a(href="/adminReq")
+										i.icon-headphones.icon-2x
+										|	 Requests
+								li
+									a(href="/adminSett")
+										i.icon-headphones.icon-2x
+										|	Settings
+								li
+									a(href="/adminLang")
+										i.icon-headphones.icon-2x
+										|	Edit Languages
