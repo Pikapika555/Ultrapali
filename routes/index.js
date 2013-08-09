@@ -6,6 +6,7 @@ var funct = require('../routes/functions')
 exports.state = function(req, res, adminPage, callback){ //Write in every get szenario // move to functions
 	var state = req.session.account_state;
 	if(!state){
+		console.log("not logged in");
 		res.send("you're logged out - please login to continue");
 	}
 	else{
@@ -48,7 +49,17 @@ exports.message = function(req, res){
 */
 exports.upload = function(req, res){
 	exports.state(req, res, false, function(){
-		res.render('slides/slideUpl', {});
+		funct.genUpl(req, res, function(upl, img, artist){
+			console.log("hier");
+			console.log(upl);
+			res.render('slides/slideUpl', { "upl": JSON.stringify(upl), "img": img, "artist": artist });
+		});
+	});
+}
+
+exports.albums = function(req,res){
+	exports.state(req, res, false, function(){
+		res.render('slides/slideAlb',{});
 	});
 }
 

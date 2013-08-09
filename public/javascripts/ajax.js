@@ -34,6 +34,9 @@ function ajaxRequest(url){
 		success: function(data){
 			$('#AjaxContent').html(data);
 			startup();
+			if(url == "/upload"){
+				varPasser(url);
+			}
 		}
 	});
 }
@@ -102,7 +105,7 @@ function imgUpload(){
 			UPL_SAFETY = 1;
 			thumb.attr("src","data:image/jpg;base64,"+response);
 			
-			$("#spanFileName").html("File Uploaded")
+			$("#spanFileName").html("File Uploaded");
 		}
 	});
 }
@@ -132,26 +135,42 @@ form.ajaxSubmit({
 			alerta(form, response.nr, response.msg);
 			var bla = form.get(0);
 			$(document).attr('location').href='/'
-			console.log(bla);
-			console.log(form);
 		}
 		else{
-			alerta(form, response.nr, response.msg);
+				alerta(form, response.nr, response.msg, response.obj);
 		}
 	}
 });
 
 }
 
-function alerta(id, state, msg){
+function alerta(id, state, msg, obj){
 	var title;
 	
 	if(state == 0){ state = "alert-success"; title = "Success - "}
 	else{ state = "alert-error"; title = "Error - "}
 
-	var htmlString = '<div class="alert '+state+'"> <button class="close" type="button" data-dismiss="alert">&times;</button><strong>'+title+'</strong>'+msg+'</div>';
-	$(".alert").remove();
+	var htmlString = '<div class="alert '+state+' fade"> <button class="close" type="button" data-dismiss="alert">&times;</button><strong>'+title+'</strong>'+msg+'</div>';
+	oldAler = id.children(".alert");
+	oldAler.remove();
 	id.prepend(htmlString);
+	
+	console.log("posted in: ");
+	console.log(id);
+	
+	window.setTimeout(function () {
+		$(".alert").addClass("in");
+	}, 50);
+	if(obj){
+		for(var i = 0; i < obj.length; i++){
+			if(obj[0].is("div")){
+				obj[i] = obj[i].children(".btn.collapsed");
+			}
+			id.find("[name='"+obj[i]+"']").addClass("error");
+			id.find("[name='"+obj[i]+"']").parents(".control-group").addClass("error");
+		};	
+	}
+	
 }
 
 function postSongUpl(form, callback){
@@ -167,13 +186,28 @@ function postSongUpl(form, callback){
 		},
 
 		success: function(response) {
-			callback(response);
+			if(response.nr == 1){
+				forms.push(new Array(form, response.nr, response.msg, response.obj)); 
+				callback(response, forms);
+			}
+			else{
+				callback(response);
+			}
 		}
 	});
 
 }
 
-
+function ajaxPost(data, url, callback){
+	$.ajax({
+		type: "POST",
+		url: url,
+		data: data,
+		success: function(res){
+			callback(res);
+		},
+	});
+}
 
 
 

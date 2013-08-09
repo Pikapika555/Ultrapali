@@ -66,3 +66,36 @@
 legend {
   border-color: #8c2324 !important;
 }
+input {
+  background-color: #f5f5f5 !important;
+  border-color: #bbb !important;
+}
+input:focus {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset, 0 0 10px #8c2324 !important;
+  border-color: #8c2324 !important;
+}
+input:disabled {
+  background: #ccc !important;
+}
+.modal {
+  background-color: transparent;
+}
+.modal .modal-header {
+  background-color: #222;
+  border-radius: 5px 5px 0 0;
+  color: #ddd;
+  border-color: #8c2324;
+  padding: 20px 20px;
+}
+.modal .modal-body {
+  background-color: #2b2b2b !important;
+  color: #eee;
+}
+.modal .modal-footer {
+  background-color: #222 !important;
+  border-top: 1px solid #571616 !important;
+}
+.modal .close {
+  color: #eee !important;
+  text-shadow: 0 1px 0 #bbb;
+}

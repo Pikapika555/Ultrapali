@@ -14,10 +14,13 @@ exports.registrate = function(req, res) {
 			exports.regDB(req, res, function(req, res, profil){
 				mongoF.addProfil(req, res, profil, function(req, res){
 					mongoF.findByEmail(req, res, profil.email, function(req, res, item){
+						console.log("found email");
 						req.session.email = profil.email;
 						req.session.pass = profil.main.password;
 						req.session.account_state = profil.main.account_state;
 						req.session.language = profil.main.language;
+						console.log("session");
+						console.log(req.session);
 						res.redirect("/");
 					});
 				});
@@ -54,7 +57,7 @@ exports.checkmail = function(req, res, email, callback){
 exports.login = function(req, res){
 	log = req.body;
 	mongoF.findSpecific(req, res, "main", 0, function(item){
-		console.log("blaaa");
+		console.log(item);
 		if(item){
 			console.log("if");
 			if(log.password == item.password){
@@ -62,6 +65,9 @@ exports.login = function(req, res){
 				req.session.pass = log.password;
 				req.session.account_state = item.account_state;
 				req.session.language = item.language;
+				req.session.tempAlb = item.tempAlb;
+				console.log("TEMPALB");
+				console.log(req.session.tempAlb);
 				res.send({login: "1", nr: "0", msg: "you got logged in !"})
 			}
 			else{res.send({nr: "1", msg: "wrong password !"}); console.log("else");}
@@ -72,6 +78,7 @@ exports.login = function(req, res){
 
 //// Upload
 exports.imageUpload = function(req, res){
+	console.log("-------------------------");
 
 	var tmp_path = req.files.Datei.path;
 	var tempAlbName = 0;
@@ -81,14 +88,23 @@ exports.imageUpload = function(req, res){
 	fs.mkdir(albPath, 0777, function (err) {
 		
 		
-		//if(meta.width == meta.height && meta.witdh >= 600 && meta.format == "JPEG"){
-				if(!req.session.tempAlb){
-				//mongoF.findSpecific(req, res, search, where, function(item){ // gehört in load funktion von upload songs
-					var timestamp = Math.floor(new Date().getTime()/1000);
-					var imageName = new ObjectID(timestamp);
-					imageName = imageName.toString();
-					req.session.tempAlb = imageName;
-				}
+		console.log(req.session.tempAlb);
+			//if(meta.width == meta.height && meta.witdh >= 600 && meta.format == "JPEG"){
+		switch(req.session.tempAlb){
+			case undefined:
+				console.log("no tempAlb");
+				crypto.randomBytes(64, function(ex, buf){
+					rnd = buf.toString("hex");
+					req.session.tempAlb = rnd;
+					path = "main.tempAlb";
+					var key = {};
+					key[path] = rnd;
+					mongoF.updateProfil(req, res, key, function(req, res){
+						exports.imageUpload(req, res);
+					});
+				});
+				break;
+			default:
 				var path = "albums."+req.session.tempAlb;
 				var key = {};
 				var key2 = {};
@@ -101,8 +117,9 @@ exports.imageUpload = function(req, res){
 							if (err) throw err;
 							mongoF.saveFileInDB(req, res, req.session.email, req.session.tempAlb, "img",  target_path, function(){
 								mongoF.updateProfil(req, res, key, function(req, res){
-									mongoF.updateProfil(req, res, key2, function(req, res){
-										mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, target_path, function(){
+									fs.unlink(target_path, function(){	
+										mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, function(img){
+											res.send(img);
 										});
 									});
 								});
@@ -111,6 +128,8 @@ exports.imageUpload = function(req, res){
 						//});
 					});
 				});
+				break;
+		}
 		//}
 		//else{
 			//res.send({nr: "1", msg: "image not fine!"});
@@ -160,23 +179,18 @@ exports.submitPref = function(req, res){
 	});
 }
 
-exports.checkEmpty = function(req, res, obj, callback, reqFields){
-	var j = 0;
-	console.log(obj);
-	
-		console.log("no req field");
-		for(var i in obj){
-			console.log("schleife");
-			if(reqFields && reqFields <= i){console.log("hiii?");break;}
+exports.checkEmpty = function(req, res, obj, callback){
+	var j = new Array();
 
+	
+		for(var i in obj){
 			if(obj[i] == ""){
-				j = i;
-				break;
+				j.push(i);
 			}
 			
 		}
-	if(j != 0){
-		res.send({nr: "1", msg: "Please enter "+i+" !"});
+	if(j.length > 0){
+		res.send({"nr": "1", "msg": "Please enter "+j.length+" more fields !", "obj": j});
 	}
 	else{
 		callback(req, res);
@@ -195,12 +209,63 @@ exports.uplAlbInfo = function(req, res){
 		mongoF.updateProfil(req, res, key, function(req, res){
 			res.send({nr: "0", msg: "Album info saved"});
 		});
-	}, 2);
+	});
 
 
 }
 
 
+exports.uplWavInfo = function(req, res){
+	var nr = req.body.hiddenNr;
+	var info = req.body;
+	delete info["hiddenNr"];
+	var path = "albums."+req.session.tempAlb+".songsInfo.song_"+nr;
+	
+	var key = {};
+	key[path] = info;
+	
+	console.log(info);
+	exports.checkEmpty(req, res, info, function(){
+		mongoF.updateProfil(req, res, key, function(req, res){
+			res.send({nr: "0", msg: "Album info saved"});
+		});
+	});
+}
+
+exports.removeSong = function(req, res){
+	console.log(req.body);
+	var song = req.body;
+	for(i in song){
+		var obj = i;
+		console.log(i);
+		var path = "albums."+req.session.tempAlb+".songsInfo."+obj;
+		var key = {};
+		key[path] = 0;
+		mongoF.removeElem(req, res, key, function(){
+			console.log("GESCHAFFT");
+		});
+	}	
+}
+
+exports.addArtist = function(req, res){
+	var info = req.body;
+	var id = new ObjectID();
+	var required = info.artistName;
+	var path = "artists."+id;
+	var key = {};
+	key[path] = [info];
+	console.log(key);
+	exports.checkEmpty(req, res, required, function(){
+		mongoF.updateProfil(req, res, key, function(req, res){
+			res.send({nr: "0", msg: "Artist saved"});
+		});
+	});
+}
+
+exports.removeArtist = function(req, res){
+
+
+}
 
 
 
@@ -232,6 +297,31 @@ exports.genDash = function(req, res, callback){
 	mongoF.findSpecific(req, res, "main", 0, function(dash){
 		return callback(req, res, dash);
 	});
+}
+
+exports.genUpl = function(req, res, callback){
+	if(req.session.tempAlb){ //tempalb wird kreiert obwohl kein img existiert
+		var path = "artists";
+		var path2 = "albums";
+		var alb = req.session.tempAlb;
+		mongoF.findSpecific(req, res, path, 0, function(artist){
+			mongoF.findSpecific(req, res, path2, 0, function(upl){
+				mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, function(img){
+					if(img){	
+						uplo = JSON.stringify(upl[alb]);
+						art = JSON.stringify(artist);
+						return callback(upl[alb], img, art);
+					}
+					else{
+						return callback(false, false, art);
+					}
+				});
+			});
+		});
+	}
+	else{
+		return callback();
+	}
 }
 
 exports.createAlbum = function(req, res){
@@ -299,6 +389,7 @@ exports.regDB = function(req, res, callback){
 							, account_state: "normal user"
 							, language: 0
 							, email_freischaltung: buf
+							, tempAlb: ""
 							// freischaltlink: "" // "oihaiu"   // kann einloggen aber nichts machen
 							// 
 						}

@@ -89,3 +89,6 @@ li.feature {
 .colorfield.gold {
   background-color: #ffd700;
 }
+textarea.vert {
+  resize: vertical;
+}

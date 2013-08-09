@@ -39,6 +39,7 @@ app.get('/', routes.index);
 
 app.get('/dashboard', routes.dashboard);
 app.get('/upload', routes.upload);
+app.get('/albums', routes.albums);
 app.get('/settings', routes.settings);
 app.get('/statistic', routes.statistic);
 app.get('/profil', routes.profil);
@@ -59,9 +60,14 @@ app.post('*/submitContact', funct.submitContact);
 app.post('*/submitBank', funct.submitBank);
 app.post('*/submitPref', funct.submitPref);
 
+app.post('*/removeSong', funct.removeSong);
 app.post('*/uplAlbInfo', funct.uplAlbInfo);
+app.post('*/uploadWavInfo', funct.uplWavInfo);
+app.post('*/addArtist', funct.addArtist);
 
 app.post('*/sendRequest', mongoF.writeRequest);
+
+
 
 
 http.createServer(app).listen(app.get('port'), function(){

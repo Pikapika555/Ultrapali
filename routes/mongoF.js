@@ -64,6 +64,9 @@ exports.findSpecific = function(req, res, elem, where, callback) {
 	db.collection('profiles', function(err, collection) {
 		collection.findOne({'email': mail}, search, function(err, item) {
 			if(item){
+				bla = elem.toString();
+				console.log(item);
+				console.log(elem);
 				callback(item[elem]);
 			}
 			else{
@@ -72,6 +75,22 @@ exports.findSpecific = function(req, res, elem, where, callback) {
 		});
 	});
 };
+
+exports.removeElem = function(req, res, elem, callback){
+	var mail = req.session.email;
+	//var search = {};
+	//search[path] = elem;
+	db.collection('profiles', function(err, collection) {
+		collection.update({'email': mail}, { $unset: elem }, function(err){
+			if(err){
+				console.log('Error deleting song::: ' + err);
+			}
+			console.log("HIER");
+			console.log(elem);
+			callback();
+		});
+	});
+}
 
 exports.findAll = function(req, res, callback) {
 	db.collection('profiles', function(err, collection) {
@@ -164,11 +183,14 @@ exports.readRequest = function(req, res, pageNr, callback) {
 	});
 }
 
-
+//////////
+// GRID //
+//////////
 exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, callback){
 	console.log('Adding data to Profile ' + JSON.stringify(profile));
 	
-	
+	//readfile
+	// if filename = filename => delete
 	var GridWriter = new GridStore(db, filename, "w",
 		{"chunkSize":1024, "metadata":{
 								"Profile":profile,
@@ -176,52 +198,60 @@ exports.saveFileInDB = function(req, res, profile, filename, tag,  dataURL, call
 								"TAG":tag
 								}
 		});
+	var GridReader = new GridStore(db, filename,"r");
 	
-	GridWriter.open(function(err, gridStore) {
-	
-	
-		GridWriter.writeFile(dataURL, function(err, GridWirter){
-			if(err)
-			{
-				res.send({'error' : 'Error can`t save data in DB'});
-			}
-			else
-			{
-				console.log('Data is added');
-				
-				callback(req, res);
-			
-				
-			}
-			
+	GridReader.open(function(err, gs) {
+		GridReader.unlink(function(){
 			GridWriter.close(function(err, result) {
+				GridWriter.open(function(err, gridStore) {
+					GridWriter.writeFile(dataURL, function(err){
+						GridWriter.close(function(err, result) {
+							if(err)
+							{
+								res.send({'error' : 'Error can`t save data in DB'});
+							}
+							else
+							{
+								console.log('Data is added');
+								
+								callback(req, res);
+							}
+						
+						
+						});
+					});
+				});
 			});
 		});
 	});
 }
 
-exports.readFileFromDB_IMG = function(req, res, profile, filename, dataURL, callback){
+exports.readFileFromDB_IMG = function(req, res, profile, filename, callback){
 	
 	
 	console.log('Find data from Profile ' + JSON.stringify(profile));
 	var back = "";
-	fs.unlink(dataURL, function(){	
-		var GridReader = new GridStore(db, filename,"r");
-		
-		GridReader.open(function(err, gs) {
-		
-			//ermöglicht das spulen in den soundfiles
-			GridReader.seek(0, function() {
-		
-				GridReader.read(function(err, data) {
-			
-				//data enthält den stream 
+	
+	var GridReader = new GridStore(db, filename,"r");
+	
+	GridReader.open(function(err, gs) {
+	
+		//ermöglicht das spulen in den soundfiles
+		GridReader.seek(0, function() {
+	
+			GridReader.read(function(err, data) {
+				if(data){
 					back = data.toString('base64');
-				
 					GridReader.close(function(err, result) {
-						res.send(back);
+						callback(back);
 					});
-				});
+				}
+				else{
+					callback();
+				}
+				
+			
+				
 			});
 		});
 	});

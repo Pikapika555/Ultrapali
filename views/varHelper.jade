@@ -1,0 +1,27 @@
+script(type="text/javascript")
+	function varPasser(uri){
+		switch(uri){
+			case "/dashboard":
+				break;
+			case "/upload":
+				var img = "#{img}";
+				var upl = "#{upl}";
+				var artist = "#{artist}";
+				artist = artist.replace(/&quot;/ig,'"');
+				artist = JSON.parse(artist);
+				upl = upl.replace(/&quot;/ig,'"');
+				upl = JSON.parse(upl);
+				var db = new Array(2);
+				db[0] = img;
+				db[1] = upl;
+				db[2] = artist;
+				insertVar(uri, db);
+				break
+			case "/albums":
+				break;
+			case "/statistic":
+				break;
+			case "/settings":
+				break;
+		}
+	}
