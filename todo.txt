@@ -1,0 +1,16 @@
+REGISTRIERUNG (screenshot 1)
+- ich sollte eig. ne mail bekommen und mein account bestätigen müssen oder? Sonst jann es sein dass wir fake accounts haben oder?
+- bei der Registrierung sollte der User schon angeben ob er firma oder Privat ist, und seine richtige name, adresse und co eingeben müssen!
+
+DASHBOARD (screenshot 2)
+ kann nicht mehr aufklappen
+- Kein "listen Button" auf den cover in der leiste
+
+
+Album Info
+- wenn man ein Datum im date picker anklickt sollte das kalender zu gehen. Das datum muss rot leuchten (anstatt blau)
+- "Add artist" fensterLänder Liste muss vollsändig sein
+- "Add artist" fenster, wenn man auf "save" geklickt hat sollte das Fenster verschwinden
+ 
+Upload Songs
+- "Edit button", es sollte bei "Komponist" und "Textautor" ein button "für alle Tracks überneohmen" geben (es kopiert die felder bei allen tracks)

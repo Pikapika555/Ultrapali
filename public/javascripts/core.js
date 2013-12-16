@@ -13,14 +13,28 @@ function startT(){
 	bla();
 	unitSlide();
 	unitItemMask();
+	slideIcons();
+	PPFix();
+	radioButtons();
 }
 
 function startup(){
+	activeField();
 	buttonUnlock();
 	submitRouter();
 	radioButtons();
 	uploadActivator();
 	copyMe();
+	clickableTables();
+	songInit();
+	PPFix();
+	declineAlb();
+	aUsers();
+	aDelHelp();
+	changeGenre();
+	multiplicable();
+	checkSongRdy();
+	tooltips();
 }
 
 function detectBrowser(){
@@ -226,6 +240,7 @@ function uploadAlbumImg(){
 
 function radioButtons(){
   $('.ajaxGrp').each(function(){
+	console.log("hi");
     var group   = $(this);
     var form    = group.parents('form').eq(0);
     var name    = group.attr('data-toggle-name');
@@ -236,6 +251,10 @@ function radioButtons(){
       var button = $(this);
       button.on('click', function(){
 		  bool ^= true;
+		  if(button.val()){
+		  	if(button.val() == 1){bool = false;}
+		  	else{ bool = true;}
+		  }
           hidden.val($(this).val());
 		  $('.toggleInput').prop('disabled', bool);
       });
@@ -258,11 +277,7 @@ function uploadActivator(){
 		var submitState = $('#uploadNav').children(".active").children("a").attr('href').replace("#ttab", "");
 		var form = $("#ttab"+submitState);
 		
-		if(submitState == 1){//(submitState == 1 && UPL_SAFETY == 1){
-			console.log("IF");
-			console.log(submitState);
-			console.log(UPL_SAFETY);
-			
+		if(submitState == 1 && UPL_SAFETY == 1){
 			changeTab(submitState);
 		}
 		else if(submitState == 2){
@@ -271,9 +286,8 @@ function uploadActivator(){
 			form = $("#form_albumInfo");
 			postSongUpl(form, function(response){
 				if(response.nr == 0){
-					
+					alerta(form, response.nr, response.msg, response.obj);
 					changeTab(submitState);
-					
 				}
 				else{
 					alerta(form, response.nr, response.msg, response.obj);
@@ -286,18 +300,22 @@ function uploadActivator(){
 			var counter = $("ol.sortable").children().length;
 			orderForm();
 			var Error = 0;
+			var sCount = 0;
 			for(var i = 1; i <= counter; i++){
 				var form = $("#form_info_song_"+i);
 				console.log("I : "+i);
 				console.log("Counter : "+counter);
 				postSongUpl(form, function(response){
 					if(response.nr == 0){
-						console.log("right");
-						if(i == counter+1 && Error == 0){
-							console.log("PENIS");
+						sCount++;
+						if(sCount == counter && Error == 0){
+							console.log("rightNow");
+							console.log("counter: "+counter);
+							console.log("i: "+i);
 							$(".alert").remove();
 							alerta($(".errorBox"), 0, response.msg);
 							changeTab(submitState);
+							calcPrice();
 						}
 					}
 					else{
@@ -314,6 +332,17 @@ function uploadActivator(){
 				});	
 			}
 		}
+		else if(submitState == 4){
+			var forma = $("#form_paymentMethod");
+			postSongUpl(forma, function(response){
+				if(response.nr == 0){
+					changeTab(submitState);
+				}
+				else{
+					alerta(form, response.nr, response.msg, response.obj);
+				}
+			});
+		}
 		else{
 			console.log("ELSE");
 			alerta(form, 1, "Please upload album cover")
@@ -322,27 +351,72 @@ function uploadActivator(){
 }
 
 function changeTab(substate){
+	setTimeout(function(){
+		substate++;
+		
+		var aElem = $('#uploadNav').find('[href="#ttab'+substate+'"]');  //"+submitState+"
+		var liElem = aElem.parent();
+		var tabElem = $('#ttab'+substate);
+		var aListElem = $("#checkList").children("label").eq(substate-2).children();
 
-	substate++;
-	
-	var aElem = $('#uploadNav').find('[href="#ttab'+substate+'"]');  //"+submitState+"
-	var liElem = aElem.parent();
-	var tabElem = $('#ttab'+substate);
-	var aListElem = $("#checkList").children("label").eq(substate-2).children();
-
-	aListElem.removeClass("icon-remove");
-	aListElem.addClass("icon-ok");
-	liElem.removeClass("disabled");
-	aElem.attr("data-toggle", "tab");
-	aElem.tab('show');
+		aListElem.removeClass("icon-remove");
+		aListElem.addClass("icon-ok");
+		liElem.removeClass("disabled");
+		aElem.attr("data-toggle", "tab");
+		aElem.tab('show');
+	},500);
 	
 }
 
+function calcPrice(){
+	ajaxPost(0, "calcPrice", function(res){
+		console.log("***********PRICE***********");
+		console.log(res);
+
+		var table = $("#priceTable");
+		var waiter = $("#waiter");
+
+		var array = new Array(3);
+			array[0] = new Array(3);
+			array[1] = new Array(3);
+			array[2] = new Array(3);
+			array[0][0] = res.songs;
+			array[0][1] = res.pSong;
+			array[0][2] = array[0][0] * array[0][1];
+			array[1][0] = res.songs;
+			array[1][1] = res. pISRC;
+			array[1][2] = array[1][0] * array[1][1];
+			array[2][0] = res.ean;
+			array[2][1] = res.pEAN;
+			array[2][2] = array[2][0] * array[2][1];
+		var total = 0;
+		for(var i=0; i < array.length; i++){
+			total += array[i][2];
+			for(var j=0; j < array[i].length; j++){
+				
+				if(j == 0){
+					table.find("#pay_"+i+j).html(array[i][j]);
+				}
+				else{
+					table.find("#pay_"+i+j).html(array[i][j]+" &euro;");
+				}
+			}
+		}
+
+		table.find("#pay_3").html(total+" &euro;");
+
+		waiter.removeClass("in");
+		table.removeClass("hide");
+		table.addClass("in");
+	});
+}
+
 function buttonUnlock(){
-	var button = $("button.unlocker");
-	
-	button.click(function(){
+
+	$("#Content").on("click", "button.unlocker", function(){
 		var t = $(this);
+		console.log("HIII");
+
 		toggle(t, function(){
 			t.html("<i class='icon-ok'>");
 			t.parent().children("[type!='button']").prop('disabled', false);
@@ -350,43 +424,56 @@ function buttonUnlock(){
 			t.html("<i class='icon-remove'>");
 			t.parent().children("[type!='button']").prop('disabled', true);
 		});
+		checkSongRdy2(this);
 	});
 }
 
-
-
 function copyMe(){
 	var button = $("button.copy");
-	$('.sortable').sortable();
+	$('.sortable').sortable({ handle: '.handle', placeholder: "ui-state-highlight", stop: function(event, ui){
+		orderForm();
+	}});
 	
 	$("#ttab3").on("click", "button.delSong", function(){
-		console.log("wtf");
 		var liElem = $(this).parents("li");
-		if(liElem.hasClass("copyMe")){
-			var id = $(".errorBox")
-			alerta(id ,1, "Can't delete first Song");
-		}
-		else{
 			fadeIO(liElem);
 			liElem.remove();
-			ajaxPost(liElem.attr("id"), "/removeSong");
+
+		var give = {
+			sNr: liElem.find("input[name='hiddenNr']").val()
+			,sId: liElem.find("input[name='songId']").val()
+		};
+
+		ajaxPost(give, "/removeSong"); // HIER GIVE SCHICKEN
+	});
+
+	$("#ttab3").on("keyup", "input[name='trackTitle']", function(){
+		console.log("HI")
+		console.log($(this));
+		var spanFileName = $(this).parents("li").find("#spanFileName");
+		var name = $(this).val();
+		var len = name.length;
+		if(len > 21){
+			name = name.substring(0,10)+"..."+name.substring(len-10, len);
 		}
+			spanFileName.html(name);
+		
 	});
 	
 	button.click(function(){
 		
-		mp3_counter = ($("ol.sortable").children().length)+1;
-		var content = $(".copyMe");
-		var insert = content.parent();
-		insert.append("<li id='Song_"+mp3_counter+"'>"+content.html()+"</li>");
 		
-		orderForm();
-		
-		
-		$('.sortable').sortable().bind('sortupdate', function() {
-
-			
-		});
+		var content = $("#songEx");
+		var insert = $("ol.sortable");
+		var mp3_counter = insert.children().length;
+		insert.append("<li class='fade' id='Song_"+mp3_counter+"'>"+content.html()+"</li>");
+		var actEl = insert.children('#Song_'+mp3_counter);
+		orderForm(actEl);
+		radioGrp();
+		tooltips();
+		window.setTimeout(function () {
+			actEl.addClass("in");
+		}, 50);	
 	});
 }
 
@@ -395,33 +482,30 @@ function copyMe(){
 function orderForm(){
 
 	var liElem = $("ol.sortable").children();
-	var leng = $("ol.sortable").children().length;
+	var leng = liElem.length;
 	
 	for(var i=0; i < leng; i++){
-		console.log("hiii"+i);
 		var nuNr = i+1;
-		console.log("Läng"+leng);
 		
 		var actElem = $(liElem[i]); 
-		var songOpt = actElem.children(".collapse"); 
+		var songOpt = actElem.children(".collapse");
 		var formSong = actElem.find("form.hidesrc"); 
 		var formInfo = songOpt.find("form");
 		var ctrGrp = formSong.parent();
+
+		var trackNr = formInfo.find("input[name='trackNr']");
+		var volNr = formInfo.find("input[name='volumeNr']");
 		
+		actElem.attr("id", "Song_"+nuNr);
 		formInfo.attr("id","form_info_song_"+nuNr);
 		formSong.attr("id","uploadWav_"+nuNr);
-		formSong.attr("action","uploadWav/"+nuNr);
 		ctrGrp.find("button[data-target*='#songOpt']").attr("data-target", "#songOpt_"+nuNr);
 		songOpt.attr("id", "songOpt_"+nuNr);
-		formInfo.children("input.hidden").attr("value", nuNr);
-		
-		if(!ctrGrp.hasClass("in") && !actElem.hasClass("copyMe")){
-			ctrGrp.addClass("fade");
-			window.setTimeout(function () {
-				ctrGrp.addClass("in");
-			}, 50);	
-		}
-		console.log("IIIII"+i);
+		formInfo.children("input[name='hiddenNr']").attr("value", nuNr);
+		songOpt.find("[id*='addOpt_']").attr("id", "addOpt_"+nuNr); //extra opt div
+		songOpt.find("button[data-target*='#addOpt_']").attr("data-target", "#addOpt_"+nuNr); //extra opt btn
+		volNr.val("1");
+		trackNr.val(nuNr);
 	}
 }
 
@@ -431,52 +515,95 @@ function insertVar(page, db){
 			
 			break;
 	}*/
+	var html = $("#email").html();
+	html.replace(/\?.*/,' '); /// HIER IWIE AT RAUSKRIEGEN
+	$("#form_paymentMethod").find(".betreff").html(html);
+	
+
+	
 	var img = db[0];
 	var obj = db[1];
 	var artist = db[2];
-	$.each( artist, function(aKey, aVal){
-		artName = aVal[0]["artistName"];
-		$("select.artist").append(
-			$('<option></option>').val(artName).html(artName)
-		);
-	});
-	
+	if(artist){
+		$.each( artist, function(aKey, aVal){
+			artName = aVal["artistName"];
+			$("select.artist").append($('<option></option>').val(artName).html(artName));
+		});
+	}
+
+	console.log("obj");
+	if(obj.albumInfo){
+		console.log("obj geht rein");
+		var id1 = "#opt"+obj.albumInfo.kategorie1;
+		var id2 = "#opt"+obj.albumInfo.kategorie2;
+		var html1 = $(id1).html();
+		var html2 = $(id2).html();
+		$("textarea[name='promotext']").val(obj.albumInfo.promotext);
+		$("select[name='subgenre']").html(html1);
+		$("select[name='genre']").html(html2);
+	}
+	if(img){ UPL_SAFETY = 1; };
 	$("#previewPic").attr("src","data:image/jpg;base64,"+img);
 	$("#spanFileName").html("File Uploaded");
 	$.each( obj, function(oKey, oVal){
-		console.log(oKey+" - "+oVal);
 		var form = $("form[id='form_"+oKey+"']");
 		
-		if(form.length){
-			console.log("yes - "+oKey );
-			console.log(form);
+		if(oKey == "albumInfo"){
 			
 			$.each( obj[oKey], function(key, value){
-				//console.log(key+" - "+value);
-				console.log("PENIS : "+oKey);
-				form.find("input[name='"+key+"']").val(value);
-				form.find("select[name='"+key+"']").children("option[value='"+value+"']").attr("selected", "selected");
+				var inp = form.find("input[name='"+key+"']");
+				inp.val(value);
+				inp.parent(".datepicker").attr('data-date', value);
+				form.find("select[name='"+key+"']").val(value).attr('selected',true);
 				form.find("[name='"+key+"']").parent().children("button.unlocker").trigger("click");
+
 
 			});
 		}
 		
 		else if(oKey == "songsInfo"){
 			$.each( obj[oKey], function(key, value){
-				console.log("HIER");
-				console.log(key);
 				var form = $("form[id='form_info_"+key+"']");
-				if(!form.length){ $("button.copy").trigger("click"); form = $("form[id='form_info_"+key+"']");}
+				$("button.copy").trigger("click");
+				form = $("form[id='form_info_"+key+"']");
+				li = form.parents("li");
+				li.find("#spanFileName").html(obj[oKey][key]["trackTitle"]);
+				li.find("#spanNrCount").css("background-color", "#5EFF29").css("border-color", "#5EFF29");
+
+
+				for(var i = 1; i<20; i++){
+					var aComp = "kompName_"+i;
+					if(obj[oKey][key][aComp]){
+						li.find("[name='kompName_']").parents(".control-group").children("button").trigger("click");
+					}
+				}
+				for(var i = 1; i<20; i++){
+					var aText = "textAuth_"+i;
+					if(obj[oKey][key][aText]){
+						li.find("[name='textAuth_']").parents(".control-group").children("button").trigger("click");
+					}
+				}
+
+
 				$.each( obj[oKey][key], function(iKey, iVal){
+
+					var inp = form.find("input[name='"+iKey+"']");
+					inp.val(iVal);
+
+					var radGrp = inp.parent().children(".radioGrp");
+					radGrp.children(".active").removeClass("active");
+					radGrp.children("button[value='"+iVal+"']").addClass("active");
 					
-					console.log("PIWIF: "+form.attr("id"));
-					form.find("input[name='"+iKey+"']").val(iVal);
+					
 					form.find("select[name='"+iKey+"']").children("option[value='"+iVal+"']").attr("selected", "selected");
 					form.find("[name='"+iKey+"']").parent().children("button.unlocker").trigger("click");
+
 				});
 			});
 		}
 	});
+	$('#dp1').datepicker({ format: "yyyy-mm-dd" });
+	$('#dp2').datepicker({ format: "yyyy-mm-dd" });
 }
 
 //// Lib ////
@@ -515,3 +642,223 @@ function fadeIO(elem){
 	}
 }
 
+function addOpt(){
+	/*
+	$("select.artist").append(
+			$('<option></option>').val(artName).html(artName);
+		);
+	*/
+}
+
+function toPaypal(){
+	console.log("TO PAYPAAAL");
+	ajaxPost(false, "paypal", function(stuff){
+		console.log(stuff);
+		window.open (stuff,'_self',false)
+	});
+	
+}
+
+function clickableTables(){
+	$("table.table-hover").on("click", "tr.album", function(){
+		console.log("CLICK");
+		
+	});
+}
+
+function slideIcons(){
+	$(".ico").css("backgroundPosition","0px 0px")
+		.mouseover(function(){
+			$(this).stop().animate({
+				"backgroundPosition":"0px -23px"
+			},1000)
+		})
+		.mouseout(function(){
+			$(this).stop().animate({
+				backgroundPositionY:"0px"
+			},1000);
+		});
+}
+
+function activeField(){
+	$("a[href='#artistModal']").click(function(){
+		$(".activeField").removeClass("activeField");
+		$(this).parent().children("select").addClass("activeField");
+	});
+}
+
+function PPFix(){
+	$('#paypalModal').on('hide', function () {
+		window.location.pathname = "/";
+	});
+}
+
+function aDelHelp(){
+	var delNews = $("a[href='#delNewsModal']");
+	delNews.click(function(){
+		console.log("hihihihihihihihihihihihihihi");
+		var asd = "delNews/" + delNews.attr("id");
+		$("#delNewsModal").children("form").attr( 'action', asd );
+
+	})
+}
+
+function radioGrp(){
+	console.log("PENIS***********************************");
+	$(".radioGrp").on("click", function(event){
+		var el = event.target;
+		var value = el.value;
+		$(el).parent().parent().children('input[type="hidden"]').val(value);
+	});
+}
+
+function aUsers(){
+	$("a.editUser").on("click", function(event){
+		var mod = $("#editUserModal");
+		var mods = mod.children("form");
+		var row = $(event.target).parents("tr").children();
+		var mail = row.eq(1).html();
+		var state = row.eq(2).html();
+		var state = state.substring(0, state.length -1);
+		var mail = mail.substring(0, mail.length -1);
+		mods.children(".modal-header").children("h3").html("Edit User - "+ mail);
+		mods.children(".modal-body").find("select").val(state).attr('selected',true);
+		mods.children(".modal-body").find("[name='email']").val(mail);
+		mods.children(".modal-body").find("[name='email_sav']").val(mail);
+
+		mod.modal('show');
+	});
+	$("a.writeMessage").on("click", function(event){
+		var mod = $("#writeMessageModal");
+		var mods = mod.children("form");
+		var row = $(event.target).parents("tr").children();
+		var mail = row.eq(1).html();
+		var mail = mail.substring(0, mail.length -1);
+		mods.children(".modal-header").children("h3").html("Message User - "+ mail);
+		mods.children(".modal-body").find("[name='email']").val(mail);
+
+		mod.modal('show');
+	});
+	$("a.editArtist").on("click", function(event){
+		console.log("PENIS");
+		var mod = $("#artistModal");
+		var mods = mod.children("form");
+		var tabl = $(this).parent("li").find("p").html();
+		tabl = tabl.split(",|,");
+		var hid = $(this).parent("li").find("b").html();
+		mods.find("[name='hid']").val(hid);
+		mods.find("[name='hid']").removeAttr('disabled');
+
+		for(var i=0; i < tabl.length; i++){
+			console.log(i);
+			var val = tabl[i];
+			var picker = mods.children(".modal-body").children(".control-group").eq(i).children(".controls").children().eq(0);
+			mods.attr("action", "editArtist"); // HIER WIRDS GEDINGST
+			console.log(val);
+			if(val){
+				console.log("has val");
+				picker.eq(i).val(val);
+			}
+		}
+		mods.find("[name='artistName']").attr("readonly", "true");
+		mod.modal('show');
+	});
+	$("a.clearForm").on("click", function(event){
+		var mod = $(this).attr("href");
+		console.log(mod);
+		$(mod).find("input").val("");
+		if(mod == "#artistModal"){
+			console.log("is add artist");
+			$(mod).find("form").attr("action", "addArtist")
+			$(mod).find("[name='hid']").attr("disabled", "true");
+			$(mod).find("[name='artistName']").removeAttr('readonly');
+		}
+
+	});
+}
+
+function declineAlb(){
+	$("a.declineModal").on("click", function(event){
+		var mod = $("#declineModal");
+		var mods = mod.children("form");
+		var row = $(event.target).parents("tr").children();
+		var mail = row.eq(2).html();
+		var id = row.find(".hidden").val();
+
+		mods.children(".modal-body").find("[name='email_sav']").val(mail);
+		mods.children(".modal-body").find("[name='albumId']").val(id);
+		mod.modal('show');
+	});
+}
+
+function changeGenre(){
+	var sel = $(".genSelector");
+	sel.on("click", function(event){
+		var t = $(this);
+		var val = t.attr("value");
+		
+		console.log(val);
+		var id = $("#opt"+val);
+		var html = id.html();
+		t.parents(".btn-group").children("select").html(html);
+		t.parents(".btn-group").children("input").val(val);
+	});
+}
+
+function multiplicable(){
+	$("#AjaxContent").on("click", "button.multiplique", function(e){
+		var tt = e.target;
+		var t = $(tt).parent().children(".controls");
+		var inp = t.children(".multiplicable");
+		var html = inp.html();
+		t.append(html);
+		var cntr = t.children(".input-append").length;
+		var name = inp.find("input").attr("name");
+		var name2 = name + cntr;
+		var newInp = t.children(".input-append").find("input[name='"+name+"']");
+		newInp.attr( "name", name2);
+		newInp.prop('disabled', false);
+
+	});
+
+	$("#AjaxContent").on("click", "button.delmulti", function(e){
+		var elem = $(this).parents(".input-append");
+		fadeIO(elem);
+		elem.remove();
+	});
+}
+
+function checkSongRdy(){
+	$("#ttab3").on("focusout", "input", function(){
+		checkSongRdy2(this);
+	});
+	$("#ttab3").on("change", "select", function(){
+		checkSongRdy2(this);
+	});
+}
+
+function checkSongRdy2(th){
+	var input = $(th).parents("form").find("input[disabled!='disabled']");
+	var select = $(th).parents("form").find("select");
+	var btn = $(th).parents("li[id*='Song_']").find("button[data-target*='#songOpt_']");
+	console.log(input.length);
+	console.log(input);
+	var counter = 0;
+	for(var i=0; i < input.length; i++){
+		console.log(input.eq(i).val());
+		if(input.eq(i).val()!= "" && input.eq(i).val()!= undefined){
+			counter++;
+		}
+	}
+	console.log(select.val());
+	if(counter == input.length && select.val() != "0"){
+		btn.removeClass("btn-inverse").addClass("btn-success");
+	}
+	else{
+		btn.removeClass("btn-success").addClass("btn-inverse");
+	}
+}
+
+function tooltips(){
+	$("[data-original-title]").tooltip({placement: "right", container: "body", delay: { show: 300, hide: 100 }});
+}

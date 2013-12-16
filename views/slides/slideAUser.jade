@@ -8,24 +8,27 @@ div.row
 				button.btn(type="submit")
 					i.icon-search
 	.well.d
-		table.table
+		table.table.userTable
 			thead
 				tr
 					th #
 					th Email
-					th Betreff
-					th(style="width: 36px")
+					th state
+					th balance
+					th EDIT
 			tbody
 				-for(var i = 0; i < users.length; i++)
 					tr 
 						td #{i} 
 						td #{users[i].email} 
-						td #{users[i].name} 
-						td #{users[i].state}
+						td #{users[i].main.account_state} 
+						td #{users[i].main.balance} 
 						td
-							a(href="#editModal", data-toggle="modal")
+							a.writeMessage(href="#writeMessageModal")
+								i.icon-envelope
+							a.editUser(href="#editUserModal")
 								i.icon-pencil.icon-white
-							a(href="#delModal", data-toggle="modal")
+							a(href="#delUserModal", data-toggle="modal")
 								i.icon-remove.icon-white
 	.pagination.pagination-centered
 		ul
@@ -37,48 +40,3 @@ div.row
 				a(href="#") 2
 			li	
 				a(href="#") &raquo;
-							
-		#editModal.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-			.modal-header
-				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-				h3 Edit User Nr XXX
-			.modal-body
-				.control-group
-					label.control-label(for="inpBandName") Email 
-					.controls
-						input(id="inpBandName", type="text", placeholder="Email")
-				.control-group
-					label.control-label(for="inpBandName") Band Name 
-					.controls
-						input(id="inpBandName", type="text", placeholder="Band Name")
-				.control-group
-					label.control-label(for="inpBandName") Email 
-					.controls
-						select
-							option Super Admin
-							option Admin
-							option Gold
-							option Silver
-							option Bronce
-							option Free
-							option Banned
-			.modal-footer
-				button.btn Reset Password
-				button.btn.btn-primary Save
-				
-		#delModal.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-			.modal-header
-				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-				h3 Delete User
-			.modal-body
-			
-				| sure you want to delete:
-				br
-				.well
-					| User Nr XXX
-					br
-					| Username : username
-				br
-				| Your Name will be listed
-			.modal-footer
-				button.btn.btn-danger Delete

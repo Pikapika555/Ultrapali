@@ -4,61 +4,28 @@ footer
 			.row
 				.span4
 					h3.headl Über uns
-					p lorem ipsum
+					a(href="http://darktunes.com/impressum", target="_blank") Impressum
+					br
+					a(href="#agbModal", data-toggle="modal") Agb/Vertrag
+					br
+					a(href="#faqModal", data-toggle="modal") FAQ
+					br
+					a(href="#partnerModal", data-toggle="modal") Partner
+					.to_bottom
+						| Copyright © 2013 Dev DIfdZ. Alle Rechte vorbehalten
+						
 					
-					h3.headl Admin
+					
+				.span4
+				.span4
+					h3.headl Kontakt
 					a(href="#NotiModal", data-toggle="modal")
-						h2
-							i.icon-envelope-alt.icon-2x
-							|  Support
-				.span4
-				.span4
-					h3.headl Contact Us
-					address
-						| blabla
-						br
-						| bla
-						br
-						| blaaa
-						br
-						| Email: support@darktunes.de
+						img.hov(src="../images/corp_Ident/logos/mail.png", width="150px")
 					h3.headl Social Network
-					| fb, twitt, dt, soundcloud
-	#footer_2
-		.container
-			.row
-				.span8
-					| Copyright © 2013 Dev DIfdZ. Alle Rechte vorbehalten.
-				.span4
-					.pull-right
-						a(href="#")
-							| Agb 
-						a(href="#")
-							| Impressum 
-						a(href="#")
-							| FAQ 
-						
-						
-#NotiModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-	.modal-header
-		button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-		h3 Request Admin
-	form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="sendRequest")
-		.modal-body
-			.control-group
-				label.control-label(for="") Anliegen: 
-				.controls
-					select(name="type")
-						option Bug
-						option Upload Problem
-						option Payment Problem
-						option Other Problem
-			.control-group
-				label.control-label(for="") Betreff
-				.controls
-					input(type="text", name="headline", placeholder="short description")
-			.control-group
-				textarea.full(name="msg", rows="6")
-			
-		.modal-footer
-			button.btn.btn-primary(type="submit")	Submit
+					.cons
+						a(href="https://www.facebook.com/pages/darkTunes/317961981578779", target="_blank")
+							i.icon-facebook.icon-2x
+						a(href="http://www.youtube.com/user/darkTunesTV", target="_blank")
+							i.icon-youtube.icon-2x
+						a(href="https://twitter.com/@darkTunesGroup", target="_blank")
+							i.icon-twitter.icon-2x

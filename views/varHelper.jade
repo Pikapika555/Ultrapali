@@ -1,27 +1,56 @@
-script(type="text/javascript")
-	function varPasser(uri){
-		switch(uri){
-			case "/dashboard":
-				break;
-			case "/upload":
-				var img = "#{img}";
-				var upl = "#{upl}";
+- if(upl)
+	script(type="text/javascript")
+		HAS_UPLOADS = 1;
+		function varPasser(){
+			var img = "#{img}";
+			var upl = "#{upl}";
+
+			upl = upl.replace(/&quot;/ig,'"');
+			console.log(upl);
+			upl = JSON.parse(upl);
+			console.log("||||||||||||||||||||||");
+			var penis = upl.albumInfo.promotext;
+			upl.albumInfo.promotext = penis.replace(/wwwwwwwwwwwwwwwwww/g, "\n");
+			console.log(upl.albumInfo.promotext);
+			var db = new Array(3);
+			db[0] = img;
+			db[1] = upl;
+			
+			if("#{artist}" != ""){
 				var artist = "#{artist}";
 				artist = artist.replace(/&quot;/ig,'"');
 				artist = JSON.parse(artist);
-				upl = upl.replace(/&quot;/ig,'"');
-				upl = JSON.parse(upl);
-				var db = new Array(2);
-				db[0] = img;
-				db[1] = upl;
 				db[2] = artist;
-				insertVar(uri, db);
-				break
-			case "/albums":
+			}
+
+			insertVar("/upload", db);
+			
+		}
+- else if(paypal)
+	script(type="text/javascript")
+		console.log("hi ich bin paypal");
+		var payP = "#{paypal}";
+		var mod = $("#paypalModal");
+		switch(payP){
+			case "0":
+				mod.children(".modal-header").html("<h3>Paypal success</h3>");
+				mod.children(".modal-body").html("Sucessfully Payed");
 				break;
-			case "/statistic":
+			case "1":
+				mod.children(".modal-header").html("Paypal failure");
+				mod.children(".modal-body").html("Sorry something went wrong with Paypal");
 				break;
-			case "/settings":
+			case "2":
+				mod.children(".modal-header").html("Paypal failure");
+				mod.children(".modal-body").html("Don't try to cheat");
 				break;
 		}
-	}
+		mod.modal("show");
+		
+- else
+	script(type="text/javascript")
+		HAS_UPLOADS = 0;
+		console.log("nothing to pass");
+		if($(".datepicker")){
+			$('.datepicker').datepicker({ format: "yyyy-mm-dd" });
+		}

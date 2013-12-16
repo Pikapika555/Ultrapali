@@ -9,48 +9,42 @@
 		.tab-content
 			.tab-pane.active(id="tab1")
 				.well.d
-					legend Verkäufe						
-					table.table
-						tr.w
-							th
-								| Album
-							th
-								| Verkäufe
-							th
-								| Umsatz
-						tr
-							
-							td
-								a
-									.media
-										a.pull-left(href="#")
-											img.media-object(src="http://placehold.it/100x100", width="80", height="80")
-										.media-body
-											h4.media-heading 
-												| Album Name
-							td
-								| 0
-							td
-								| 0.00 EUR
-						tr
-							td
-								.media
-									a.pull-left(href="#")
-										img.media-object(src="http://placehold.it/100x100", width="80", height="80")
-									.media-body
-										h4.media-heading 
-											| Album Name
-							td
-								| 0
-							td
-								| 0.00 EUR
-						tr.w
-							th
-							th
-								| 0
-							th
-								| 0.00 €
-					| * kann aus technischen gründen nur vierteljährlich aktualisiert werden
+					legend Verkaufte Downloads
+					-if(album != 0)
+						//-if(album.state == "available")
+						table.table
+							tr.w
+								th
+									| Album
+								th
+									| Verkäufe
+								th
+									| Umsatz*
+							-for(key in album)
+								tr
+									
+									td
+										a
+											.media
+												a.pull-left(href="#")
+													img.media-object(src="data:image/jpg;base64,#{album[key]["img"]}", width="80", height="80")
+												.media-body
+													h4.media-heading 
+														| #{album[1]["name"]}
+									td
+										| 0
+									td
+										| 0.00 EUR
+						
+							tr.w
+								th
+								th
+									| 0
+								th
+									| 0.00 €
+						| * Umsatz kann aus technischen gründen nur vierteljährlich aktualisiert werden
+					-else
+						| Du besitzt keine aktiven Downloads zur Zeit.
 			
 			#tab2.tab-pane
 				.well.d

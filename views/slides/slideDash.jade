@@ -4,48 +4,67 @@ row
 	.span5
 		.well.d.box
 			legend Uploaded
-			table.table
-				tr.w
-					th
-						| Release
-					th
-						| Status
-				tr
-					td
-						| Stairway to Heaven
-					td
-						span(style="color: orange;") Waiting
-				tr
-					td
-						| Hypnotize
-					td
-						span(style="color: yellow;") Checking
-				tr
-					td
-						| Anarchy Engeneers
-					td
-						span(style="color: green;") Available
-
+			-if(albs != 0)
+					table.table
+						thead
+							tr.w
+								th
+									| Release
+								th
+									| Status
+						tbody
+							- for(key in albs)
+								tr.album(name="album_#{key}")
+									-if(albs[key].albumInfo)
+										td #{albs[key].albumInfo.title}
+									-else
+										td Untitled
+									-if(isNaN(albs[key].state))
+										-if(albs[key].state == "available")
+											td(style="color: green") Veröffentlicht
+										-else if(albs[key].state == "payed")
+											td(style="color: yellow") Wird Überprüft
+										-else if(albs[key].state == "declined")
+											td(style="color: red") Album Abgelehnt
+									-else if(albs[key].state == 3)
+										td(style="color: orange") Warte auf Zahlung
+									-else
+										-if(albs[key].state == 2)
+											td(style="color: orange", data-original-title="Songs müssen noch Hochgeladen Werden") 
+												| Unvollständig 
+												i.icon-info.icon-large.pull-right
+										-else if(albs[key].state == 1)
+											td(style="color: orange", data-original-title="Album Info muss noch eingegeben werden") 
+												| Unvollständig 
+												i.icon-info.icon-large.pull-right
+										-else
+											td(style="color: orange", data-original-title="Album Cover muss noch Hochgeladen werden")
+												| Unvollständig 
+												i.icon-info.icon-large.pull-right
+										
+			-else
+				| Du hast bisher noch nichts hochgeladen.
+				br
+				br
+				a.btn.btn-primary.siteChanger(href="/upload") Hochladen
 	.span4
 		.well.d.box
 			legend Dein Kontostand
 			h3 #{dash.balance} Euro
-			.btn-group
-				button.btn Details
-				button.btn Auszahlen
+			a.btn.btn-primary(href="#payoutModal", data-toggle="modal") Auszahlen
 			
 
 .row
 	.span9
 		.well.d.box
 			legend News
-			div
-				h5
-					i.icon-white.icon-globe 
-					|  Description
-				p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-			div
-				h5
-					i.icon-white.icon-globe 
-					|  Description
-				p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+			-for(var i = 0; i < news.length; i++)
+				div
+					.pull-right
+						i #{news[i].time}
+					b.news
+						i.icon-white.icon-globe 
+						|  #{news[i].headline}
+					.news-article
+						pre
+							p #{news[i].text}

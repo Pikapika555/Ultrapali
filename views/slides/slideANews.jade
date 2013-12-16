@@ -1,0 +1,68 @@
+div.row
+	legend Manage News
+	.btn-toolbar
+		form.form-search.form-horizontal
+			a.btn.btn-primary(href="#addNewsModal", data-toggle="modal") New News ^^
+			.input-append.pull-right
+				input.search-query(type="text", placeholder="Search Users")
+				button.btn(type="submit")
+					i.icon-search
+	.well.d
+		table.table
+			thead
+				tr
+					th #
+					th Headline
+					th Time
+					th From
+					th(style="width: 36px")
+			tbody
+				-for(var i = 0; i < news.length; i++)
+					tr 
+						td #{i} 
+						td #{news[i].headline} 
+						td #{news[i].time} 
+						td #{news[i].from}
+						td
+							a(href="#editModal", data-toggle="modal")
+								i.icon-pencil.icon-white
+							a(href="#delNewsModal", data-toggle="modal", id="#{news[i]._id}")
+								i.icon-remove.icon-white
+	.pagination.pagination-centered
+		ul
+			li
+				a(href="#") &laquo;
+			li.active
+				a(href="#") 1
+			li	
+				a(href="#") 2
+			li	
+				a(href="#") &raquo;
+							
+		#editModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Edit News
+			.modal-body
+				.control-group
+					label.control-label(for="inpBandName") Email 
+					.controls
+						input(id="inpBandName", type="text", placeholder="Email")
+				.control-group
+					label.control-label(for="inpBandName") Band Name 
+					.controls
+						input(id="inpBandName", type="text", placeholder="Band Name")
+				.control-group
+					label.control-label(for="inpBandName") Email 
+					.controls
+						select
+							option Super Admin
+							option Admin
+							option Gold
+							option Silver
+							option Bronce
+							option Free
+							option Banned
+			.modal-footer
+				button.btn Reset Password
+				button.btn.btn-primary(type="submit") Save

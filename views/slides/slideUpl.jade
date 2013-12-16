@@ -17,344 +17,392 @@ legend Upload Songs
 						.pull-left
 							img.img-rounded(id="previewPic",src="images/cat_cover.png", height="220", width="220")
 						.media-object
-							Legend Upload Album Cover
+							Legend Album Cover Hochladen
 							.media
-								form.hidesrc(id="uploadForm", enctype="multipart/form-data", method="post", action="imageUpload")
-									input.hidescr(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
-								.input-prepend.input-append
-									button.btn(type="button") Upload
-									span.add-on(id="spanFileName")   No File Uploaded  
+								form.hidesrc.left(id="uploadForm", enctype="multipart/form-data", method="post", action="imageUpload", data-original-title="Hier lädst du dein Albumcover hoch")
+									input.hidesrc.left(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
+								.input-prepend.input-append(data-original-title="Hier lädst du dein Albumcover hoch")
+									button.btn.btn-success(type="button") Hochladen
+									span.add-on(id="spanFileName")   Kein Cover bisher Hochladen
 								.well.d
 									ul.icons-ul
 										li
 											i.icon-li.icon-star-empty
-											| JPEG file format with .jpg extension
+											| JPEG dateiformat mit .jpg erweiterung
 										li
 											i.icon-li.icon-star-empty
-											| At least 600 x 600 px & 72 dpi
+											| mindestens 1400 x 1400 px & 72 dpi
 										li
 											i.icon-li.icon-star-empty
-											| RGB-color space / Square format
+											| RGB Farbraum / Quadratisch
 				#ttab2.tab-pane.fade
 					legend Album Info
 					.well.d
 						form.form-horizontal(id="form_albumInfo", enctype="multipart/form-data", method="post", action="uplAlbInfo")
 		
-							.control-group
-								label.control-label(for="") Album Title
+							.control-group(data-original-title="Bitte schreibe hier deinen Albumtitel hinein")
+								label.control-label.tool(for="") Album Titel
 								.controls
-									input(type="text", name="title", placeholder="Album Title", popover="I appeared on", popover-placement="right") 
-							.control-group
+									input.tool(type="text", name="title", placeholder="Album Title") 
+							.control-group(data-original-title="wenn du keinen künstler bisher angelegt hast, klicke auf den Stift")
 								label.control-label(for="") Künstler
 								.controls
 									.input-append
-										select.artist(name="Interpret")
-											option(value="0") -New Artist-
-										a.btn(href="#editModal", data-toggle="modal")
+										select.artist.tool(name="Interpret");
+											option.opt(value="0") -Neuer Künstler-
+										a.btn.btn-primary.clearForm(href="#artistModal", data-toggle="modal")
 											i.icon-pencil.icon-white
-							.control-group
-								label.control-label(for="") Künstlername auf Cover
-								.controls
-									input(type="text", name="exact_interpret", placeholder="Künstlername")
 							hr.s
-							.control-group
-										label.control-label(for="") Digital Release date
+							.control-group(data-original-title="Datum an dem dein album in den Shops erscheinen soll.")
+										label.control-label(for="") Digitales Release Datum
 										.controls
-											input(type="text", name="digital_ReleaseDate", placeholder="Release Date")
-							.control-group
-								label.control-label(for="") Language
+											#dp1.input-append.date.datepicker(data-date="2013-12-12", data-date-format="yyyy-mm-dd")
+												input(size="16", type="text", name="digital_ReleaseDate", placeholder="Release Date", readonly="")
+												span.add-on.btn-primary
+													i.icon-th
+							.control-group(data-original-title="Bitte wähle die am meist verwendetste Sprache in deinem Album aus")
+								label.control-label(for="") Album Sprache
 								.controls
 									select(name="Language")
-										option(value="ger") German
-										option(value="eng") English
-							.control-group
-								label.control-label(for="") Media Type
-								.controls
-									select(name="media_type")
-										option(value="album") Album
-										option(value="ep") EP
-										option(value="audioBook") Audiobook
+										include ../includes/languages
 							hr.s
-							.control-group
+							.control-group(data-original-title="Bitte wähle dein Haupt-Genre aus - auf dem roten button(rechts) kannst du die genre Kategorien auswählen")
 								label.control-label(for="") Genre
 								.controls
-									select(name="genre")
-										option(value="rock") Rock
-										option Pop
-										option Country/Folk
-										option Jazz
-										option HipHop
-										option Soul/Funk
-										option Dance/Electronic
-										option Classical
-										option Raggae
-							.control-group
-								label.control-label(for="") Individual Genre
+									.btn-group.input-append
+										select(name="genre")
+											option(value="0") zuerst oben wählen
+										
+										a.btn.btn-primary.dropdown-toggle(href="#", data-toggle="dropdown")
+											span.caret
+										ul.dropdown-menu(role="menu", aria-labledby="dropdownMenu")
+											li
+												a.genSelector(tabindex="-1", value="Gothic") Gothic
+											li
+												a.genSelector(tabindex="-1", value="Rock") Rock & Metal
+											li
+												a.genSelector(tabindex="-1", value="Other") Andere
+										input.hidden.span1(name="kategorie1")
+							.control-group(data-original-title="Bitte wähle dein 2. Genre aus - auf dem roten button (rechts) kannst du die genre Kategorien auswählen")
+								label.control-label(for="") Subgenre
+								.controls
+									.btn-group.input-append
+										select(name="subgenre")
+											option(value="0") zuerst oben wählen
+										
+										a.btn.btn-primary.dropdown-toggle(href="#", data-toggle="dropdown")
+											i.icon-sort-down
+
+										ul.dropdown-menu(role="menu", aria-labledby="dropdownMenu")
+											li
+												a.genSelector(tabindex="-1", value="Gothic") Gothic
+											li
+												a.genSelector(tabindex="-1", value="Rock") Rock & Metal
+											li
+												a.genSelector(tabindex="-1", value="Other") Andere
+										input.hidden.span1(name="kategorie2")
+
+							.control-group(data-original-title="hier kannst du dir dein eigenes Genre anlegen")
+								label.control-label(for="") Individuales Genre
 								.controls
 									input(name="individual_genre", type="text", placeholder="Individual Genre")
 							hr.s
 							
 							
 							.control-group
-								button.btn.btn-block(type="button", data-toggle="collapse", data-target="#addOpt") Extra Options 
+								button.btn.btn-block.btn-primary(type="button", data-toggle="collapse", data-target="#addOpt") Extra Optionen 
 									b.caret
+									| (Nicht Notwendig)
 							.control-group
 								#addOpt.collapse
-									.control-group
-										label.control-label(for="") Catalog Number
+									.alert
+										button.close(type="button", data-dismiss="alert")&times;
+										| Zum Aktivieren bitte das "X" klicken
+
+									.control-group(data-original-title="Hier kannst du einen untertitel für dein Album angeben.")
+										label.control-label(for="") Sub - Titel
+										.controls
+											.input-append
+												input(type="text", name="subtitle", placeholder="Subtitle", disabled)
+												button.btn.unlocker(type="button")
+													i.icon-remove
+									.control-group(data-original-title="Hiermit kannst du dein Album bewerben.")
+										label.control-label(for="") Werbe Text
+										.controls
+											.input-append
+												textarea.vert(name="promotext", placeholder="Promo Text (500 Zeichen)", maxlength="500", disabled)
+												button.btn.unlocker(type="button")
+													i.icon-remove
+									.control-group(data-original-title="Falls dein album schon eine Katalog Nummer besitzt, trage diese bitte hier ein.")
+										label.control-label(for="") Katalog Number
 										.controls
 											.input-append
 												input(type="text", name="catalogNumber", placeholder="Catalog Number", disabled)
 												button.btn.unlocker(type="button")
 													i.icon-remove
-									.control-group
-										label.control-label(for="") Barcode
+									.control-group(data-original-title="Falls dein album schon einen Barcode hat, trage diesen bitte hier ein. Wenn nicht, ignoriere dieses Feld: wir kümmern uns darum.")
+										label.control-label(for="") Barcode/EAN
 										.controls
 											.input-append
 												input(type="text", name="barcode", placeholder="Own Barcode", disabled)
 												button.btn.unlocker(type="button")
 													i.icon-remove
-									.control-group
-										label.control-label(for="") Cd Release Date
+									.control-group(data-original-title="Falls dein Album schon als Cd o.ä. veröffentlicht wurde, gebe hier das datum an.")
+										label.control-label(for="") Physisches CD v.ö. Datum
 										.controls
 											.input-append
-												input(type="text", name="cdReleaseDate", placeholder="Release Date", disabled)
-												button.btn.unlocker(type="button")
-													i.icon-remove
-									.control-group
+												#dp2.input-append.date.datepicker(data-date="2013-12-12", data-date-format="yyyy-mm-dd")
+													input(size="16", type="text", name="cdReleaseDate", placeholder="Release Date", readonly="", disabled)
+													span.add-on.btn-primary
+														i.icon-th
+													button.btn.unlocker(type="button")
+														i.icon-remove
+									.control-group(data-original-title="falls du gefeatured wurdest, trage dies bitte nicht in den Albumtitel ein, dies geschieht automatisch.")
 										label.control-label(for="") Featured by
 										.controls
 											.input-append
-												select.artist(name="featuredBy", disabled)
-													option(value="0") -New Artist-
+												input(type="text", placeholder="Featuring", name="featuredBy", disabled)
 												button.btn.unlocker(type="button")
 														i.icon-remove
-												a.btn(href="#editModal", data-toggle="modal")
-													i.icon-pencil.icon-white
-									hr.s
-									.control-group
-										label.control-label(for="") Copyright Recording
+									.control-group(data-original-title="Falls du eine Gema Nummer besitzt, trage diese bitte hier ein")
+										label.control-label(for="") Gema Nr
 										.controls
 											.input-append
-												input(type="text", name="copyrightRecording", placeholder="Year/Holder", disabled)
+												input(type="text", placeholder="Gema Nummer", name="gemaNr", disabled)
 												button.btn.unlocker(type="button")
-													i.icon-remove
-									.control-group
-										label.control-label(for="") Copyright Packaging
-										.controls
-											.input-append
-												input(type="text", name="copyrightPackaging", placeholder="Year/Holder", disabled)
-												button.btn.unlocker(type="button")
-													i.icon-remove
+														i.icon-remove
 													
 				#ttab3.tab-pane.fade
-					legend Upload Songs
+					legend Songs Hochladen
 					.errorBox
 						.alert.fade.in.warning
 							button.close(type="button", data-dismiss="alert")&times;
-							strong Attention - 
-							|  Please upload WAV files ! ausserdem unlöschbare custom classe erstellen
+							strong Achtung - 
+							|  Bitte nur .wav Files Hochladen !
 					.pull-right
 						button.btn.copy(type="button")
 							i.icon-plus.icon-large
-					ol.sortable.list
-						li.copyMe
-							.control-group
-								form.hidesrc(id="uploadWav_1", enctype="multipart/form-data", method="post", action="uploadWav/1")
-									input.hidescr(id="invisImgUpl", name="Datei", type="file", onchange= "imgUpload()")
-									
-								.input-prepend.input-append
-									span.add-on(id="spanNrCount") 
-										i.icon-list-ol
-									
-									button.btn(type="button") Upload
-									span.add-on(id="spanFileName")   No File Uploaded
-									button.btn.delSong(type="button")
-										i.icon-remove
-									button.btn(type="button", data-toggle="collapse", data-target="#songOpt_1")
-										i.icon-chevron-down.icon-white
-							.control-group
-								.progress.progress-striped.active.hidden.fade
-									.bar(style="width:40%;")
-							#songOpt_1.collapse
-								.well.d
-									form.form-horizontal(id="form_info_song_1", enctype="multipart/form-data", method="post", action="uploadWavInfo")
-										input.hidden(type="hidden", name="hiddenNr", value="1")
-										.control-group
-											label.control-label Track Title
-											.controls
-												input(type="text", name="trackTitle", placeholder="Track title")
-										.control-group
-											label.control-label(for="") Volume/Track Nr.
-											.controls
-												.input-append
-													input.span1(type="text", name="volumeNr", placeholder="Vol")
-												.input-prepend	
-													input.span1(type="text", name="trackNr", placeholder="Track")
-										hr.s
-										.control-group
-											label.control-label(for="") Künstler
-											.controls
-												.input-append
-													select.artist(name="Künstler")
-														option(value="0") -New Artist-
-													a.btn(href="#editModal", data-toggle="modal")
-														i.icon-pencil.icon-white
-										.control-group
-											label.control-label(for="") Komponist
-											.controls
-													input(type="text", name="kompNamePre", placeholder="Vorname")
-													input(type="text", name="kompNameLast", placeholder="Nachname")
-										.control-group
-											label.control-label(for="") Textautor
-											.controls
-													input(type="text", name="textAuthNamePre", placeholder="Vorname")
-													input(type="text", name="textAuthNameLast", placeholder="Nachname")
-														
-														
-										.control-group
-											button.btn.btn-block(type="button", data-toggle="collapse", data-target="#addOpt2") Extra Options 
-												b.caret
-											
-										.control-group
-											#addOpt2.collapse
-												.control-group
-													label.control-label(for="") ISRC-Number
-													.controls
-														.input-append
-															input(type="text", name="ISRC", placeholder="ISRC-Number", disabled)
-															button.btn.unlocker(type="button")
-																i.icon-remove
-												.control-group
-													label.control-label(for="") Track Title Version
-													.controls
-														.input-append
-															input(type="text", name="trackVersion", placeholder="Track Title Version", disabled)
-															button.btn.unlocker(type="button")
-																i.icon-remove
-												.control-group
-													label.control-label(for="") Remixer
-													.controls
-														.input-append
-															input(type="text", name="remixNamePre", placeholder="Vorname", disabled)
-															button.btn.unlocker(type="button")
-																i.icon-remove
-														.input-append
-															input(type="text", name="remisNameLast", placeholder="Nachname", disabled)
-															button.btn.unlocker(type="button")
-																i.icon-remove
-												.control-group
-													label.control-label(for="") Featured
-													.controls
-														.input-append
-															select.artist(name="Featured", disabled)
-																option(value="0") -New Artist-
-															button.btn.unlocker(type="button")
-																i.icon-remove
-															a.btn(href="#editModal", data-toggle="modal")
-																i.icon-pencil.icon-white
-												hr.s
-												.control-group
-													label.control-label(for="") Cover-Version
-												.control-group
-													label.control-label(for="") Explicit Content
-												.control-group
-													label.control-label(for="") Instrumental
-												.control-group
-													label.control-label(for="") Verlag
-												.control-group
-													label.control-label(for="") Uhrheberrechts-Gesellschaft
-				#ttab4.tab-pane.fade
-					legend Payment
-					form.form-horizontal
-						.tabbable
-							.btn-group(data-toggle="buttons-radio")
-								a.btn.btn-danger.active(tabindex="-1", data-toggle="tab", href="#ptab1") Paypal
-								a.btn.btn-danger(tabindex="-1", data-toggle="tab", href="#ptab2") Bank Transfer
-								a.btn.btn-danger(tabindex="-1", data-toggle="tab", href="#ptab3") Gutschein
+					ol.sortable.list.w
+					#songEx.hide.fade
+						.control-group
+							form.hidesrc(id="uploadWav_", enctype="multipart/form-data", method="post", action="uploadWav", data-original-title="Klicke hier um deinen Song hochzuladen.")
+								input.song(id="invisSongUpl", name="Datei", type="file")
+								
+							.input-prepend.input-append
+								span.add-on.handle(id="spanNrCount", data-original-title="ordne deine Songs per drag&drop") 
+									i.icon-move   
+								
+								button.btn.btn-success(type="button", data-original-title="Klicke hier um deinen Song hochzuladen.") Hochladen
+								span.add-on(id="spanFileName")   Kein Song Hochgeladen
+								
+								button.btn.btn-inverse(type="button", data-toggle="collapse", data-target="#songOpt_1", data-original-title="Öffnet das fenster in dem du deine Song-informationen eintragen kannst.")
+									| Bearbeiten 
+									i.icon-chevron-down
+								button.btn.delSong.btn-danger(type="button", data-original-title="bitte vorerst nicht benutzen nachdem du schon 'weiter' gedrückt hast.")
+									| Löschen
+						#songOpt_.collapse
 							.well.d
-								.tab-content
-									.tab-pane.active(id="ptab1")
-										.control-group
-											label.control-label Paypal : 
-									.tab-pane(id="ptab2")
-										.control-group
-											label.control-label Konto-Inhaber :
+								form.form-horizontal(id="form_info_song_1", enctype="multipart/form-data", method="post", action="uploadWavInfo")
+									input.hidden(type="hidden", name="hiddenNr", value="0")
+									input.hidden(type="hidden", name="songId", value="0")
+									.control-group(data-placement="bottom", data-original-title="Trage hier bitte den Namen deines Song's ein")
+										label.control-label Song Titel
+										.controls
+											input(type="text", name="trackTitle", placeholder="Track title")
+									.control-group(data-original-title="zeigt dir automatisch den namen deiner hochgeladenen Datei an.")
+											label.control-label(for="") Datei Name
 											.controls
-												input(type="text", name="kontoInhaber", placeholder="Max Mustermann")
-										.control-group
-											label.control-label Konto-Nr, :
-											.controls
-												input(type="text", name="kontoNr", placeholder="Kontonummer")
-										.control-group
-											label.control-label Bankleitzahl :
-											.controls
-												input(type="text", name="BLZ", placeholder="Bankleitzahl")
-										.control-group
-											label.control-label Konto-Inhaber :
-											.controls
-												input(type="text", name="kontoInhaber", placeholder="Max Mustermann")
-										.control-group
-											label.control-label IBAN :
-											.controls
-												input(type="text", name="IBAN", placeholder="IBAN")
-										.control-group
-											label.control-label BIC :
-											.controls
-												input(type="text", name="BIC", placeholder="BIC")
-										
-										
-									.tab-pane(id="ptab3")
+												input(type="text", name="trackFileName", placeholder="Please Upload File", disabled)
+									.control-group(data-original-title="wird automatisch anhand der position berechnet")
+										label.control-label(for="") Volume/Track Nr.
+										.controls
+											.input-append
+												input.span1(type="text", name="volumeNr", placeholder="Vol", disabled)
+											.input-prepend	
+												input.span1(type="text", name="trackNr", placeholder="Track", disabled, data-original-title="wird automatisch anhand der position berechnet")
+									
+									hr.s
+									.control-group(data-original-title="Bitte wähle den Künstler aus, welcher den Song performt")
+										label.control-label(for="") Künstler
+										.controls
+											.input-append
+												select.artist(name="Künstler")
+													option(value="0") Please select...
+												a.btn.clearForm(href="#artistModal", data-toggle="modal")
+													i.icon-pencil.icon-white
+									
+													
+													
+									.control-group
+										button.btn.btn-block.btn-primary(type="button", data-toggle="collapse", data-target="#addOpt_") Extra Optionen
+											b.caret
+											| (nicht Notwendig)
+									.control-group
+										#addOpt_.collapse
+											.alert
+												button.close(type="button", data-dismiss="alert")&times;
+												| Zum Aktivieren bitte das "X" klicken
+											.control-group(data-placement="bottom", data-original-title="Falls dein Song schon eine ISRC Nummer besitzt, trage diese bitte hier ein. Falls nicht, kümmern wir uns darum.")
+												label.control-label(for="") ISRC-Nummer
+												.controls
+													.input-append
+														input(type="text", name="ISRC", placeholder="ISRC-Nummer", disabled)
+														button.btn.unlocker(type="button")
+															i.icon-remove
+											
+											.control-group(data-original-title="bitte klicke hier um Komponisten hinzuzufügen.")
+												button.btn.multiplique.pull-right(type="button")
+													i.icon-plus
+												label.control-label(for="") Komponist
+												.controls
+													.multiplicable.hidden
+														.input-append
+															input(type="text", name="kompName_", placeholder="Wie bei der Gema angegeben", disabled)
+															button.btn.delmulti(type="button")
+																i.icon-trash
+											.control-group(data-original-title="Bitte klicke hier um Textautoren hinzuzufügen.")
+												button.btn.multiplique.pull-right(type="button")
+													i.icon-plus
+												label.control-label(for="") Textautor
+												.controls
+													.multiplicable.hidden
+														.input-append
+															input(type="text", name="textAuth_", placeholder="Wie bei der Gema angegeben", disabled)
+															button.btn.delmulti(type="button")
+																i.icon-trash
+											.control-group(data-original-title="wenn dein Song geremixt wurde, trage den entsprechenden Künstler bitte hier ein.")
+												label.control-label(for="") Remixer
+												.controls
+													.input-append
+														input(type="text", name="remixName", placeholder="Wie bei Gema angegeben", disabled)
+														button.btn.unlocker(type="button")
+															i.icon-remove
+											.control-group(data-original-title="Falls du in diesem Song gefeatured wurdest, trage dies bitte hier ein und nicht im Songtitel.")
+												label.control-label(for="") Featured
+												.controls
+													.input-append
+														input(type="text", name="featuredBy", placeholder="Wie bei Gema angegeben", disabled)
+														button.btn.unlocker(type="button")
+															i.icon-remove
+											hr.s
+											.control-group(data-original-title="ist dieser Song von dir gecovert?")
+												label.control-label(for="") Cover-Version
+												.controls
+													input(type="hidden", name="coverVersion", value="false")
+													.btn-group.radioGrp(data-toggle="buttons-radio")
+														button.btn(type="button", value="true") Ja
+														button.btn.active(type="button", value="false") Nein
+											.control-group(data-original-title="ist dieser Song Live aufgenommen worden?")
+												label.control-label(for="") Live-Version
+												.controls
+													input(type="hidden", name="liveVersion", value="false")
+													.btn-group.radioGrp(data-toggle="buttons-radio")
+														button.btn(type="button", value="true") Ja
+														button.btn.active(type="button", value="false") Nein
+											.control-group(data-original-title="Enthält dieser Song Inhalte, welche nicht für Minderjährige geeignet sind?")
+												label.control-label(for="") Explicit Content
+												.controls
+													input(type="hidden", name="explicitContent", value="false")
+													.btn-group.radioGrp(data-toggle="buttons-radio")
+														button.btn(type="button", value="true") Ja
+														button.btn.active(type="button", value="false") Nein
+											.control-group(data-original-title="Ist dieser Song eine instrumentale Version?")
+												label.control-label(for="") Instrumental
+												.controls
+													input(type="hidden", name="instrumental", value="false")
+													.btn-group.radioGrp(data-toggle="buttons-radio")
+														button.btn(type="button", value="true") Ja
+														button.btn.active(type="button", value="false") Nein
+				#ttab4.tab-pane.fade
+					legend Bezahlvorgang
+					.well.d
+						#waiter.fade.in
+							i.icon-refresh.icon-spin.icon-large
+							|  Berechne Preis...  
+						table.table.fade.hide(id="priceTable")
+							tr
+								th Artikel
+								th Anzahl
+								th Preis(EUR)
+								th Total(EUR)
+							tr
+								td Songs
+								td(id="pay_00")
+								td(id="pay_01")
+								td(id="pay_02")
+							tr
+								td ISRC
+								td(id="pay_10")
+								td(id="pay_11")
+								td(id="pay_12")
+							tr
+								td EAN
+								td(id="pay_20")
+								td(id="pay_21")
+								td(id="pay_22")
+							tr
+								td Bilanz
+								td
+								td
+								td(id="pay_3")
+
+					.tabbable
+						.btn-group.ajaxGrp(data-toggle-name="paymentMethod", data-toggle="buttons-radio")
+							button.btn.btn-danger.active(tabindex="-1", data-toggle="tab", href="#ptab1", value="paypal") Paypal
+							button.btn.btn-danger(tabindex="-1", data-toggle="tab", href="#ptab2", value="bank") Bank Transfer
+							button.btn.btn-danger(tabindex="-1", data-toggle="tab", href="#ptab3", value="voucher") Gutschein
+						input(type="hidden", value="paypal", name="paymentMethod");
+						.well.d
+							.tab-content
+								.tab-pane.active(id="ptab1")
+									.control-group
+										label.control-label Paypal : 
+										.controls
+											img(type="image", src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif", onclick="toPaypal()")
+								.tab-pane(id="ptab2")
+									table.table
+										tr
+											td Konto-Inhaber
+											td darkTunes UG
+										tr
+											td Konto-Nr
+											td 0330114000
+										tr
+											td Bankleitzahl
+											td 67040031
+										tr
+											td IBAN
+											td DE21 6704 0031 0330 1140 00
+										tr
+											td BIC
+											td COBADEFFXXX
+										tr
+											td Betreff
+											td.betreff
+									form.form-horizontal 	
+										button.btn Per Überweisung Zahlen
+									
+								.tab-pane(id="ptab3")
+									form.form-horizontal.ajaxForm(enctype="multipart/form-data", method="post", action="useVoucher")
 										.control-group
 											label.control-label Gutscheincode :
 											.controls
 												.input-append
 													input(type="text", name="gutscheinCode", placeholder="Gutscheincode")
-													button.btn(type="button") Validate
+													button.btn(type="submit") Validieren
 	.span2											
 		#checkList.well.d
 			label Album Cover 
 				i.icon-remove.pull-right
 			label Album Info 
 				i.icon-remove.pull-right
-			label Upload Songs 
+			label Songs Hochladen 
 				i.icon-remove.pull-right
-			label Payment 
+			label Bezahlung 
 				i.icon-remove.pull-right
 			hr.s
-			button.btn.btn-block.btn-primary(id="btnAlbSub")  Next
-				
-#editModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-	form.form-horizontal.ajaxForm(enctype="multipart/form-data", method="post", action="addArtist")
-		.modal-header
-			button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-			h3 Add Artist
-		.modal-body
-			.control-group
-				label.control-label Name :
-				.controls
-					input(type="text", name="artistName", placeholder="Exakter name wie auf Cover")
-			.control-group
-				label.control-label Biography :
-				.controls
-					textarea.vert(name="biography")
-			.control-group
-				label.control-label Land :
-				.controls
-					select(name="country")
-						option(value="de") Deutschland
-						option(value="en") England
-						option(value="fr") France
-			.control-group
-				label.control-label Website :
-				.controls
-					input(type="text", name="website", value="http://")
-			.control-group
-				label.control-label Facebook :
-				.controls
-					input(type="text", name="facebook", value="http://")
-		.modal-footer
-			button.btn(type="submit") Save
+			button.btn.btn-block.btn-primary(id="btnAlbSub")  Weiter
 			
 			
 include ../varHelper
+include ../includes/genre_picker

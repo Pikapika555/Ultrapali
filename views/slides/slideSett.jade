@@ -1,45 +1,55 @@
-div.row
-	div.tabbable
+.row
+	.tabbable
 		ul.nav.nav-tabs
 			li.active
-				a(href="#tab1", data-toggle="tab") Contact Info
+				a(href="#tab1", data-toggle="tab") Kontakt Information
 			li
-				a(href="#tab2", data-toggle="tab") Bank Info
+				a(href="#tab2", data-toggle="tab") Bank Information
 			li
-				a(href="#tab3", data-toggle="tab") Preferences 
+				a(href="#tab3", data-toggle="tab") Einstellungen
+			li
+				a(href="#tab4", data-toggle="tab") Künstler
 			li.pull-right
 				i.icon-cog.icon-2x.norm
 				
 				
-		div.tab-content
-			div.tab-pane(id="tab3")
+		.tab-content
+			.tab-pane(id="tab4")
+				.well.d
+					legend Künstler Bearbeiten
+					ul.thumbnails
+						-for(key in art)
+							li
+								b.hidden #{key}
+								p.hidden #{art[key].artistName},|,#{art[key].biography},|,#{art[key].country},|,#{art[key].website},|,#{art[key].facebook}
+								a.thumbnail.editArtist(href="#", data-toggle="modal")
+									h2 #{art[key].artistName}
+						
+			.tab-pane(id="tab3")
 				.span5
 					.well.d
-						legend Changes
+						legend Passwort Wechseln
 						form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitPass")
 							.control-group
-								label.control-label Change Password
+								label.control-label Passwort Wechseln
 								.controls
-									input(name="oldPass", type="text", placeholder="Old Password")
-									input(name="Pass", type="text", placeholder="New Password")
-									input(name="Pass2", type="text", placeholder="Repeat New Password")
+									input(name="oldPass", type="text", placeholder="Aktuelles Passwort")
+									input(name="Pass", type="text", placeholder="Neues Passwort")
+									input(name="Pass2", type="text", placeholder="Wiederhole neues Passwort")
 							.controls
-								button.btn(type="submit", name="submit") 
-									| Save
+								button.btn.btn-primary(type="submit", name="submit") 
+									| Speichern
 				.span4
 					.well.d
-						legend Preferences
+						legend Preferenzen
 						.formbox
 							form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitPref")
 								input(id="notPublic", type="checkbox")
 								|  Cover nicht in der oberen leiste zeigen
 								br
-								.control-group
-									input(id="notBundle", type="checkbox")
-									|  ???
 								.controls
-									button.btn(type="submit") Save
-			div.tab-pane.active(id="tab1")
+									button.btn.btn-primary(type="submit") Speichern
+			.tab-pane.active(id="tab1")
 				.well.d
 					legend Contact Info
 					.formbox
@@ -50,10 +60,6 @@ div.row
 										button.btn.active(href="#ttab1",value="0", data-toggle="tab", tabindex="-1") Privatperson 
 										button.btn(href="#ttab2",value="1", data-toggle="tab", tabindex="-1") Firma
 									input(type="hidden", name="is_company", value="0")
-							.control-group
-								label.control-label Email 
-								.controls
-									input(type="text",name="email", placeholder="Email", value="#{sett.contact.email}")
 							.control-group
 								label.control-label Prename
 								.controls
@@ -104,13 +110,16 @@ div.row
 											|  Ich bin Kleinunternehmer gemäß dem deutschen UStG (§ 19) 
 								
 							.controls
-								button.btn(type="submit") Save
+								button.btn.btn-primary(type="submit") Speichern
 						
 			.tab-pane(id="tab2")
 				.well.d
-					legend Bank Info
+					legend Bank Information
 					.formbox
 						form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="submitBank")
+							.alert
+								button.close(type="button", data-dismiss="alert")&times;
+								| Suche dir deine Zahlungsmethode aus
 							.tabbable
 								.btn-group(data-toggle="buttons-radio")
 									a.btn.btn-danger.active(href="#btab1", data-toggle="tab", tabindex="-1") Paypal
@@ -123,19 +132,31 @@ div.row
 											.controls
 												input(type="text", placeholder="PayPal Email")
 										.controls
-											button.btn(type="submit") Save
+											button.btn.btn-primary(type="submit") Speichern
 									.tab-pane(id="btab2")
+										.control-group
+											label.control-label Kontoinhaber 
+											.controls
+												input(type="text", name="kontoinhaber", placeholder="Kontoinhaber")
 										.control-group
 											label.control-label Bankname 
 											.controls
-												input(type="text", placeholder="Bankname")
+												input(type="text",name="bankname", placeholder="Bankname")
 										.control-group
 											label.control-label Bankleitzahl 
 											.controls
-												input(type="text", placeholder="Bankleitzahl")
+												input(type="text",name="blz", placeholder="Bankleitzahl")
 										.control-group
 											label.control-label KontoNr 
 											.controls
-												input(type="text", placeholder="KontoNr")
+												input(type="text", name="kontonr", placeholder="KontoNr")
+										.control-group
+											label.control-label IBAN 
+											.controls
+												input(type="text", name="iban", placeholder="IBAN")
+										.control-group
+											label.control-label BIC 
+											.controls
+												input(type="text", name="bic", placeholder="BIC")
 										.controls
-											button.btn(type="submit") Save
+											button.btn.btn-primary(type="submit") Speichern

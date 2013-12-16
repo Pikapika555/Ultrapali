@@ -1,24 +1,25 @@
 doctype 5
-html id
+html
 	head
 		title= title
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Titillium+Web&subset=latin,latin-ext', type='text/css')
 		link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/datepicker/css/datepicker.css')
 		link(rel='stylesheet', href='/stylesheets/font-awesome.css')
-		link(rel='stylesheet', href='/stylesheets/bootstrap_override.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='/stylesheets/cCenter.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap_override.css')
 
 		script(src='/javascripts/jq.js')
 		script(src='/javascripts/jq-rot-scal.js')
 		script(src='/javascripts/jq_en_decode.js')
 		script(src='/javascripts/jq-addr.js')
 		script(src='/javascripts/jq-form.js')
-		script(src='/javascripts/jq-sort.js')
+		script(src='/javascripts/jquery-ui/js/jq-ui.js')
 		script(src='/javascripts/ang.js')
 		script(src='/bootstrap/js/bootstrap.min.js')
+		script(src='/datepicker/js/bootstrap-datepicker.js')
 		script(src='/javascripts/ang-ui-boot.js')
 		script(src='/javascripts/core.js')
 		script(src='/javascripts/ajax.js')
@@ -31,4 +32,6 @@ html id
 				include index
 			- else
 				include sideNav
+			include includes/modals
 			include includes/footer
+			include varHelper

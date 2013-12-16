@@ -1,4 +1,5 @@
-menu-height = 78px;
+@import nib
+menu-height = 70px;
 
 @font-face
     font-family: "Ruri"
@@ -11,16 +12,17 @@ menu-height = 78px;
     src: url("../fonts/Augusta.ttf")
 	
 @font-face
-    font-family: "Origin"
+    font-family: "feast"
     font-style: normal
-    src: url("../fonts/Origin.ttf")
+
+    src: url("../fonts/feast.ttf")
 
 Legend
 	color: #ddd
-	font-family: Augu
-Legend:first-letter
-	font-family: Ruri
-	font-size: larger
+	font-family: feast
+	letter-spacing: 0.1em
+	&:first-letter
+		font-size: larger
 
 #NavIcoLeft
 	font-family: Origin
@@ -30,13 +32,6 @@ border-radius(n)
   -moz-border-radius n
   border-radius n
 
-	
-	
-	
-	
-	
-	
-	
 hr.s
 	height: 1px
 	border: 0
@@ -48,28 +43,57 @@ hr.s
 .hidesrc
 	position: absolute
 	opacity: 0
-	margin: 0
+	margin-left: 25px
+	overflow: hidden
+	height: 30px
+	width: 70px
+	&.left
+		margin-left: 0px !important
 	
+
+	input
+		&.song
+			position: absolute
+			opacity: 0
+			cursor: pointer
+.handle
+	cursor: move
+
+.ui-state-highlight
+	background-color: rgba(255, 255, 255, 0.2);
+	height: 35px
+	width: 340px
+	margin-bottom: 10px
+	margin-top: -10px
+	margin-left: -4px
+	border-radius: 5px
+	opacity: 0.5
+	border: 1px solid #DADADA
+
+ol.w
+	color: #DADADA;
+		
 	
 input.hidescr
 	position: absolute
 	opacity: 0
 	z-index: 2
 	width: 80px;
-	
-header
-	//box-shadow: 0px 8px 10px #000
 
 body
 	font-size: 14px 
 	font-family: Titillium Web
-	background-color: #272727
-	padding-top: menu-height
-	
+	padding-top: 70px
+	background-color: #111
+	background-image: url("../images/newBG.jpg")
+	background-repeat: repeat
+	background-position: center top
 a
 	color: #00B7FF
 
-	
+.r
+	color: #8C2324
+
 .wh
 	color:white
 //// Index ////
@@ -78,19 +102,23 @@ a
 .brand-fix
 	padding-top: 5px !important
 
-.container-navigation
-	padding-top: 18px
-
-#TopNav
-	height: menu-height
 
 
 .indexField
 	padding-top: 10%
-	
 	padding-bottom: 10%
+
+#topNavHelper
+	position: relative
+	height: 0px
+
 .navBar
-	min-height: menu-height
+	height: menu-height
+	background-image: url(../images/bg-menu-top.png) !important
+	border-bottom: 1px solid #DADADA !important
+	box-shadow: 0px 8px 10px #000
+	margin-bottom: 0px
+
 .indexDivider
 	position: absolute
 	height: auto
@@ -108,34 +136,25 @@ a
 
 // PLEASE NOTE: The Genre-<span> isn't shown if a value below 140px is chosen (for overflow reasons)
 unit-height = 180px
-
-
-// WORKAROUND: Limits the maximum/minimum size of the unit-height, for best displaying reasons
-if unit-height >= 201px
-	unit-height = 200px
-
-if unit-height <= 99px
-	unit-height = 100px
-// END WORKAROUND
-
 unit-width = unit-height
 mask-height = unit-height / 2
 
 
 #cWrap
 	position: relative
-
 	#subHeadNav
 		position: relative
-		height: 25px
+		height: 10px
 		width: 100%
 		background-color: #272727
 		left: 0px
 		box-shadow: 0px -8px 8px #111
+		border-top: 1px solid #DADADA !important
 
 .unit-list-wrap
 	height: unit-height
 	overflow: hidden
+	
 	
 	ul
 		position: relative
@@ -291,8 +310,7 @@ mask-height = unit-height / 2
 						width: calc(unit-width * 4)
 					.unit-information
 						width: calc(unit-width * 4)
-.navbar
-	box-shadow: 0px 8px 10px #000
+	
 	
 .unit-control
 	position: absolute
@@ -303,7 +321,8 @@ mask-height = unit-height / 2
 	background-color: #111
 	color: #999
 	opacity: 0.9
-	border-radius: 0 20px 20px 0
+	border-bottom-right-radius: 20px
+	border-top-right-radius: 20px
 	z-index: 2
 	text-align: right
 	font-size: 20px
@@ -316,7 +335,7 @@ mask-height = unit-height / 2
 	&.rasd
 		text-align: left
 		right: 0px
-		border-radius: 20px 0 0 20px
+		border-radius: 20px 0px 0px 20px
 
 	
 .mid
@@ -327,11 +346,16 @@ mask-height = unit-height / 2
 	
 	
 #footer_1
+	margin-top: 200px;
 	padding: 20px
-	background-color: #151515
+	padding-top: 0px
+	background-color: #7B2A2B
+	background-image: url("../images/bg_foot.png")
 	color: #ddd;
-	border-top: 1px solid #555
+	border-top: 1px solid #DADADA
 	border-bottom: 1px solid #333
+	a
+		color: #dadada
 
 	.headl
 		border-bottom: 1px dotted #ddd
@@ -339,7 +363,7 @@ mask-height = unit-height / 2
 
 #footer_2
 	padding: 15px
-	background-color: #111
+	background-color: #571616
 	color: #bbb
 	a
 		padding 5px
@@ -377,9 +401,135 @@ span.add-on
 	color: green
 .icon-remove
 	color: red
+.icon-trash
+	color: red
 i.norm
 	color: #ddd
 	font-size: 3em
 i.inv
 	color: #333
 	
+.news-article
+	border-left: 4px solid #8C2324
+	padding-left: 10px
+	margin-bottom: 20px
+	margin-left: 17px;
+	
+span.corner
+	position: relative
+	top: -3px
+	left: -8px
+
+.sideNav
+	padding-top: 10px
+	width: 100%
+	height: 100%
+	background-color: rgba(0,0,0,0.5)
+	border-left: 1px solid #DADADA
+	border-right: 1px solid #DADADA
+	border-bottom: 1px solid #DADADA
+	border-bottom-left-radius: 5px
+	border-bottom-right-radius: 5px
+
+	li
+		border-bottom: 1px solid #151515
+
+#AjaxContent
+	padding-top: 30px
+
+
+.indNav
+	list-style-type: none
+
+	li
+		margin: 0px;
+		margin-bottom: 10px;
+		opacity: 0.5
+		transition: opacity .25s ease-in-out;
+		-moz-transition: opacity .25s ease-in-out
+		&:hover
+			opacity: 0.8
+		&:focus
+			opacity: 1
+		&:active
+			opacity: 1
+		&.active
+			opacity: 1		
+		&:first-child
+			margin-left: 20px
+		img
+			height: 80px;
+		a
+			color: red;
+
+
+.cons
+	i
+		margin-right: 10px
+		color: white
+		opacity: 0.5
+		&:hover
+			opacity: 1
+	a:hover
+		text-decoration: none
+
+.minBar
+	margin: -11px 0px 10px 4px
+	height: 10px
+	width: 151px
+	border-bottom-left-radius: 5px
+	border-bottom-right-radius: 5px
+	background-color: #111
+	border: 1px solid #DADADA
+	overflow: hidden;
+	.prog
+		height: 100%
+		background-color: #8C2324
+img.hov
+	opacity: 0.5
+	&:hover
+		opacity: 1
+.dropdown-menu
+	background-color: #222
+	border: 1px solid #333
+	a
+		color: #dadada !important
+	.well
+		background-color: #222;
+		border: 0px solid #000;
+	p
+		color: #dadada
+	td
+		color: #eee;
+		&.day.new
+			color: #bbb
+		&.day.old
+			color: #bbb !important
+		&:hover
+			color: #dadada;
+			background-color: #222 !important
+			border: 1px solid #444
+	th
+		&.dow, &.prev, &.switch, &.next
+			color: #ccc
+		&.prev, &.switch, &.next
+			&:hover
+				color: #dadada;
+				background-color: #222 !important
+				border: 1px solid #444
+col_dT = #8C2324
+.radioGrp
+	.btn
+		&.active
+			background-color: col_dT !important
+			background-image: -moz-linear-gradient(top, col_dT, col_dT) !important
+			background-image: -ms-linear-gradient(top, col_dT, col_dT) !important
+			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(col_dT), to(col_dT)) !important
+			background-image: -webkit-linear-gradient(top, col_dT, col_dT) !important
+			background-image: -o-linear-gradient(top, col_dT, col_dT) !important
+			background-image: linear-gradient(top, col_dT, col_dT) !important
+			box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05)
+			color: white
+			border: 1px solid col_dT
+			border-color: col_dT
+			font-weight: normal

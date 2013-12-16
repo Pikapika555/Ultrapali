@@ -1,0 +1,416 @@
+modals
+	#regMod.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		form.ajaxForm.form-horizontal(method="post", enctype="multipart/form-data", action="registrate")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Registrieren
+			.modal-body
+				.control-group
+						label.control-label Email
+						.controls
+							input.span3(type="text", name="R_email", placeholder="Email")
+				.control-group
+						label.control-label Passwort
+						.controls
+							input.span3(type="password", name="R_password", placeholder="Passwort")
+				.control-group
+						label.control-label Passwort
+						.controls
+							input.span3(type="password", name="R_password2", placeholder="Passwort Wiederholen")
+				hr.s
+				.tabbable
+					.control-group
+						.btn-group.ajaxGrp(data-toggle="buttons-radio", data-toggle-name="is_company")
+							button.btn.active(type="button", href="#ttab1",value="0", data-toggle="tab", tabindex="-1") Privatperson 
+							button.btn(type="button", href="#ttab2",value="1", data-toggle="tab", tabindex="-1") Firma
+						input(type="hidden", name="is_company", value="0")
+				.control-group
+					label.control-label Vorname
+					.controls
+						input(type="text",name="prename", placeholder="Vorname")
+				.control-group
+					label.control-label Nachname
+					.controls
+						input(type="text",name="lastname", placeholder="Nachname")
+				.control-group
+					label.control-label Straße
+					.controls
+						.input-append
+							input(type="text",name="streetname", placeholder="Straßenname")
+						.input-prepend
+							input.span1(type="text",name="streetNr", placeholder="Nr")
+				.control-group
+					label.control-label Stadt
+					.controls
+						.input-append
+							input.span1(type="text",name="plz", placeholder="PLZ")
+						.input-prepend
+							input(type="text",name="cityname", placeholder="Stadt")
+				.control-group
+					label.control-label(for="country") Land
+					.controls
+						input(type="text",name="country", placeholder="Land")
+				.tab-content
+					.tab-pane(id="ttab1")
+					.tab-pane(id="ttab2")
+						.control-group
+							label.control-label Firmenname
+							.controls
+								input.toggleInput(type="text",name="firmenname", placeholder="Firmenname", disabled)
+						.control-group
+							label.control-label Identifikationsnr
+							.controls
+								input.toggleInput(type="text",name="ust_id", placeholder="USt.-Id/UID/Steuernummer", disabled)
+						.control-group
+							.controls
+								input.toggleInput(name="kleinunternehmer", type="checkbox", disabled)
+								|  Ich bin Kleinunternehmer gemäß dem deutschen UStG (§ 19) 
+				.control-group
+					.controls
+						label.span3.checkbox.inline
+							input(type="checkbox", name="checkAgb")
+							| AGB's akzeptieren
+				hr.s
+						
+			.modal-footer
+				button.btn.btn-primary.btn-block(type="submit")
+					b Registrieren
+				a(href="#agbModal", data-toggle="modal") Lies dir hier die AGB's durch
+
+	#artistModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		form.form-horizontal.ajaxForm.artistSubmit(enctype="multipart/form-data", method="post", action="addArtist")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Künstler Hinzufügen
+			.modal-body
+				input.hidden(name="hid")
+				.control-group
+					label.control-label * Name :
+					.controls
+						input(type="text", name="artistName", placeholder="Exakter name wie auf Cover")
+				.control-group
+					label.control-label Biographie :
+					.controls
+						textarea.vert(name="biography")
+				.control-group
+					label.control-label Land :
+					.controls
+						select(name="country")
+							option(value="de") Deutschland
+							option(value="en") England
+							option(value="fr") France
+				.control-group
+					label.control-label Website :
+					.controls
+						input(type="text", name="website", value="http://")
+				.control-group
+					label.control-label Facebook :
+					.controls
+						input(type="text", name="facebook", value="http://")
+				.control-group
+					label.r * = Pflichtfeld
+			.modal-footer
+				button.btn.btn-primary(button="submit") Save
+
+	#paypalModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+			h3 Paypal
+		.modal-body
+			| Du hast erfolgreich bezahlt
+		.modal-footer
+			button.btn(type="button", data-dismiss="modal", aria-hidden="true") Close
+
+	#NotiModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+			h3 Request Admin
+		form.form-horizontal.ajaxForm(method="POST", accept-charset="UTF-8", action="sendRequest")
+			.modal-body
+				.control-group
+					label.control-label(for="") Anliegen: 
+					.controls
+						select(name="type")
+							option Allgemeiner Fehler
+							option Upload Problem
+							option Bezahl Problem
+							option Anderes Problem
+							option Allgemeine Frage
+							option Rechtliche Frage
+							option Business Partner Anliegen
+							option Feedback
+				.control-group
+					label.control-label(for="") Betreff
+					.controls
+						input(type="text", name="headline", placeholder="short description")
+				.control-group
+					textarea.full(name="msg", rows="6")
+				
+			.modal-footer
+				button.btn.btn-primary(type="submit")	Submit
+
+	#addNewsModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+			form.form-horizontal(enctype="multipart/form-data", method="post", action="writeNews")
+				.modal-header
+					button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+					h3 Write News
+				.modal-body
+					.control-group
+						label.control-label(for="inpBandName") Headline 
+						.controls
+							input(name="headline", type="text", placeholder="Headline")
+					.control-group
+						label.control-label(for="inpBandName") News Text 
+						.controls
+							textarea.vert(name="text")
+				.modal-footer
+					button.btn.btn-primary(type="submit") Submit
+
+	#delNewsModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		form.form-horizontal(enctype="multipart/form-data", method="get", action="delNews")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Delete News
+			.modal-body
+				.well.d
+					| Delete news
+				br
+			.modal-footer
+				button.btn.btn-danger(type="submit") Delete%
+
+	#messageModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		form.form-horizontal(enctype="multipart/form-data", method="get", action="delNews")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Deine Benachrichtigungen
+			.modal-body
+				-if(navi.email)
+					table.table
+						thead
+							tr
+								th Betreff
+								th Von
+								th Zeit
+								th
+						tbody
+							-for(key in msg.recieved)
+								div.collapse(id="read_#{key}")
+										.well.d
+											h5 #{msg.recieved[key].title}
+											hr
+											| #{msg.recieved[key].msg}
+								tr
+									td #{msg.recieved[key].title}
+									td #{msg.recieved[key].from}
+									td #{msg.recieved[key].time}
+									td 
+										button.btn.btn-primary(type="button", data-toggle="collapse", data-target="#read_#{key}") Lesen
+										a.btn(href="deleteMessage/#{key}") Delete
+
+			.modal-footer
+	#agbModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 AGB
+		.modal-body
+
+		.modal-footer
+	#faqModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 FAQ
+		.modal-body
+
+		.modal-footer
+
+	#partnerModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Unsere Partner
+		.modal-body
+			ul.thumbnails
+				li
+						a.thumbnail(href="http://www.apple.com/itunes/?cid=OAS-US-DOMAINS-itunes.com", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/1.png", width="100px")
+				li
+						a.thumbnail(href="http://de.7digital.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/2.png", width="100px")
+				li
+						a.thumbnail(href="http://www.247entertainment.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/3.png", width="100px")
+				li
+						a.thumbnail(href="http://www.amazon.com/b?ie=UTF8&node=163856011", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/4.png", width="100px")
+				li
+						a.thumbnail(href="http://www.beatport.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/5.png", width="100px")
+				li
+						a.thumbnail(href="http://www.junodownload.com/djdownload/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/6.png", width="100px")
+				li
+						a.thumbnail(href="http://www.emusic.com/home/home.html", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/7.png", width="100px")
+				li
+						a.thumbnail(href="http://www.fnac.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/8.png", width="100px")
+				li
+						a.thumbnail(href="http://imusiciandigital.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/9.png", width="100px")
+				li
+						a.thumbnail(href="http://inprodicon.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/10.png", width="100px")
+				li
+						a.thumbnail(href="http://www.mndigital.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/11.png", width="100px")
+				li
+						a.thumbnail(href="http://www.musicload.de/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/12.png", width="100px")
+				li
+						a.thumbnail(href="http://www.napster.de/start", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/13.png", width="100px")
+				li
+						a.thumbnail(href="http://store.ovi.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/14.png", width="100px")
+				li
+						a.thumbnail(href="http://www.securycast.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/15.png", width="100px")
+				li
+						a.thumbnail(href="http://www.virgin.com/company/virgin-megastore", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/16.png", width="100px")
+				li
+						a.thumbnail(href="http://www.xbox.com/de-DE/live/zune", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/17.png", width="100px")
+				li
+						a.thumbnail(href="http://www.dj-playlist.de/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/18.png", width="100px")
+				li
+						a.thumbnail(href="http://www.dance-tunes.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/19.png", width="100px")
+				li
+						a.thumbnail(href="http://www.djtunes.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/20.png", width="100px")
+				li
+						a.thumbnail(href="http://www.djshop.de/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/21.png", width="100px")
+				li
+						a.thumbnail(href="https://www.whatpeopleplay.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/22.png", width="100px")
+				li
+						a.thumbnail(href="http://www.junodownload.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/23.png", width="100px")
+				li
+						a.thumbnail(href="https://www.spotify.com/de/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/24.png", width="100px")
+				li
+						a.thumbnail(href="http://www.rhapsody.com/start", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/25.png", width="100px")
+				li
+						a.thumbnail(href="http://www.traxsource.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/26.png", width="100px")
+				li
+						a.thumbnail(href="http://www.simfy.de/start", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/27.png", width="100px")
+				li
+						a.thumbnail(href="http://www.wimp.no/wweb/index/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/28.png", width="100px")
+				li
+						a.thumbnail(href="http://www.htfr.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/29.png", width="100px")
+				li
+						a.thumbnail(href="http://www.mondiamedia.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/30.png", width="100px")
+				li
+						a.thumbnail(href="http://www.net-mobile.com/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/31.png", width="100px")
+				li
+						a.thumbnail(href="http://www.jamba.de/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/32.png", width="100px")
+				li
+						a.thumbnail(href="http://www.zaoza.de/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/33.png", width="100px")
+				li
+						a.thumbnail(href="http://www.sms.at/", data-toggle="tab")
+							img.mid(src="../images/corp_Ident/shops/Nu/34.png", width="100px")
+
+
+		.modal-footer
+
+	#payoutModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Ausbezahlen
+		.modal-body
+			br
+			.alert.alert-error
+				| Du kannst erst ausbezahlt werden wenn du 20 oder mehr € auf deinem Konto hast!
+		.modal-footer
+			button.btn(type="button") Ok
+	#editUserModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		form.form-horizontal(method="post", action="editUser")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Edit User Nr XXX
+			.modal-body
+				input.hidden(name="email_sav", value="0"); 
+				.control-group
+					label.control-label(for="email") Email 
+					.controls
+						input(name="email", type="text", placeholder="Email")
+				.control-grounp
+					label.control-label State
+					.controls
+						select(name="account_state")
+								option(value="admin") Admin
+								option(value="normal user") User
+								option(value="banned") Banned
+			.modal-footer
+				button.btn(type="button") Reset Password
+				button.btn.btn-primary(type="submit") Save
+				
+	#delUserModal.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		.modal-header
+			button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+			h3 Delete User
+		.modal-body
+		
+			| sure you want to delete:
+			br
+			.well
+				| User Nr XXX
+				br
+				| Username : username
+			br
+			| Your Name will be listed
+		.modal-footer
+			button.btn.btn-danger Delete
+
+	#declineModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		form(method="post", action="declineAlb")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Decline Album
+			.modal-body
+				input.hidden(name="email_sav", value="0");
+				input.hidden(name="albumId", value="0")
+				.control-group
+					label.control-label Declined because: 
+					.controls
+						textarea.vert(name="msg")
+			.modal-footer
+				button.btn.btn-primary(type="submit") Send
+	#writeMessageModal.modal.hide.fade(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+		form.form-horizontal(method="post", action="writeMessage")
+			.modal-header
+				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+				h3 Message User
+			.modal-body
+				.control-group
+					label.control-label Email
+					.controls
+						input(type="text", name="email")
+				.control-group
+					label.control-label Message: 
+					.controls
+						textarea.vert(name="msg")
+			.modal-footer
+				button.btn.btn-primary(type="submit") Send

@@ -9,7 +9,10 @@
     "express": ">= 3.2.0",
     "jade": "*",
     "stylus": "*",
-    "mongodb": "*"
+    "mongodb": "*",
+    "paypal-express-checkout": "1.0.0.6",
+    "async": ">= 0.2.9",
+    "archiver": "~0.4.10"
   },
   "engines": {
     "node": ">= 0.10.x",

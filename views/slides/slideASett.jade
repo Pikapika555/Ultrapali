@@ -1,84 +1,26 @@
 div.row
-	legend Manage Users
-	.btn-toolbar
-		form.form-search.form-horizontal
-			button.btn.btn-primary New User
-			.input-append.pull-right
-				input.search-query(type="text", placeholder="Search Users")
-				button.btn(type="submit")
-					i.icon-search
-	.well.d
-		table.table
-			thead
-				tr
-					th #
-					th Email
-					th Band Name
-					th Account State
-					th(style="width: 36px")
-			tbody
-				-for(var i = 0; i < users.length; i++)
-					tr 
-						td #{i} 
-						td #{users[i].email} 
-						td #{users[i].name} 
-						td #{users[i].state}
-						td
-							a(href="#editModal", data-toggle="modal")
-								i.icon-pencil.icon-white
-							a(href="#delModal", data-toggle="modal")
-								i.icon-remove.icon-white
-	.pagination.pagination-centered
-		ul
-			li
-				a(href="#") &laquo;
-			li.active
-				a(href="#") 1
-			li	
-				a(href="#") 2
-			li	
-				a(href="#") &raquo;
-		#editModal.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-			.modal-header
-				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-				h3 Edit User Nr XXX
-			.modal-body
-				.control-group
-					label.control-label(for="inpBandName") Email 
-					.controls
-						input(id="inpBandName", type="text", placeholder="Email")
-				.control-group
-					label.control-label(for="inpBandName") Band Name 
-					.controls
-						input(id="inpBandName", type="text", placeholder="Band Name")
-				.control-group
-					label.control-label(for="inpBandName") Email 
-					.controls
-						select
-							option Super Admin
-							option Admin
-							option Gold
-							option Silver
-							option Bronce
-							option Free
-							option Banned
-			.modal-footer
-				button.btn Reset Password
-				button.btn.btn-primary Save
-				
-		#delModal.modal.hide.fade.span4(tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-			.modal-header
-				button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
-				h3 Delete User
-			.modal-body
-			
-				| sure you want to delete:
-				br
-				.well
-					| User Nr XXX
-					br
-					| Username : username
-				br
-				| Your Name will be listed
-			.modal-footer
-				button.btn.btn-danger Delete
+	legend Settings
+	.well.d.span2
+		legend Vouchers
+		form(enctype="multipart/form-data", method="get", action="createVoucher")
+			button.btn.btn-block Generate Voucher
+		button.btn.btn-block Generate Vouchers
+		button.btn.btn-block kill all Vouchers
+	.well.d.span3
+		legend Active Vouchers
+		- if(!voucher)
+			| No Vouchers Available
+		- else
+			h2 Unused
+			ul
+				- for(key in voucher)
+					- if(voucher[key].used == 0)
+						li #{voucher[key].code}
+			h2 Used
+			ul
+				- for(key in voucher)
+					- if(voucher[key].used != 0)
+						li
+							| #{voucher[key].code}
+							| by: #{voucher[key].used}
+							| at: #{voucher[key].time}

@@ -1,12 +1,9 @@
-//// VARIABLES ////
-
 col_body = #272727
 col_dT = #8C2324
 col_dT2 = #571616
 col_dt3 = #571616
-
-///////////////////
-
+col_w = #DADADA
+col_b = #111
 
 .nav-list
 	li
@@ -16,68 +13,66 @@ col_dt3 = #571616
 			&:hover
 				color: #ddd !important
 		&.active
-			
 			a
 				text-shadow: 0 3px 0 rgba(0, 0, 0, 1) !important
 				border-bottom: 1px solid col_dT
-				border-top: 1px solid col_dT
-				
-				
-					
+				border-top: 1px solid col_dT	
 			i
 				color: col_dT
-				
 		&.divider
 			background-color: col_dT2
-
 .nav-tabs
-	border-color: col_dT
+
+	border-color: col_w
 	li
-		&.active
-			background-color: col_dT !importiant
-			
-			a
-				background-color: col_body
+		&.active, &:focus
+			background-color: col_dT !important
+			a, &:focus
+				background-color: col_dT
 				border-color: col_dT
 				border-bottom: 1px solid transparent
 				color: white
 				&:focus, &:hover
-					background-color: col_body
+					background-color: col_dT
 					border-color: col_dT
 					border-bottom: 1px solid transparent
 					color: white
 		a
 			color: #ddd
-			&:focus, &:hover
-				background-color: col_dt3
+			&:hover
+				background-color: col_dT
 				border-color: transparent
-				//border: 1px solid transparent
-				border-bottom: 1px solid col_dt
-				color: white
-			
-		
-			
+				border-bottom: 1px solid color
+				col_dt: white
+		&.disabled
+			a
+				&:hover, &:focus
+					border: 0px solid white !important
+					color: #999
+					padding-left: 13px
+					padding-top: 9px
+					padding-bottom: 9px
+					padding-right: 13px
 .btn
 	.btn-primary
-		background-color: col_dT
-		background-image: -moz-linear-gradient(top, col_dT, black)
-		background-image: -ms-linear-gradient(top, col_dT, black)
-		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(col_dT), to(black))
-		background-image: -webkit-linear-gradient(top, col_dT, black)
-		background-image: -o-linear-gradient(top, col_dT, black)
-		background-image: linear-gradient(top, col_dT, black)
+		background-color: col_dT !important
+		background-image: -moz-linear-gradient(top, col_dT, col_dT) !important
+		background-image: -ms-linear-gradient(top, col_dT, col_dT) !important
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(col_dT), to(col_dT)) !important
+		background-image: -webkit-linear-gradient(top, col_dT, col_dT) !important
+		background-image: -o-linear-gradient(top, col_dT, col_dT) !important
+		background-image: linear-gradient(top, col_dT, col_dT) !important
 		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05)
 		color: white
 .well.d
-	border: 1px solid col_dT2 !important
+	border: 1px solid col_w !important
+	background-color: rgba(0,0,0,0.5) !important
+	border-radius: 4px
 	&.box
 		box-shadow: 5px 5px 5px #111
 		margin-right: 10px
-	
 legend
 	border-color: col_dT !important
-	
-
 input
 	background-color: #f5f5f5 !important;
 	border-color: #bbb !important;
@@ -87,7 +82,14 @@ input
 		border-color: col_dT !important;
 	&:disabled
 		background: #ccc !important
-		
+textarea
+	background-color: #f5f5f5 !important;
+	border-color: #bbb !important;
+	&:focus
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px col_dT !important;
+		border-color: col_dT !important;
+	&:disabled
+		background: #ccc !important
 .modal
 	background-color: transparent 
 	.modal-header
@@ -99,11 +101,38 @@ input
 	.modal-body
 		background-color: #2b2b2b !important
 		color: #eee 
-		
-	
 	.modal-footer
 		background-color: #222 !important
 		border-top: 1px solid col_dT2 !important
 	.close
 		color: #eee !important
 		text-shadow: 0 1px 0 #bbb
+
+.container-navigation
+	.brand
+		margin-top: 0px !important
+	li
+		margin-top: 15px
+	ul.dropdown-menu
+		li
+			margin-top: 0px
+a
+	color: col_dT
+	&:hover
+		color: col_dT
+.bar
+	background-color: col_dT !important
+
+table
+	&.table-condensed
+		tbody
+			tr
+				td.active
+					background-color: red !important
+.btn-group
+	.btn.active
+		font-weight: bold
+.tooltip-inner
+	white-space:pre-wrap;
+	background-color: col_dT
+	font-size: 1.1em

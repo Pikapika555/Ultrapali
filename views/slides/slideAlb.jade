@@ -1,20 +1,15 @@
 div.row
-	legend Your Albums
-	.well.d
+	legend Deine Alben
+	-if(album != 0)
 		ul.thumbnails
-			li
-				a.thumbnail(href="#")
-					h4 AlbumTitle
-					img(src="http://placehold.it/200x200", width="200px", height="200px")
-			li
-				a.thumbnail(href="#")
-					h4 AlbumTitle
-					img(src="http://placehold.it/200x200")
-			li
-				a.thumbnail(href="#")
-					h4 AlbumTitle
-					img(src="http://placehold.it/200x200")
-			li
-				a.thumbnail(href="#")
-					h4 AlbumTitle
-					img(src="http://placehold.it/200x200")
+			-for(key in album)
+				li
+					a.thumbnail
+						img(src="data:image/jpg;base64,#{album[key]["img"]}", width="200px", height="200px")
+						h4.mid #{album[key]["name"]}
+	-else
+		.well.d
+			| Du hast bisher keine Alben hochgeladen.
+			br
+			br
+			a.btn.btn-primary.siteChanger(href="/upload") Hochladen
