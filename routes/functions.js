@@ -108,7 +108,7 @@ exports.uploadWav = function(req, res){
 		var albPath = './uploads/'+req.session.email+'/'+req.session.tempAlb;
 		
 		var id = new ObjectID();
-		var target_path = albPath + '/id.wav';
+		var target_path = albPath + '/'+id+'.wav';
 		var key = {};
 		var path = "albums."+req.session.tempAlb+".songsInfo.song_"+Nr+".songDbId";
 		key[path] = id;
@@ -168,7 +168,7 @@ exports.imageUpload = function(req, res){
 						if (err) throw err;
 						fs.unlink(tmp_path, function() {
 							if (err) throw err;
-							mongoF.getFileUser(req, res, 0, function(img){
+							mongoF.getFileUser(req, res, 0, 0, 0, function(img){
 								mongoF.updateProfil(req, res, key, 0, function(req, res){
 									exports.setState(req, res, "1", 0, 0, function(){
 										res.send(img);
@@ -331,28 +331,49 @@ exports.uplWavInfo = function(req, res){
 exports.removeSong = function(req, res){
 	exports.getState(req, res, function(){
 		console.log(req.body);
-		var song = req.body;
-		var path = "albums."+req.session.tempAlb+".songsInfo."+obj;
-		var key = {};
-		key[path] = 0;
-		mongoF.removeSong(req, res, song.sId, function(){
-			mongoF.removeElem(req, res, key, function(){
-				console.log("GESCHAFFT");
-				res.send("GESCHAFFT");
+		var s = req.body;
+		if(s.sId != 0){
+			console.log("not null");
+			var filePath = ".uploads/"+req.session.email+'/'+req.session.tempAlb+'/'+s.sID+".wav";
+			console.log("====== : "+ filePath);
+			fs.unlink(filePath, function() {
+				console.log("removed");
+				exports.removeSongHelper(req, res, s.sId, function(){
+					res.send({nr: "0", msg: "Song gelöscht"});
+				});
 			});
-		});
+		}
+		else{
+			res.send({nr: "0", msg: "Song gelöscht"});
+		}	
 	});
+}
 
-	/*
-		var obj = i;
-		console.log(i);
-		var path = "albums."+req.session.tempAlb+".songsInfo."+obj;
-		var key = {};
-		key[path] = 0;
-		mongoF.removeElem(req, res, key, function(){
-			console.log("GESCHAFFT");
-		});
-	*/
+exports.removeSongHelper = function(req, res, sId, callback){
+	mongoF.findByEmail(req, res, req.session.email, function(req, res, item){
+		var path = "albums."+req.session.tempAlb+".songsInfo";
+		var elem = {};
+		elem = item[path];
+		var len = Object.keys(elem).length;
+		var counter = 0;
+		for(key in elem){
+			console.log("round");
+			if(elem[key].songDbId == sId){
+				console.log("helper found");
+				delete elem[key];
+				item[path] = elem;
+				mongoF.updateProfil(req, res, item, 0, function(){
+					callback();
+				});
+			}
+			else if(counter+1 == len){
+				console.log("helper not found");
+				callback();	
+			}
+		}
+
+		
+	});
 }
 
 exports.addArtist = function(req, res){
@@ -551,7 +572,7 @@ exports.genUpl = function(req, res, callback){
 		var alb = req.session.tempAlb;
 		mongoF.findSpecific(req, res, path, 0, function(artist){
 			mongoF.findSpecific(req, res, path2, 0, function(upl){
-				mongoF.getFileUser(req, res, 0, function(img){
+				mongoF.getFileUser(req, res, 0, 0, 0, function(img){
 					if(img){
 						console.log(img);
 						//uplo = JSON.stringify(upl[alb]);
@@ -654,7 +675,7 @@ exports.genDisco = function(req, res, callback){
 				hasAlbum = 1;
 				var imgName = upl[key].imageName;
 				var albName = upl[key].albumInfo.title;
-				mongoF.readFileFromDB_IMG(req, res, req.session.email, imgName, function(img){
+				mongoF.getFileUser(req, res, 0, key, 0, function(img){
 					album[count] = {img: img, name: albName};
 					if(count == len){
 						abgesendet = 1;

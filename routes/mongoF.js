@@ -368,14 +368,13 @@ exports.getSetting = function(req, res, type, callback){
 
 
 //NonGrid
-exports.getFileUser = function(req, res, name, callback){
-	if(name == 0){
-		name = "cover.jpg";
-	}
-	else{
-		name += ".wav";
-	}
-	fs.readFile('./uploads/'+req.session.email+'/'+req.session.tempAlb+'/'+name, function(err, data){
+
+exports.getFileUser = function(req, res, profil, alb, name, callback){
+	if(name == 0){name = "cover.jpg";}
+	else{name += ".wav";}
+	if(alb == 0){alb = req.session.tempAlb;}
+	if(profil == 0){profil = req.session.email;}
+	fs.readFile('./uploads/'+profil+'/'+alb+'/'+name, function(err, data){
 		back = data.toString('base64');
 		callback(back);
 	});

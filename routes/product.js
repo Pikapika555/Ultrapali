@@ -472,7 +472,7 @@ exports.loop = function(until, fn, callback, counter){
 
 
 exports.songWriter = function(AT_SONG, albInfo, gen, sonInfo, xml, callback){
-		var sonLeng = Object.keys(sonInfo).length;
+		var sonLeng = Object.keys(sonInfo).length; // SO FINDET MAN
 		
 		AT_SONG = AT_SONG + 1;
 		exports.songWriter1(AT_SONG, albInfo, gen, sonInfo, xml, function(xml){
