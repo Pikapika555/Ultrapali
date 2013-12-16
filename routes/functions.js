@@ -551,19 +551,32 @@ exports.genUpl = function(req, res, callback){
 		var alb = req.session.tempAlb;
 		mongoF.findSpecific(req, res, path, 0, function(artist){
 			mongoF.findSpecific(req, res, path2, 0, function(upl){
-				mongoF.readFileFromDB_IMG(req, res, req.session.email, req.session.tempAlb, function(img){
+				mongoF.getFileUser(req, res, 0, function(img){
 					if(img){
 						console.log(img);
 						//uplo = JSON.stringify(upl[alb]);
 						var uplo = upl[alb];
-						
-						exports.replaceLB(req, res, uplo.albumInfo.promotext, function(back){
-								uplo.albumInfo.promotext = back;
-
+						if(uplo.albumInfo){
+							if(uplo.albumInfo.promotext){
+								exports.replaceLB(req, res, uplo.albumInfo.promotext, function(back){
+									uplo.albumInfo.promotext = back;
+									var art = JSON.stringify(artist);
+									return callback(uplo, img, art);
+								});
+							}
+							else{
 								var art = JSON.stringify(artist);
 								return callback(uplo, img, art);
+							}
+							
+						}
+						else{
+							var art = JSON.stringify(artist);
+							return callback(uplo, img, art);
+						}
 						
-						});
+
+							
 					}
 					else{
 						return callback(false, false, art);

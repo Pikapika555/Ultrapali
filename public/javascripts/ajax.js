@@ -76,7 +76,7 @@ function bla(){
 		var actiElem = $("#ulSideNav").find('[href*="'+uri+'"]').parent();
 		actiElem.addClass("active");
 		actiElem.focus();
-	})
+	});
 
 
 	$('#ulSideNav a').click(function(e) {

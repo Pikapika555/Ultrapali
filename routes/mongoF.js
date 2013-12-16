@@ -376,8 +376,8 @@ exports.getFileUser = function(req, res, name, callback){
 		name += ".wav";
 	}
 	fs.readFile('./uploads/'+req.session.email+'/'+req.session.tempAlb+'/'+name, function(err, data){
-		console.log(data);
-		callback(data);
+		back = data.toString('base64');
+		callback(back);
 	});
 }
 

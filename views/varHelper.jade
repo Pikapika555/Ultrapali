@@ -9,9 +9,13 @@
 			console.log(upl);
 			upl = JSON.parse(upl);
 			console.log("||||||||||||||||||||||");
-			var penis = upl.albumInfo.promotext;
-			upl.albumInfo.promotext = penis.replace(/wwwwwwwwwwwwwwwwww/g, "\n");
-			console.log(upl.albumInfo.promotext);
+			if(upl.albumInfo){
+				if(upl.albumInfo.promotext){
+					var penis = upl.albumInfo.promotext;
+					upl.albumInfo.promotext = penis.replace(/wwwwwwwwwwwwwwwwww/g, "\n");
+					console.log(upl.albumInfo.promotext);
+				}
+			}
 			var db = new Array(3);
 			db[0] = img;
 			db[1] = upl;
