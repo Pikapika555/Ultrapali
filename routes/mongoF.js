@@ -136,6 +136,23 @@ exports.updateProfil = function(req, res, item, email, callback) {
 	});
 }
 
+exports.unsetProfil = function(req, res, item, email, callback) {
+	if(email == 0){
+		email = req.session.email;
+	}
+	console.log("update: "+email);
+	db.collection('profiles', function(err, collection) {
+		collection.update({"email": email},{$unset: item}, function(err, result) {
+			if (err) {
+				res.send({'error':'An error has occurred'});
+			} 
+			else {
+				callback(req,res);
+			}
+		});
+	});
+}
+
 
 exports.removeSong = function(req, res, sId, callback){
 	if(sId != 0){

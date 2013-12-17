@@ -586,7 +586,6 @@ function insertVar(page, db){
 
 
 				$.each( obj[oKey][key], function(iKey, iVal){
-
 					var inp = form.find("input[name='"+iKey+"']");
 					inp.val(iVal);
 

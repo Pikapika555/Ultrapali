@@ -110,7 +110,7 @@ exports.uploadWav = function(req, res){
 		var id = new ObjectID();
 		var target_path = albPath + '/'+id+'.wav';
 		var key = {};
-		var path = "albums."+req.session.tempAlb+".songsInfo.song_"+Nr+".songDbId";
+		var path = "albums."+req.session.tempAlb+".songsInfo.song_"+Nr+".songId";
 		key[path] = id;
 		
 		//if path has an id => del that id out of db
@@ -159,7 +159,7 @@ exports.imageUpload = function(req, res){
 					});
 					break;
 				default:
-					var target_path = './uploads/'+req.session.email+'/'+req.session.tempAlb.toString(16)+'/cover.jpg';
+					var target_path = './uploads/'+req.session.email+'/'+req.session.tempAlb+'/cover.jpg';
 					console.log("HAS TEMPALB");
 					var path = "albums."+req.session.tempAlb;
 					var key = {};
@@ -334,7 +334,8 @@ exports.removeSong = function(req, res){
 		var s = req.body;
 		if(s.sId != 0){
 			console.log("not null");
-			var filePath = ".uploads/"+req.session.email+'/'+req.session.tempAlb+'/'+s.sID+".wav";
+			var filePath = "./uploads/"+req.session.email+'/'+req.session.tempAlb+'/'+s.sId+'.wav';
+			filePath = filePath.replace(/"/g, "");
 			console.log("====== : "+ filePath);
 			fs.unlink(filePath, function() {
 				console.log("removed");
@@ -350,25 +351,23 @@ exports.removeSong = function(req, res){
 }
 
 exports.removeSongHelper = function(req, res, sId, callback){
+	sId = sId.replace(/"/g, "");
 	mongoF.findByEmail(req, res, req.session.email, function(req, res, item){
 		var path = "albums."+req.session.tempAlb+".songsInfo";
 		var elem = {};
-		elem = item[path];
-		var len = Object.keys(elem).length;
-		var counter = 0;
+		elem = item.albums[req.session.tempAlb].songsInfo
+		var insert = {};
+		
 		for(key in elem){
-			console.log("round");
-			if(elem[key].songDbId == sId){
+			if(elem[key].songId == sId){
 				console.log("helper found");
-				delete elem[key];
-				item[path] = elem;
-				mongoF.updateProfil(req, res, item, 0, function(){
+				insert[path+"."+key] = elem[key];
+				console.log("INSERT: ");
+				console.log(insert);
+				mongoF.unsetProfil(req, res, insert, 0, function(){
+					console.log("found");
 					callback();
 				});
-			}
-			else if(counter+1 == len){
-				console.log("helper not found");
-				callback();	
 			}
 		}
 
@@ -574,8 +573,6 @@ exports.genUpl = function(req, res, callback){
 			mongoF.findSpecific(req, res, path2, 0, function(upl){
 				mongoF.getFileUser(req, res, 0, 0, 0, function(img){
 					if(img){
-						console.log(img);
-						//uplo = JSON.stringify(upl[alb]);
 						var uplo = upl[alb];
 						if(uplo.albumInfo){
 							if(uplo.albumInfo.promotext){
