@@ -110,7 +110,7 @@ function imgUpload(){
 		$('#uploadForm').ajaxSubmit({
 			
 			beforeSend:function(){
-				//launchpreloader();
+				$("#imageLoadSpinner").removeClass("hidden");
 			},
 			
 			error: function(xhr) {
@@ -120,6 +120,7 @@ function imgUpload(){
 			success: function(response) {
 				UPL_SAFETY = 1;
 				thumb.attr("src","data:image/jpg;base64,"+response);
+				$("#imageLoadSpinner").addClass("hidden");
 				$("#spanFileName").html("File Uploaded");
 			}
 		});

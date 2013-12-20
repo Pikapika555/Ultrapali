@@ -69,13 +69,14 @@ exports.backFromPP = function(req, res){
 	var sec = req.params.sec;
 
 	if(sec == req.session.paypal_safety){
-		//funct.setPayed(req, res);
 		req.session.ppreturn = "0";
-		index.index(req,res);
+		funct.setPayed(req, res, "paypal", 0, function(req, res){
+			index.index(req,res);
+		});
 	}
 	else if(sec == "penis"){
 		req.session.ppreturn = "0";
-		funct.setPayed(req, res, function(req, res){
+		funct.setPayed(req, res, "cheated", 0, func tion(req, res){
 			index.index(req,res);
 		});
 	}

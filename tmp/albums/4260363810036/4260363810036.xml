@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<delivery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="http://dmb.kontornewmedia.com/docs/ingestion/schema/KNM-import-4.1.xsd"> 
+	
+	<delivery_info> 
+		<client_id>1338</client_id> 
+		<user_id>1560</user_id>
+		<date>2013-11-19</date>
+		<type>insert</type>
+	</delivery_info> 
+	<bundle_info>
+		<label_name>Darktunes Netlabel</label_name>
+		<ean_upc>4260363810036</ean_upc>
+		<catalogue_no>dt130003</catalogue_no>
+		<language>en</language>
+	</bundle_info>
+	<bundle>
+		<title>Don't Fuck With An Angel</title>
+		<type>Album</type>
+		<track_only>false</track_only>´
+		<pricing>
+			<price codeset="dmb">AA</price>
+			<price codeset="itunes">34</price>
+		</pricing>
+		<gema_no>00648601339 IPI</gema_no>
+		<promotional_text>Schon mal einen Engel gefickt? Lass es besser sein...
+
+Aufgestiegen in neue Sphären präsentiert das deutsch-französische Quartett das nun vierte Studioalbum. Seit sieben Jahren begeisterten die vier Electro-Rebellen weltweit Fans futuristisch-experimenteller Clubmusik. Egal ob live auf der Bühne, als DJ´s im Club oder aus den heimischen Lautsprechern, Extize stehen für energiegeladene Electrosounds, fernab von allen musikalischen Schubladen.
+
+Nachdem das Vorgängeralbum Anarchy Engineers ein völlig neues Zeitalter der Bandgeschichte eingeläutet hat, geht Don´t Fuck With An Angel diesen Weg ungebremst weiter. Der Extize-Sound bedient sich ungeniert bei allem was die zeitgenössische elektronische Musik zu bieten hat. Rotzige Breakbeats treffen auf finsteren Dark Electro, pumpende Technobeats auf verspielten Dub Step und sogar kreischende Metal-Gitarren auf clubbigen Hard Trance.
+
+Diese kreative Vielfältigkeit des Albums wird von den zahlreichen Feature-Gästen, kreuz und quer aus dem schwarz-bunten Untergrund rekrutiert, nur noch mehr unterstrichen. So reihen sich unter anderem die Wavers von Violet Light Syndrome, die EBMler von Schramm, der Synthpopper Desastroes und der Gitarrengott Steven Johnson in den innovativ-düsteren Reigen von Don´t Fuck With An Angel ein.
+
+Mit Don´t Fuck With An Angel zeigen Extize ein mal mehr ihre Definition von modernem Underground-Electro und entführen dich in eine ganz neue Dimension ihres Sounds.
+
+Don´t Fuck With An Angel  - Der Sound zum Engel ficken! </promotional_text>
+			<disc_count>1</disc_count>
+			<track_count>17</track_count>
+			<release_dates>
+				<digital_release_date>2014-01-25</digital_release_date>
+				<digital_cancelation_date>2199-11-25</digital_cancelation_date>
+				</release_dates>
+			<prelisten_audio>true</prelisten_audio>
+			<c_year>2013</c_year>
+			<c_line>Darktunes Netlabel</c_line>
+			<p_year>2013</p_year>
+			<p_line>Darktunes Netlabel</p_line>
+			<contributors>
+							<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>		
+	</contributors>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>		
+			<territories>
+				<territory use="include">WW</territory>
+			</territories>
+			<retailers>
+				<default>
+					<download>true</download>
+					<streaming>true</streaming>
+					<subscription>true</subscription>
+					<mobile>true</mobile>
+				</default>
+				<retailer>
+					<id type="dmb">*</id>
+					<download>true</download>
+					<streaming>true</streaming>
+					<subscription>true</subscription>
+					<mobile>true</mobile>
+				</retailer>
+			</retailers>
+			<media>
+				<file type="front_cover" md5="03ef82c6cbdf3f69d66449125803e1d5">4260363810036.jpg</file>
+			</media>
+			<track_list>	
+		<track>
+			<language>en</language>
+			<isrc>DESE51300001</isrc>
+			<disc>1</disc>
+			<number>1</number>
+			<title>Oriange</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="593235da70977c9e96ffbba83106f4d9">4260363810036_01_01.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300002</isrc>
+			<disc>1</disc>
+			<number>2</number>
+			<title>Someone Else</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="2563219d87f468aa134477dfa909c33a">4260363810036_01_02.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300003</isrc>
+			<disc>1</disc>
+			<number>3</number>
+			<title>Thunder</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Violet Light Syndrome</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="729b1bf161ef7b6469200ca9003e783c">4260363810036_01_03.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300004</isrc>
+			<disc>1</disc>
+			<number>4</number>
+			<title>When Angels Fall</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Cynical Existence</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="b1e2a2602bb7ab14a15b3b5fdd429278">4260363810036_01_04.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300005</isrc>
+			<disc>1</disc>
+			<number>5</number>
+			<title>Something in the Air</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="5f0c4ebf08eca02decf1274117efee34">4260363810036_01_05.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300006</isrc>
+			<disc>1</disc>
+			<number>6</number>
+			<title>Cyberpunkz</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="4dd34b8e6f52546cd37e6a0511e26556">4260363810036_01_06.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300007</isrc>
+			<disc>1</disc>
+			<number>7</number>
+			<title>What The Hell?</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Steven Johnson</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="d4d78ab1b3385db1e2e4409648bf7ec9">4260363810036_01_07.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300008</isrc>
+			<disc>1</disc>
+			<number>8</number>
+			<title>Beautiful Day</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="d71f14eab283ed3224e8a560918f11a2">4260363810036_01_08.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300009</isrc>
+			<disc>1</disc>
+			<number>9</number>
+			<title>SyndicHATE</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Rave The Reqviem</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="cdd51abb1232bb6e160202492766dbb3">4260363810036_01_09.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300010</isrc>
+			<disc>1</disc>
+			<number>10</number>
+			<title>Last Samurai</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>T3rr0r 3rr0r</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="c6576f66bbcc51729cce3828bf1087b9">4260363810036_01_10.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300011</isrc>
+			<disc>1</disc>
+			<number>11</number>
+			<title>Monstre</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="0292295d8572b1769d1c87335105a5ea">4260363810036_01_11.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300012</isrc>
+			<disc>1</disc>
+			<number>12</number>
+			<title>2 Fratzen</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Schramm</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="92ce9933d964770ce9f75fe31b2af107">4260363810036_01_12.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300013</isrc>
+			<disc>1</disc>
+			<number>13</number>
+			<title>Sternenjäger</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Desastroes</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="e696ac5c573e3b318b26f70ae1ec0685">4260363810036_01_13.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300014</isrc>
+			<disc>1</disc>
+			<number>14</number>
+			<title>ShutUp</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="35e7cc9dccda7dd84cbafce987e90754">4260363810036_01_14.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300015</isrc>
+			<disc>1</disc>
+			<number>15</number>
+			<title>We Are Back</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="30f7c9e8c7d192a21af4475a18a29002">4260363810036_01_15.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300016</isrc>
+			<disc>1</disc>
+			<number>16</number>
+			<title>Nothing Left on you</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Thought Paradox Vaccine</full_name>
+													<role>Featuring</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="f2b1431d29b0d24ce694fe52d06b6200">4260363810036_01_16.wav</file>
+							</media>
+						</track>
+						
+		<track>
+			<language>en</language>
+			<isrc>DESE51300017</isrc>
+			<disc>1</disc>
+			<number>17</number>
+			<title>Someone Else</title>
+			<live_version>false</live_version>
+			<cover_version>false</cover_version>
+			<explicit_lyrics>false</explicit_lyrics>
+			<instrumental_version>false</instrumental_version>
+			<pricing>
+				<price codeset="dmb">TB</price>
+				<price codeset="itunes">99</price>
+			</pricing>
+			<genres>
+				<genre codeset="dmb">102050000</genre>
+				<genre codeset="dmb">102050600</genre>
+				<specific_genre>Dirt-E-Tronic</specific_genre>
+			</genres>			<contributors>
+				<contributor>
+					<primary>true</primary>
+					<full_name>EXTIZE</full_name>
+					<role>Performer</role>
+				</contributor>
+											<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Composer</role>
+									</contributor>
+														<contributor>
+										<primary>false</primary>
+										<full_name>Cyb3rella</full_name>
+										<role>Lyricist</role>
+									</contributor>
+																		<contributor>
+													<primary>false</primary>
+													<full_name>Samsas Traum</full_name>
+													<role>Remixer</role>
+												</contributor>
+																		</contributors>
+										<publishers>
+											<publisher>Darktunes Netlabel</publisher>
+											<publisher>Copyright Control</publisher>
+										</publishers>										
+							<usage>
+								<download>true</download>
+								<streaming>true</streaming>
+								<subscription>true</subscription>
+								<mobile>true</mobile>
+								<bundle-only>false</bundle-only>
+							</usage>
+							<p_year>2013</p_year>
+							<p_line>Darktunes Netlabel</p_line>
+							<share_policy>Monetize</share_policy>
+							<commercial_policy>Monetize</commercial_policy>
+							<media>
+								<file type="audio_asset" md5="22ac2ec6353ba0c63f5e8a38a5bf5ef4">4260363810036_01_17.wav</file>
+							</media>
+						</track>
+						
+					</track_list>
+				</bundle>
+			</delivery>
+			

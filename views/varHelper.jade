@@ -6,14 +6,13 @@
 			var upl = "#{upl}";
 
 			upl = upl.replace(/&quot;/ig,'"');
-			console.log(upl);
 			upl = JSON.parse(upl);
 			console.log("||||||||||||||||||||||");
+			console.log(upl.songsInfo);
 			if(upl.albumInfo){
 				if(upl.albumInfo.promotext){
 					var penis = upl.albumInfo.promotext;
 					upl.albumInfo.promotext = penis.replace(/wwwwwwwwwwwwwwwwww/g, "\n");
-					console.log(upl.albumInfo.promotext);
 				}
 			}
 			var db = new Array(3);

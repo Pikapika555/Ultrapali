@@ -168,7 +168,7 @@ exports.imageUpload = function(req, res){
 						if (err) throw err;
 						fs.unlink(tmp_path, function() {
 							if (err) throw err;
-							mongoF.getFileUser(req, res, 0, 0, 0, function(img){
+							mongoF.getFileUser(req, res, 0, 0, 0, 1, function(img){
 								mongoF.updateProfil(req, res, key, 0, function(req, res){
 									exports.setState(req, res, "1", 0, 0, function(){
 										res.send(img);
@@ -571,7 +571,7 @@ exports.genUpl = function(req, res, callback){
 		var alb = req.session.tempAlb;
 		mongoF.findSpecific(req, res, path, 0, function(artist){
 			mongoF.findSpecific(req, res, path2, 0, function(upl){
-				mongoF.getFileUser(req, res, 0, 0, 0, function(img){
+				mongoF.getFileUser(req, res, 0, 0, 0, 1, function(img){
 					if(img){
 						var uplo = upl[alb];
 						if(uplo.albumInfo){
@@ -672,7 +672,7 @@ exports.genDisco = function(req, res, callback){
 				hasAlbum = 1;
 				var imgName = upl[key].imageName;
 				var albName = upl[key].albumInfo.title;
-				mongoF.getFileUser(req, res, 0, key, 0, function(img){
+				mongoF.getFileUser(req, res, 0, key, 0, 1, function(img){
 					album[count] = {img: img, name: albName};
 					if(count == len){
 						abgesendet = 1;
@@ -798,7 +798,8 @@ exports.writeMessage = function(req, res){
 	if(req.session.account_state == "admin"){
 		var email = req.body.email;
 		var msg = req.body.msg;
-		mongoF.writeMsg(req, res, email, msg, "admin sent you a Message", function(){
+
+			mongoF.writeMsg(req, res, email, msg, "admin sent you a Message", function(){
 			res.send({nr: "0", msg:"Message Sent"})
 		});
 
@@ -809,10 +810,10 @@ exports.writeMessage = function(req, res){
 // Payment //
 /////////////
 
-exports.setPayed = function(req, res, callback){
+exports.setPayed = function(req, res, payed, code, callback){
 	exports.setState(req, res, "payed", 0, 0, function(req, res){
 		//send mess to user => alb xy is now payed
-		mongoF.albumNotification(req, res, "1", function(req, res){
+		mongoF.albumNotification(req, res, payed, code, function(req, res){
 			callback(req, res);
 		});
 	});

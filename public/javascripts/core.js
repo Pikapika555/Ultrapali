@@ -107,8 +107,6 @@ return false;
 function CloseAlbumCaroussel(){
 	var navHeight = $("#unit").height() * -1;
 	if($("#cWrap").css("top") == "0px"){
-		console.log("if");
-		console.log(navHeight);
 		$("#cWrap").stop().animate({
 			top: navHeight
 		},600);
@@ -121,7 +119,6 @@ function CloseAlbumCaroussel(){
 		},600);
 	}
 	else{
-		console.log($("#cWrap").css("top"));
 		$("#cWrap").stop().animate({
 			top: 0
 		},600);
@@ -142,7 +139,6 @@ function ShowUnitInformation() {
 
 function locateSite(){
 	var location = window.location.pathname;
-	console.log(location);
 	switch(location){
 		case "/dashboard":
 			$("#ulSideNav").children().removeClass("active");
@@ -200,7 +196,6 @@ function unitSlide(){
 		var iSelf = $("#ulUnit").offset().left;
 		if($(this).hasClass('rasd')){
 			bDir = -1;
-			console.log("IFFF");
 		}
 		var move = (iUnitWidth/2 * bDir) + iSelf;
 		if(bDir == 1 && move > 0){
@@ -210,8 +205,6 @@ function unitSlide(){
 		$("#ulUnit").stop().animate({
 			left: move
 		}, 1000);
-		
-		console.log(iSelf);
 	});
 }
 
@@ -233,14 +226,11 @@ function unitItemMask(){
 function uploadAlbumImg(){
 	$(".fileUpload").click(function(e){
 		e.preventDefault();
-		console.log("JUFASDFJSF");
-		//var reader = new FileReader();
 	});
 }
 
 function radioButtons(){
   $('.ajaxGrp').each(function(){
-	console.log("hi");
     var group   = $(this);
     var form    = group.parents('form').eq(0);
     var name    = group.attr('data-toggle-name');
@@ -282,7 +272,6 @@ function uploadActivator(){
 		}
 		else if(submitState == 2){
 			forms = new Array();
-			console.log("ELSE IF");
 			form = $("#form_albumInfo");
 			postSongUpl(form, function(response){
 				if(response.nr == 0){
@@ -303,15 +292,10 @@ function uploadActivator(){
 			var sCount = 0;
 			for(var i = 1; i <= counter; i++){
 				var form = $("#form_info_song_"+i);
-				console.log("I : "+i);
-				console.log("Counter : "+counter);
 				postSongUpl(form, function(response){
 					if(response.nr == 0){
 						sCount++;
 						if(sCount == counter && Error == 0){
-							console.log("rightNow");
-							console.log("counter: "+counter);
-							console.log("i: "+i);
 							$(".alert").remove();
 							alerta($(".errorBox"), 0, response.msg);
 							changeTab(submitState);
@@ -319,7 +303,6 @@ function uploadActivator(){
 						}
 					}
 					else{
-						console.log("wrong");
 						Error = 1;
 						if(i == counter+1){
 							$(".alert").remove();
@@ -344,7 +327,6 @@ function uploadActivator(){
 			});
 		}
 		else{
-			console.log("ELSE");
 			alerta(form, 1, "Please upload album cover")
 		}
 	});
@@ -370,8 +352,6 @@ function changeTab(substate){
 
 function calcPrice(){
 	ajaxPost(0, "calcPrice", function(res){
-		console.log("***********PRICE***********");
-		console.log(res);
 
 		var table = $("#priceTable");
 		var waiter = $("#waiter");
@@ -415,7 +395,6 @@ function buttonUnlock(){
 
 	$("#Content").on("click", "button.unlocker", function(){
 		var t = $(this);
-		console.log("HIII");
 
 		toggle(t, function(){
 			t.html("<i class='icon-ok'>");
@@ -448,8 +427,6 @@ function copyMe(){
 	});
 
 	$("#ttab3").on("keyup", "input[name='trackTitle']", function(){
-		console.log("HI")
-		console.log($(this));
 		var spanFileName = $(this).parents("li").find("#spanFileName");
 		var name = $(this).val();
 		var len = name.length;
@@ -531,9 +508,7 @@ function insertVar(page, db){
 		});
 	}
 
-	console.log("obj");
 	if(obj.albumInfo){
-		console.log("obj geht rein");
 		var id1 = "#opt"+obj.albumInfo.kategorie1;
 		var id2 = "#opt"+obj.albumInfo.kategorie2;
 		var html1 = $(id1).html();
@@ -562,22 +537,29 @@ function insertVar(page, db){
 		}
 		
 		else if(oKey == "songsInfo"){
+			var len = Object.keys(obj[oKey]).length;
+			console.log(obj[oKey]);
+			console.log(len);
+			for(var i=0; i<len; i++){
+				$("button.copy").trigger("click");
+			}
 			$.each( obj[oKey], function(key, value){
 				var form = $("form[id='form_info_"+key+"']");
-				$("button.copy").trigger("click");
+				console.log("********************************");
+				console.log(oKey+"   "+key);
 				form = $("form[id='form_info_"+key+"']");
 				li = form.parents("li");
 				li.find("#spanFileName").html(obj[oKey][key]["trackTitle"]);
 				li.find("#spanNrCount").css("background-color", "#5EFF29").css("border-color", "#5EFF29");
 
 
-				for(var i = 1; i<20; i++){
+				for(var i = 1; i<10; i++){
 					var aComp = "kompName_"+i;
 					if(obj[oKey][key][aComp]){
 						li.find("[name='kompName_']").parents(".control-group").children("button").trigger("click");
 					}
 				}
-				for(var i = 1; i<20; i++){
+				for(var i = 1; i<10; i++){
 					var aText = "textAuth_"+i;
 					if(obj[oKey][key][aText]){
 						li.find("[name='textAuth_']").parents(".control-group").children("button").trigger("click");
@@ -630,7 +612,6 @@ function blink(elem){
 
 function fadeIO(elem){
 	if(elem.hasClass("in")){
-		console.log("DEL");
 		elem.removeClass("in");
 	}
 	else{
@@ -650,9 +631,7 @@ function addOpt(){
 }
 
 function toPaypal(){
-	console.log("TO PAYPAAAL");
 	ajaxPost(false, "paypal", function(stuff){
-		console.log(stuff);
 		window.open (stuff,'_self',false)
 	});
 	
@@ -660,7 +639,6 @@ function toPaypal(){
 
 function clickableTables(){
 	$("table.table-hover").on("click", "tr.album", function(){
-		console.log("CLICK");
 		
 	});
 }
@@ -695,7 +673,6 @@ function PPFix(){
 function aDelHelp(){
 	var delNews = $("a[href='#delNewsModal']");
 	delNews.click(function(){
-		console.log("hihihihihihihihihihihihihihi");
 		var asd = "delNews/" + delNews.attr("id");
 		$("#delNewsModal").children("form").attr( 'action', asd );
 
@@ -703,7 +680,6 @@ function aDelHelp(){
 }
 
 function radioGrp(){
-	console.log("PENIS***********************************");
 	$(".radioGrp").on("click", function(event){
 		var el = event.target;
 		var value = el.value;
@@ -739,7 +715,6 @@ function aUsers(){
 		mod.modal('show');
 	});
 	$("a.editArtist").on("click", function(event){
-		console.log("PENIS");
 		var mod = $("#artistModal");
 		var mods = mod.children("form");
 		var tabl = $(this).parent("li").find("p").html();
@@ -749,13 +724,10 @@ function aUsers(){
 		mods.find("[name='hid']").removeAttr('disabled');
 
 		for(var i=0; i < tabl.length; i++){
-			console.log(i);
 			var val = tabl[i];
 			var picker = mods.children(".modal-body").children(".control-group").eq(i).children(".controls").children().eq(0);
 			mods.attr("action", "editArtist"); // HIER WIRDS GEDINGST
-			console.log(val);
 			if(val){
-				console.log("has val");
 				picker.eq(i).val(val);
 			}
 		}
@@ -764,10 +736,8 @@ function aUsers(){
 	});
 	$("a.clearForm").on("click", function(event){
 		var mod = $(this).attr("href");
-		console.log(mod);
 		$(mod).find("input").val("");
 		if(mod == "#artistModal"){
-			console.log("is add artist");
 			$(mod).find("form").attr("action", "addArtist")
 			$(mod).find("[name='hid']").attr("disabled", "true");
 			$(mod).find("[name='artistName']").removeAttr('readonly');
@@ -796,7 +766,6 @@ function changeGenre(){
 		var t = $(this);
 		var val = t.attr("value");
 		
-		console.log(val);
 		var id = $("#opt"+val);
 		var html = id.html();
 		t.parents(".btn-group").children("select").html(html);
@@ -840,16 +809,12 @@ function checkSongRdy2(th){
 	var input = $(th).parents("form").find("input[disabled!='disabled']");
 	var select = $(th).parents("form").find("select");
 	var btn = $(th).parents("li[id*='Song_']").find("button[data-target*='#songOpt_']");
-	console.log(input.length);
-	console.log(input);
 	var counter = 0;
 	for(var i=0; i < input.length; i++){
-		console.log(input.eq(i).val());
 		if(input.eq(i).val()!= "" && input.eq(i).val()!= undefined){
 			counter++;
 		}
 	}
-	console.log(select.val());
 	if(counter == input.length && select.val() != "0"){
 		btn.removeClass("btn-inverse").addClass("btn-success");
 	}

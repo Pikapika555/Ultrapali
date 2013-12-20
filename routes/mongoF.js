@@ -197,18 +197,14 @@ exports.writeRequest = function(req, res) {
 	}
 }
 
-exports.albumNotification = function(req, res, payed, callback){
-	var type = "album Notification";
-	var time = process.hrtime();
-	if(payed == 1){
-		type = "payed";
-	}
+exports.albumNotification = function(req, res, payed, code, callback){
+	var time = new Date();
 	var insert ={
 		from: req.session.email
 		,type: type
+		,code: code
 		,albumID: req.session.tempAlb
 		,time: time
-
 	}
 	db.collection('requests', function(err, collection) {
 		collection.insert(insert, {safe:true}, function(err, result) {
@@ -350,7 +346,7 @@ exports.useVoucher = function(req, res){
 			if(item){
 				if(item.used == 0){
 					collection.update({'code': id },{$set: {"used": req.session.email}} , {safe:true}, function(err, result){
-						funct.setPayed(req, res, function(){
+						funct.setPayed(req, res, "voucher", id, function(){
 							res.send({nr: "0", msg: "Sie haben mit dem Gutschein bezahlt"});
 						});
 					});
@@ -386,13 +382,14 @@ exports.getSetting = function(req, res, type, callback){
 
 //NonGrid
 
-exports.getFileUser = function(req, res, profil, alb, name, callback){
+exports.getFileUser = function(req, res, profil, alb, name, enc,callback){
 	if(name == 0){name = "cover.jpg";}
 	else{name += ".wav";}
 	if(alb == 0){alb = req.session.tempAlb;}
 	if(profil == 0){profil = req.session.email;}
 	fs.readFile('./uploads/'+profil+'/'+alb+'/'+name, function(err, data){
-		back = data.toString('base64');
+		if(enc == 1){back = data.toString('base64');}
+		else{back = data;}
 		callback(back);
 	});
 }

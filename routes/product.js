@@ -61,7 +61,9 @@ exports.create_folder = function(req, res, songs, imgName, ean, songCnt, callbac
 }
 
 exports.create_img = function(req, res, path, imgName, ean, callback){
-	mongoF.getSongs(req, res, imgName, 0, function(data){
+	var user = req.params.user;
+	var alb = req.params.asd;
+	mongoF.getFileUser(req, res, user, alb, 0, 0, function(data){
 		var hash = crypto.createHash('md5').update(data).digest("hex");
 		fs.writeFile(path+ean+".jpg", data, function(err){
 			callback(hash);
@@ -80,8 +82,10 @@ exports.create_data = function(req, res, path, songs, ean, songCnt, callback){
 }
 
 exports.sWriteLoop = function(req, res, path, songs, ean, songCnt, md5, counter, callback){
-	var bla = counter +1;
-	mongoF.getSongs(req, res, songs["song_"+bla].songId, 1, function(data){
+	var user = req.params.user;
+	var alb = req.params.asd;
+	var bla = counter+1;
+	mongoF.getFileUser(req, res, user, alb, songs["song_"+bla].songId, 0, function(data){
 		console.log("ROUND");
 		counter++;
 		console.log("write song nr: "+ counter);
@@ -532,7 +536,7 @@ exports.songWriter1 = function(AT_SONG, albInfo, gen, sonInfo, xml, callback){
 		';
 		var i = 0;
 		var j = 0;
-		exports.loop(20, function(){
+		exports.loop(10, function(){
 			i++;
 			var aKomp = "kompName_"+i;
 				if(song[aKomp]){
@@ -545,7 +549,7 @@ exports.songWriter1 = function(AT_SONG, albInfo, gen, sonInfo, xml, callback){
 					';
 				}
 		}, function(){
-			exports.loop(20, function(){
+			exports.loop(10, function(){
 				j++;
 				var aText = "textAuth_"+j;
 					if(song[aText]){
@@ -562,7 +566,7 @@ exports.songWriter1 = function(AT_SONG, albInfo, gen, sonInfo, xml, callback){
 								xml += '\
 												<contributor>\n\
 													<primary>false</primary>\n\
-													<full_name>'+song.remixNamePre+' '+song.remixNameLast+'</full_name>\n\
+													<full_name>'+song.remixName+'</full_name>\n\
 													<role>Remixer</role>\n\
 												</contributor>\n\
 								';
@@ -571,7 +575,7 @@ exports.songWriter1 = function(AT_SONG, albInfo, gen, sonInfo, xml, callback){
 								xml += '\
 												<contributor>\n\
 													<primary>false</primary>\n\
-													<full_name>'+song.Featured+'</full_name>\n\
+													<full_name>'+song.featuredBy+'</full_name>\n\
 													<role>Featuring</role>\n\
 												</contributor>\n\
 								';
